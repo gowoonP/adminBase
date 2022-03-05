@@ -70,17 +70,17 @@ public class PageController {
     public String shoppingmanagement() { return "adminpage/shoppingmanagement";}
 
     // 4개 링크 안먹음 왜지?
-    @GetMapping("/managementadd")
-    public String shoppingmanagement_add() { return "adminpage/shoppingmanagement_add";}
+    @GetMapping("/management_add")
+    public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
 
     @GetMapping("/management_hide")
-    public String shoppingmanagement_hide() { return "adminpage/shoppingmanagement_hide";}
+    public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
 
     @GetMapping("/management_sale")
-    public String shoppingmanagement_sale() { return "adminpage/shoppingmanagement_sale";}
+    public String shoppingmanagement_sale() { return "adminpage/shoppingManagement_sale";}
 
     @GetMapping("/management_soldout")
-    public String shoppingmanagement_soldout() { return "adminpage/shoppingmanagement_soldout";}
+    public String shoppingmanagement_soldout() { return "adminpage/shoppingManagement_soldout";}
 
 //    상품관리 탭 전환 ajax 먹이면 이거 안써도 되는건가
 //    @GetMapping("/management1")
