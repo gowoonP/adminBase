@@ -1,6 +1,5 @@
 package com.example.project.model.network.request;
 
-import com.example.project.model.enumclass.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,11 +12,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class UserApiRequest {
-    private Long id;
-    private String userid;
-    private String userpw;
-    private String hp;
-    private String email;
-    private LocalDateTime regDate;
-    private UserStatus status;
+    private Long userIdx;
+    private String userUserid;
+    private String userUserpw;
+    private String userName;
+    private String userHp;
+    private String userEmail;
+    private LocalDateTime userRegdate;
+    private String userSns;
+    private String userZipcode;
+    private String userAddress1;
+    private String userAddress2;
 }

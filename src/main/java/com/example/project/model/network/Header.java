@@ -48,13 +48,14 @@ public class Header<T> {
                 .build();
     }
 
-    public static <T> Header<T> OK(T data, Pagination pagination){
+    public static  <T> Header<T> OK(T data, Pagination pagination){
         return (Header<T>) Header.builder()
-                .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
                 .data(data)
                 .pagination(pagination)
                 .build();
     }
+
+
 }
