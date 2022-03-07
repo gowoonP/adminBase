@@ -1,6 +1,10 @@
 package com.example.project.controller.page;
 
+import com.example.project.model.network.response.GoodsApiResponse;
+import com.example.project.service.GoodsApiLogicService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,9 +30,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //    }
 //}
 
+@AllArgsConstructor
 @Controller
 @RequestMapping("/admin")
 public class PageController {
+
+    private GoodsApiLogicService goodsApiLogicService;
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -66,8 +73,13 @@ public class PageController {
     @GetMapping("/exchange")
     public String shoppingexchange() { return "adminpage/shoppingexchange";}
 
+//    @GetMapping("/management")
+//    public String shoppingmanagement() { return "adminpage/shoppingmanagement";}
+
     @GetMapping("/management")
-    public String shoppingmanagement() { return "adminpage/shoppingmanagement";}
+    public String shoppingmanagement(Model model){
+        model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
+        return "adminpage/shoppingmanagement";}
 
     // 4개 링크 안먹음 왜지?
     @GetMapping("/management_add")

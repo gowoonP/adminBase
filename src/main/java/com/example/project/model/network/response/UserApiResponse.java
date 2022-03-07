@@ -1,6 +1,6 @@
 package com.example.project.model.network.response;
 
-import com.example.project.model.enumclass.UserStatus;
+import com.example.project.model.entity.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,13 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class UserApiResponse {
-    private Long id;
-    private String userid;
-    private String userpw;
-    private String hp;
-    private String email;
-    private LocalDateTime regDate;
-    private UserStatus status;
 
-    private List<OrderGroupApiResponse> orderGroupApiResponseList;
+    private Long userIdx;
+    private String userUserid;
+    private String userUserpw;
+    private String userName;
+    private String userHp;
+    private String userEmail;
+    private LocalDateTime userRegdate;
+    private String userSns;
+    private String userZipcode;
+    private String userAddress1;
+    private String userAddress2;
+    private List<CartApiResponse> cartApiResponseList;
 }

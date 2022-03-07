@@ -7,9 +7,7 @@ import java.util.Optional;
 
 @Component
 public class LoginUserAuditorAware implements AuditorAware<String> {
-    public LoginUserAuditorAware() {
-    }
-
+    @Override
     public Optional<String> getCurrentAuditor() {
         return Optional.of("관리자");
     }
