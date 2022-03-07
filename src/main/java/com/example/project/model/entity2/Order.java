@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,16 +23,20 @@ import java.time.LocalDateTime;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_order")
-    private BigInteger id;
-    private String userid;
-    private String num;
-    private String goodsimg;
-    private String goodsname;
-    private LocalDateTime regdate;
-    private String seller;
-    private String status;
+    private Long orderIdx;
+    @ManyToOne
+    @JoinColumn(name="user_userIdx")
+    private User user;
+    private Long orderNum;
+    private LocalDateTime orderRegdate;
+    private String orderSeller;
+    private String orderStatus;
+
+    @ManyToOne
+    private Goods goods;
 }

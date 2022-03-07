@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,28 +8,29 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-        name="seq_zzim",
-        sequenceName = "seq_zzim",
+        name="seq_cart",
+        sequenceName = "seq_cart",
         initialValue = 1,
         allocationSize = 1
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class Zzim {
+@Table(name="tb_cart")
+public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_zzim")
-    private BigInteger id;
-    private BigInteger userid;
-    private BigInteger goodsid;
-    private String goodsname;
-    private Integer goodsprice;
-    private String goodssaleprice;
-    private String goodsimg;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cart")
+    private Long cartIdx;
+    @ManyToOne
+    private User user;
+    @ManyToOne
+    private Goods goods;
 }

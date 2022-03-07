@@ -1,5 +1,6 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
+import com.example.project.model.enumclass.AdminStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,13 +23,15 @@ import java.math.BigInteger;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_admin")
 public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_admin")
-    private BigInteger index;
-    private String adminid;
-    private String adminpw;
-    private String name;
-    private String status;
+    private Long adminIdx;
+    private String adminId;
+    private String adminPw;
+    private String adminName;
+    @Enumerated(EnumType.STRING)
+    private AdminStatus adminStatus;
 }

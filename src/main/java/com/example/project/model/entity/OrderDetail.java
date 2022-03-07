@@ -1,5 +1,6 @@
 package com.example.project.model.entity;
 
+import com.example.project.model.enumclass.OrderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-        name="seq_detail",
+        name = "seq_detail",
         sequenceName = "seq_detail",
         initialValue = 1,
         allocationSize = 1
@@ -29,17 +30,21 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_detail")
     private Long id;
     private LocalDateTime arrivalDate;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderType status;
     private Integer quantity;
     private BigDecimal totalPrice;
     @CreatedDate
     private LocalDateTime regDate;
 
-    // private Long itemId;
     @ManyToOne
     private Item item;
+    // private Long itemId;
 
-    //private Long orderGroupId;
+   // private Long orderGroupId;
     @ManyToOne
     private OrderGroup orderGroup;
+
+
+
 }

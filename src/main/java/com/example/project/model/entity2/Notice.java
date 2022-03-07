@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,14 +22,15 @@ import java.time.LocalDateTime;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_notice")
 public class Notice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_notice")
-    private BigInteger id;
-    private String title;
-    private LocalDateTime regdate;
-    private String content;
-    private String category;
-    private Integer hit;
+    private Long ntIdx;
+    private String ntTitle;
+    private LocalDateTime ntRegdate;
+    private String ntContent;
+    private String ntCategory;
+    private Integer ntHit;
 }

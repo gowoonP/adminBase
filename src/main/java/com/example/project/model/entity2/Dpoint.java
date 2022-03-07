@@ -1,9 +1,10 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -22,14 +23,19 @@ import java.time.LocalDateTime;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_dpoint")
 public class Dpoint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_dpoint")
-    private BigInteger id;
-    private LocalDateTime regdate;
-    private String content;
-    private BigInteger pp;
-    private BigInteger enddate;
-    private BigInteger mp;
+    private Long dpIdx;
+    @CreatedDate
+    private LocalDateTime dpRegdate;
+    private LocalDateTime dpEnddate;
+    private String dpContent;
+    private Integer dpPp;
+    private Integer dpMp;
+    private Integer dpSum;
+    @ManyToOne
+    private User user;
 }
