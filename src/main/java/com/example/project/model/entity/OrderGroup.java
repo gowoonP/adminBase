@@ -43,11 +43,11 @@ public class OrderGroup {
     @CreatedDate
     private LocalDateTime regDate;
 
-    //private Long usersId;
     @ManyToOne
     private Users users;
+    // private Long usersId;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
     private List<OrderDetail> orderDetailList;
-
 }

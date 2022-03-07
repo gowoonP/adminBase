@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,25 +15,24 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-        name="seq_dgoods",
-        sequenceName = "seq_dgoods",
+        name="seq_dpoint_goods",
+        sequenceName = "seq_dpoint_goods",
         initialValue = 1,
         allocationSize = 1
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_dpoint_goods")
 public class DpointGoods {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_dgoods")
-    private BigInteger id;
-    private BigInteger name;
-    private BigInteger price;
-    private BigInteger count;
-    private LocalDateTime enddate;
-    private String category;
-    private BigInteger hit;
-    private String img;
-    private String userid;
-    private String userpw;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_dpoint_goods")
+    private Long dpgIdx;
+    private String dpgName;
+    private Integer dpgPrice;
+    private Integer dpgCount;
+    private LocalDateTime dpgEnddate;
+    private String dpgCategory;
+    private Integer dpgHit;
+    private String dpgImg;
 }

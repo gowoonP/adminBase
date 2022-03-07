@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,23 +16,25 @@ import java.time.LocalDateTime;
 @Entity
 @SequenceGenerator(
         name="seq_qna",
-        sequenceName = "deq_qna",
+        sequenceName = "seq_qna",
         initialValue = 1,
         allocationSize = 1
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_qna")
 public class Qna {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_qna")
-    private BigInteger idx;
-    private BigInteger userid;
-    private String title;
-    private LocalDateTime regdate;
-    private String content;
-    private String answer;
-    private BigInteger number;
-    private String category;
-    private String status;
+    private Long qIdx;
+    @ManyToOne
+    private User user;
+    private String qTitle;
+    private LocalDateTime qRegdate;
+    private String qContent;
+    private String qAnswer;
+    private Long qNumber;
+    private String qCategory;
+    private String qStatus;
 }

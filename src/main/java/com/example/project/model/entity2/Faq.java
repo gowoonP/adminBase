@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,14 +21,14 @@ import java.math.BigInteger;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_faq")
 public class Faq {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_faq")
-    private BigInteger id;
-    private String title;
-    private String answer;
-    private String category;
-    private String img;
-    private String adminid;
+    private Long faqIdx;
+    private String faqTitle;
+    private String faqAnswer;
+    private String faqCategory;
+    private String faqImg;
 }

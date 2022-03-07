@@ -5,10 +5,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum OrderType {
-
-    ALL(0, "묶음", "모든 상품을 묶어 배송"),
-    EACH(1, "개별", "모든 상품을 각각 준비되는대로 발송");
+public enum AdminStatus {
+    REGISTERED(0, "등록", "사용자 가입상태"),
+    UNREGISTERED(1, "탈퇴", "사용자 탈퇴상태");
 
     private Integer id;
     private String title;

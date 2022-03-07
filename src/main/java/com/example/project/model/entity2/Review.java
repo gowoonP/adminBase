@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,15 +22,18 @@ import java.time.LocalDateTime;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_review")
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_review")
-    private BigInteger id;
-    private BigInteger userid;
-    private LocalDateTime regdate;
-    private String title;
-    private String content;
-    private BigInteger star;
-    private String img;
+    private Long rvIdx;
+    @ManyToOne
+    @JoinColumn(name="user_userIdx")
+    private User user;
+    private LocalDateTime rvRegdate;
+    private String rvTitle;
+    private String rvContent;
+    private Integer rvStar;
+    private String rvImg;
 }

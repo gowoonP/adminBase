@@ -1,9 +1,11 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
+import com.example.project.model.enumclass.CouponStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @SequenceGenerator(
         name = "seq_coupon",
         sequenceName = "seq_coupon",
@@ -21,17 +24,22 @@ import java.time.LocalDateTime;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_coupon")
 public class Coupon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_coupon")
-    private BigInteger id;
-    private BigInteger userid;
-    private BigInteger discount;
-    private BigInteger name;
-    private LocalDateTime regdate;
-    private LocalDateTime startdate;
-    private LocalDateTime enddate;
-    private String limitprice;
-    private String status;
+    private Long cpIdx;
+    @ManyToOne
+    private User user;
+    private Long cpDiscount;
+    private String cpName;
+    @CreatedDate
+    private LocalDateTime cpRegdate;
+    @CreatedDate
+    private LocalDateTime cpStartdate;
+    private LocalDateTime cpEnddate;
+    private String cpLimitprice;
+    @Enumerated(EnumType.STRING)
+    private CouponStatus cpStatus;
 }

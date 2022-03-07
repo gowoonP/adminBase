@@ -41,7 +41,7 @@ public class Partner {
     private LocalDateTime regDate;
     @LastModifiedDate
     private LocalDateTime updateDate;
-    // private Long categoryId;
+    // private Long categoryId; 오류발생
 
     @ManyToOne
     private Category category;

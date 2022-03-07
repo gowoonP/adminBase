@@ -1,4 +1,4 @@
-package com.example.project.model.entity11;
+package com.example.project.model.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,15 +22,14 @@ import java.math.BigInteger;
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@Table(name="tb_recent")
 public class Recent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_recent")
-    private BigInteger id;
-    private BigInteger userid;
-    private BigInteger goodsid;
-    private String goodsname;
-    private Integer goodsprice;
-    private String goodssaleprice;
-    private String goodsimg;
+    private Long rcIdx;
+    @ManyToOne
+    private User user;
+    @ManyToOne
+    private Goods goods;
 }

@@ -1,6 +1,12 @@
 package com.example.project.model.enumclass;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum UserStatus {
+
     REGISTERED(0, "등록", "사용자 가입상태"),
     UNREGISTERED(1, "탈퇴", "사용자 탈퇴상태");
 
@@ -8,21 +14,4 @@ public enum UserStatus {
     private String title;
     private String description;
 
-    private UserStatus(final Integer id, final String title, final String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
 }
