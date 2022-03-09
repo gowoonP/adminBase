@@ -28,7 +28,6 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
-    @Column(name="user_idx")
     private Long userIdx;
     private String userUserid;
     private String userUserpw;
@@ -41,39 +40,5 @@ public class User {
     private String userZipcode;
     private String userAddress1;
     private String userAddress2;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Cart> cartList2;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Order> orderList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Zzim> zzimList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Qna> qnaList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Dpoint> dpointList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Coupon> couponList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Recent> recentList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<Review> reviewList;
-
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private List<RegistAddress> registAddressList;
-
-
-
-
-
-
-
 
 }

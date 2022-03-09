@@ -13,4 +13,5 @@ public class AdminMenu {
     private String title;
     private String url;
     private String code;
+
 }

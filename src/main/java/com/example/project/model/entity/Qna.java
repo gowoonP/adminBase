@@ -27,13 +27,12 @@ public class Qna {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_qna")
     private Long qIdx;
-    @ManyToOne
-    private User user;
+    private Long userIdx;
     private String qTitle;
     private LocalDateTime qRegdate;
     private String qContent;
     private String qAnswer;
-    private Long qNumber;
+    private Integer qNumber;
     private String qCategory;
     private String qStatus;
 }

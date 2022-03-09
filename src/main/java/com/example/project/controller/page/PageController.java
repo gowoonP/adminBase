@@ -85,7 +85,7 @@ public class PageController {
 
     @GetMapping("/management")
     public String shoppingmanagement(Model model){
-        model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
+        model.addAttribute("goodsList", goodsApiLogicService.list());
         return "adminpage/shoppingmanagement";}
 
 

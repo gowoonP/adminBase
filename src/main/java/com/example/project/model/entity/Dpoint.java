@@ -28,13 +28,11 @@ public class Dpoint {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_dpoint")
     private Long dpIdx;
-    @CreatedDate
     private LocalDateTime dpRegdate;
     private LocalDateTime dpEnddate;
     private String dpContent;
     private Integer dpPp;
     private Integer dpMp;
     private Integer dpSum;
-    @ManyToOne
-    private User user;
+    private Long userIdx;
 }

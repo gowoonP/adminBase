@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
 public class DpointGoodsApiResponse {
     private Long dpgIdx;
     private String dpgName;

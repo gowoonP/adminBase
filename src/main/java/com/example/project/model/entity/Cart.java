@@ -27,9 +27,9 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cart")
     private Long cartIdx;
+    private Long userIdx;
     @ManyToOne
-    private User user;
+    @JoinColumn(name="gd_idx")
+    private Goods goods;
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
-    private List<CartGoods> cartGoodsList;
 }

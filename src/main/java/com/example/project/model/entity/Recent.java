@@ -26,8 +26,8 @@ public class Recent {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_recent")
     private Long rcIdx;
+    private Long userIdx;
     @ManyToOne
-    private User user;
-    @ManyToOne
+    @JoinColumn(name="gd_idx")
     private Goods goods;
 }

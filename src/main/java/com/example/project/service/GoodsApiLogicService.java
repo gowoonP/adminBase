@@ -9,7 +9,6 @@ import com.example.project.model.network.response.GoodsApiResponse;
 import com.example.project.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,7 +67,7 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                 .build();
         return goodsApiResponse;
     }
-
+    @Transactional
     @Override
     public Header<GoodsApiResponse> read(Long id) {
         return baseRepository.findById(id)
@@ -78,7 +77,7 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                         () -> Header.ERROR("데이터 없음")
                 );
     }
-
+    @Transactional
     @Override
     public Header<GoodsApiResponse> update(Header<GoodsApiRequest> request) {
         GoodsApiRequest goodsApiRequest = request.getData();
@@ -91,12 +90,12 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                 .map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
-
+    @Transactional
     @Override
     public Header delete(Long id) {
         return null;
     }
-
+    @javax.transaction.Transactional
     public Header<List<GoodsApiResponse>> search(Pageable pageable){
         Page<Goods> goodss = baseRepository.findAll(pageable);
         List<GoodsApiResponse> goodsApiResponseList = goodss.stream()
@@ -111,35 +110,29 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                 .build();
         return Header.OK(goodsApiResponseList, pagination);
     }
-
-    public Header<List<GoodsApiResponse>> allGoodsView() {
+    @Transactional
+    public Header<List<GoodsApiResponse>> list() {
         List<Goods> goodss = baseRepository.findAll();
         List<GoodsApiResponse> goodsApiResponseList = goodss.stream()
                 .map(goods -> response(goods))
                 .collect(Collectors.toList());
         return Header.OK(goodsApiResponseList);
     }
-
-    public Header<List<GoodsApiResponse>> allGoodsViewBrand(String gdBrand) {
+    @Transactional
+    public Header<List<GoodsApiResponse>> listBrand(String gdBrand) {
         List<Goods> goodss2 = goodsRepository.findAllByGdBrand(gdBrand);
         List<GoodsApiResponse> goodsApiResponseList = goodss2.stream()
                 .map(goods2 -> response(goods2))
                 .collect(Collectors.toList());
         return Header.OK(goodsApiResponseList);
     }
-    public Header<List<GoodsApiResponse>> allGoodsViewCategory(String gdCategory) {
+
+    @Transactional
+    public Header<List<GoodsApiResponse>> listCategory(String gdCategory) {
         List<Goods> goodss3 = goodsRepository.findAllByGdCategory(gdCategory);
         List<GoodsApiResponse> goodsApiResponseList = goodss3.stream()
                 .map(goods3 -> response(goods3))
                 .collect(Collectors.toList());
         return Header.OK(goodsApiResponseList);
-    }
-
-    public List<GoodsApiResponse> getGoodsList(){
-        List<Goods> goodsList = goodsRepository.findAll();
-        List<GoodsApiResponse> goodsApiResponseList = goodsList.stream()
-                .map(goods -> response(goods))
-                .collect(Collectors.toList());
-        return goodsApiResponseList;
     }
 }

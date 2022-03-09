@@ -29,9 +29,8 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_coupon")
     private Long cpIdx;
-    @ManyToOne
-    private User user;
-    private Long cpDiscount;
+    private Long userIdx;
+    private Integer cpDiscount;
     private String cpName;
     @CreatedDate
     private LocalDateTime cpRegdate;

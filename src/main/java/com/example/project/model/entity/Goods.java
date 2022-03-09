@@ -47,6 +47,15 @@ public class Goods {
     @Enumerated(EnumType.STRING)
     private GoodsStatus gdStatus;
 
-    @OneToMany(mappedBy = "goods" , fetch = FetchType.LAZY)
-    private List<CartGoods> cartGoodsList;
+    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY)
+    private List<Cart> cartList;
+
+    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY)
+    private List<Order> orderList;
+
+    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY)
+    private List<Recent> recentList;
+
+    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY)
+    private List<Zzim> zzimList;
 }

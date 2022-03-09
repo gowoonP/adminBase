@@ -27,8 +27,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_review")
     private Long rvIdx;
-    @ManyToOne
-    private User user;
+    private Long userIdx;
     private LocalDateTime rvRegdate;
     private String rvTitle;
     private String rvContent;

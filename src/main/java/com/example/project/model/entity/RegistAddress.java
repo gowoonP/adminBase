@@ -26,8 +26,7 @@ public class RegistAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_regist_address")
     private Long rgaIdx;
-    @ManyToOne
-    private User user;
+    private Long userIdx;
     private String rgaRevname;
     private String rgaZipcode;
     private String rgaUserhp;

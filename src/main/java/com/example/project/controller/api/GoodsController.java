@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -75,17 +74,19 @@ public class GoodsController extends CrudController<GoodsApiRequest, GoodsApiRes
     }
 
     @GetMapping("/list") // http://localhost:8080/goods/list
-    public Header<List<GoodsApiResponse>> allGoodsView(){
-        return goodsApiLogicService.allGoodsView();
+    public Header<List<GoodsApiResponse>> list(){
+        return goodsApiLogicService.list();
     }
 
     @GetMapping("/list/category") // http://localhost:8080/goods/list/category?gdCategory=*
-    public Header<List<GoodsApiResponse>> allGoodsViewCategory(String gdCategory){
-        return goodsApiLogicService.allGoodsViewCategory(gdCategory);
+    public Header<List<GoodsApiResponse>> listCategory(String gdCategory){
+        return goodsApiLogicService.listCategory(gdCategory);
     }
 
     @GetMapping("/list/brand") // http://localhost:8080/goods/list/brand?gdBrand=*
-    public Header<List<GoodsApiResponse>> allGoodsViewBrand(String gdBrand){
-        return goodsApiLogicService.allGoodsViewBrand(gdBrand);
+    public Header<List<GoodsApiResponse>> listBrand(String gdBrand){
+        return goodsApiLogicService.listBrand(gdBrand);
     }
+
+
 }

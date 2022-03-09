@@ -26,9 +26,9 @@ public class Zzim {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_zzim")
     private Long zzIdx;
-    @ManyToOne
-    private User user;
+    private Long userIdx;
 
     @ManyToOne
+    @JoinColumn(name="gd_idx")
     private Goods goods;
 }

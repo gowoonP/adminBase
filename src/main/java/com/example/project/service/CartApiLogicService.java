@@ -1,79 +1,96 @@
 package com.example.project.service;
 
-import com.example.project.ifs.CrudInterface;
+import com.example.project.model.DTO.CartDTO;
 import com.example.project.model.entity.Cart;
 import com.example.project.model.entity.Goods;
-import com.example.project.model.entity.User;
-import com.example.project.model.network.Header;
-import com.example.project.model.network.request.CartApiRequest;
-import com.example.project.model.network.request.UserApiRequest;
-import com.example.project.model.network.response.CartApiResponse;
-import com.example.project.model.network.response.UserApiResponse;
 import com.example.project.repository.CartRepository;
-import com.example.project.repository.GoodsRepository;
-import com.example.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.el.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CartApiLogicService implements CrudInterface<UserApiRequest, UserApiResponse> {
-    @Autowired
-    private GoodsRepository goodsRepository;
-    @Autowired
-    private UserRepository userRepository;
+public class CartApiLogicService  {
+
     @Autowired
     private CartRepository cartRepository;
+    @Transactional
+    public Cart create(Long userIdx, CartDTO cartDTO){
+        Cart cart = Cart.builder()
+                .userIdx(userIdx)
+                .goods(Goods.builder()
+                        .gdIdx(cartDTO.getGoods().getGdIdx())
+                        .build())
+                .build();
+        Cart newCart = cartRepository.save(cart);
+        return newCart;
+    }
+    @Transactional
+    public CartDTO read(Long id){
+        Optional<Cart> cartOptional = cartRepository.findById(id);
+        Cart cart = cartOptional.get();
+        CartDTO cartDTO = CartDTO.builder()
+                .cartIdx(cart.getCartIdx())
+                .userIdx(cart.getUserIdx())
+                .goods(Goods.builder()
+                        .gdIdx(cart.getGoods().getGdIdx())
+                        .gdName(cart.getGoods().getGdName())
+                        .gdBrand(cart.getGoods().getGdBrand())
+                        .gdPrice(cart.getGoods().getGdPrice())
+                        .gdOption(cart.getGoods().getGdOption())
+                        .gdSaleprice(cart.getGoods().getGdSaleprice())
+                        .gdSalepercent(cart.getGoods().getGdSalepercent())
+                        .gdCount(cart.getGoods().getGdCount())
+                        .gdCategory(cart.getGoods().getGdCategory())
+                        .gdHit(cart.getGoods().getGdHit())
+                        .gdImg(cart.getGoods().getGdImg())
+                        .gdContent(cart.getGoods().getGdContent())
+                        .gdDetailimg(cart.getGoods().getGdDetailimg())
+                        .build())
+                .build();
+        return cartDTO;
+    }
+    @Transactional
+    public List<CartDTO> getCartList(Long userIdx){
+        List<Cart> cartList = cartRepository.findAllByUserIdx(userIdx);
+        List<CartDTO> cartDTOList = new ArrayList<>();
 
-//    @Transactional
-//    public void create(User user, Goods newGoods) {
-//        Cart cart = cartRepository.findByUserIdx(user.getUserIdx());
-//
-//        Goods goods = goodsRepository.findByGdIdx(newGoods.getGdIdx());
-//
-//
-//        Cart cart2 = Cart.builder()
-//                .user(cart.getUser())
-//                .goods(goods)
-//                .build();
-//        Cart newCart = cartRepository.save(cart2);
-//
-//    }
-
-
-        public Header<CartApiResponse> response(Cart cart) {
-            CartApiResponse cartApiResponse = CartApiResponse.builder()
+        for(Cart cart : cartList){
+            CartDTO cartDTO = CartDTO.builder()
                     .cartIdx(cart.getCartIdx())
-                    .cartUseridx(cart.getUser().getUserIdx())
+                    .userIdx(cart.getUserIdx())
+                    .goods(Goods.builder()
+                            .gdIdx(cart.getGoods().getGdIdx())
+                            .gdName(cart.getGoods().getGdName())
+                            .gdBrand(cart.getGoods().getGdBrand())
+                            .gdPrice(cart.getGoods().getGdPrice())
+                            .gdOption(cart.getGoods().getGdOption())
+                            .gdSaleprice(cart.getGoods().getGdSaleprice())
+                            .gdSalepercent(cart.getGoods().getGdSalepercent())
+                            .gdCount(cart.getGoods().getGdCount())
+                            .gdCategory(cart.getGoods().getGdCategory())
+                            .gdHit(cart.getGoods().getGdHit())
+                            .gdImg(cart.getGoods().getGdImg())
+                            .gdContent(cart.getGoods().getGdContent())
+                            .gdDetailimg(cart.getGoods().getGdDetailimg())
+                            .build())
                     .build();
-            System.out.println(cart.getUser().getUserIdx());
-            return Header.OK(cartApiResponse);
-
+            cartDTOList.add(cartDTO);
         }
-
-    @Override
-    public Header<UserApiResponse> create(Header<UserApiRequest> request) {
-        return null;
+        return cartDTOList;
     }
-
-    @Override
-    public Header<UserApiResponse> read(Long id) {
-        return null;
+    @Transactional
+    public void delete(Long id) {
+        cartRepository.deleteById(id);
     }
-
-    @Override
-    public Header<UserApiResponse> update(Header<UserApiRequest> request) {
-        return null;
-    }
-
-    @Override
-    public Header<UserApiResponse> delete(Long id) {
-        return null;
+    @Transactional
+    public void deleteAll(Long userIdx){
+        cartRepository.deleteAllByUserIdx(userIdx);
     }
 }
 

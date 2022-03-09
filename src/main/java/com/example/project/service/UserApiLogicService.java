@@ -1,18 +1,15 @@
 package com.example.project.service;
 
-import com.example.project.model.entity.Cart;
 import com.example.project.model.entity.User;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.Pagination;
 import com.example.project.model.network.request.UserApiRequest;
-import com.example.project.model.network.response.CartApiResponse;
-import com.example.project.model.network.response.GoodsApiResponse;
 import com.example.project.model.network.response.UserApiResponse;
-import com.example.project.model.network.response.UserCartInfoApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +22,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
     private final CartApiLogicService cartApiLogicService;
     private final GoodsApiLogicService goodsApiLogicService;
     //회원가입
+    @Transactional
     @Override
     public Header<UserApiResponse> create(Header<UserApiRequest> request) {
         UserApiRequest userApiRequest = request.getData();
@@ -42,6 +40,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         User newUser = baseRepository.save(user);
         return Header.OK(response(newUser));
     }
+    @Transactional
     //아이디 출력
     @Override
     public Header<UserApiResponse> read(Long id) {
@@ -52,6 +51,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
                         () -> Header.ERROR("데이터 없음")
                 );
     }
+    @Transactional
     //회원정보수정
     @Override
     public Header<UserApiResponse> update(Header<UserApiRequest> request) {
@@ -74,6 +74,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
                 .map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
+    @Transactional
     //회원탈퇴
     @Override
     public Header delete(Long id) {
@@ -85,7 +86,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
-    private UserApiResponse response(User user){
+    public UserApiResponse response(User user){
         UserApiResponse userApiResponse = UserApiResponse.builder()
                 .userIdx(user.getUserIdx())
                 .userUserid(user.getUserUserid())
@@ -101,7 +102,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
                 .build();
         return userApiResponse;
     }
-
+    @Transactional
     public Header<List<UserApiResponse>> search(Pageable pageable){
         Page<User> users = baseRepository.findAll(pageable);
         List<UserApiResponse> userApiResponseList = users.stream()
@@ -117,26 +118,12 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         return Header.OK(userApiResponseList, pagination);
     }
 
-    public Header<UserCartInfoApiResponse> cartInfo(Long id){
-        User user = baseRepository.getById(id);
-        UserApiResponse userApiResponse = response(user);
-
-        List<Cart> cartList = user.getCartList2();
-        System.out.println("---------------------------");
-        List<CartApiResponse> cartApiResponseList = cartList.stream()
-                .map(cart -> {
-                    CartApiResponse cartApiResponse = cartApiLogicService.response(cart).getData();
-                    List<GoodsApiResponse> goodsApiResponseList = cart.getCartGoodsList().stream()
-                            .map(cartGoods -> cartGoods.getGoods())
-                            .map(goods -> goodsApiLogicService.response(goods))
-                            .collect(Collectors.toList());
-                    cartApiResponse.setGoodsApiResponseList(goodsApiResponseList);
-                    return cartApiResponse;
-                }).collect(Collectors.toList());
-        userApiResponse.setCartApiResponseList(cartApiResponseList);
-        UserCartInfoApiResponse userCartInfoApiResponse = UserCartInfoApiResponse.builder()
-                .userApiResponse(userApiResponse)
-                .build();
-        return Header.OK(userCartInfoApiResponse);
+    @Transactional
+    public Header<List<UserApiResponse>> list() {
+        List<User> users = baseRepository.findAll();
+        List<UserApiResponse> userApiResponseList = users.stream()
+                .map(user -> response(user))
+                .collect(Collectors.toList());
+        return Header.OK(userApiResponseList);
     }
 }

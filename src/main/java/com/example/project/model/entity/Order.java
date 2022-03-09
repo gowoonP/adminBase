@@ -1,5 +1,6 @@
 package com.example.project.model.entity;
 
+import com.example.project.model.enumclass.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,13 +28,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_order")
     private Long orderIdx;
-    @ManyToOne
-    private User user;
-    private Long orderNum;
+    private Long userIdx;
+    private String orderNum;
     private LocalDateTime orderRegdate;
     private String orderSeller;
-    private String orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @ManyToOne
+    @JoinColumn(name="gd_idx")
     private Goods goods;
 }

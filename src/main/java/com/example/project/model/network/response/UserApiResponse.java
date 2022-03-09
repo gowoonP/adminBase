@@ -26,5 +26,4 @@ public class UserApiResponse {
     private String userZipcode;
     private String userAddress1;
     private String userAddress2;
-    private List<CartApiResponse> cartApiResponseList;
 }
