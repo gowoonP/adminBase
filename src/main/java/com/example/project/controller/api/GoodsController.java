@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -87,6 +88,4 @@ public class GoodsController extends CrudController<GoodsApiRequest, GoodsApiRes
     public Header<List<GoodsApiResponse>> allGoodsViewBrand(String gdBrand){
         return goodsApiLogicService.allGoodsViewBrand(gdBrand);
     }
-
-
 }
