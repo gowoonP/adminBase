@@ -1,12 +1,19 @@
 package com.example.project.controller.page;
 
+import com.example.project.controller.CrudController;
+import com.example.project.model.entity.Goods;
+import com.example.project.model.network.Header;
+import com.example.project.model.network.request.GoodsApiRequest;
+import com.example.project.model.network.request.UserApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
+import com.example.project.model.network.response.UserApiResponse;
 import com.example.project.service.GoodsApiLogicService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //@Controller
 //@RequestMapping("/pages") // http://localhost:8080/pages
@@ -35,7 +42,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class PageController {
 
-    private GoodsApiLogicService goodsApiLogicService;
+    private final GoodsApiLogicService goodsApiLogicService;
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -81,9 +88,15 @@ public class PageController {
         model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
         return "adminpage/shoppingmanagement";}
 
-    // 4개 링크 안먹음 왜지?
-    @GetMapping("/management_add")
-    public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
+
+//    @GetMapping("/management_add")
+//    public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
+
+    @PostMapping({"{management_add}"}) // http://localhost:8080/admin/management_add (post)
+    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request) {
+        System.out.println(request);
+        return this.goodsApiLogicService.create(request);
+    }
 
     @GetMapping("/management_hide")
     public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
@@ -118,4 +131,7 @@ public class PageController {
 
     @GetMapping("/visitor")
     public String visitor() { return "adminpage/visitor";}
+
+
+
 }
