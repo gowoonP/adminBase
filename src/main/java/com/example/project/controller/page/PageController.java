@@ -92,11 +92,11 @@ public class PageController {
 //    @GetMapping("/management_add")
 //    public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
 
-    @PostMapping({"{management_add}"}) // http://localhost:8080/admin/management_add (post)
-    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request) {
-        System.out.println(request);
-        return this.goodsApiLogicService.create(request);
-    }
+//    @PostMapping({"{management_add}"}) // http://localhost:8080/admin/management_add (post)
+//    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request) {
+//        System.out.println(request);
+//        return this.goodsApiLogicService.create(request);
+//    }
 
     @GetMapping("/management_hide")
     public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
