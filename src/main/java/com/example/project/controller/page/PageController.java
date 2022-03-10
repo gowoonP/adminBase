@@ -1,19 +1,13 @@
 package com.example.project.controller.page;
 
-import com.example.project.controller.CrudController;
-import com.example.project.model.entity.Goods;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
-import com.example.project.model.network.request.UserApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
-import com.example.project.model.network.response.UserApiResponse;
 import com.example.project.service.GoodsApiLogicService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 //@Controller
 //@RequestMapping("/pages") // http://localhost:8080/pages
@@ -88,9 +82,13 @@ public class PageController {
         model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
         return "adminpage/shoppingmanagement";}
 
-
     @GetMapping("/management_add")
     public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
+
+    @PostMapping("/management_add")
+    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request){
+        return goodsApiLogicService.create(request);
+    }
 
     @GetMapping("/management_hide")
     public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
@@ -125,7 +123,4 @@ public class PageController {
 
     @GetMapping("/visitor")
     public String visitor() { return "adminpage/visitor";}
-
-
-
 }
