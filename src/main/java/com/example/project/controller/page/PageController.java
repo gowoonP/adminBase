@@ -85,18 +85,12 @@ public class PageController {
 
     @GetMapping("/management")
     public String shoppingmanagement(Model model){
-        model.addAttribute("goodsList", goodsApiLogicService.list());
+        model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
         return "adminpage/shoppingmanagement";}
 
 
-//    @GetMapping("/management_add")
-//    public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
-
-//    @PostMapping({"{management_add}"}) // http://localhost:8080/admin/management_add (post)
-//    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request) {
-//        System.out.println(request);
-//        return this.goodsApiLogicService.create(request);
-//    }
+    @GetMapping("/management_add")
+    public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
 
     @GetMapping("/management_hide")
     public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
