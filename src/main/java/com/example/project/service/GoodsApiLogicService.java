@@ -135,4 +135,12 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                 .collect(Collectors.toList());
         return Header.OK(goodsApiResponseList);
     }
+
+    public List<GoodsApiResponse> getGoodsList(){
+        List<Goods> goodsList = goodsRepository.findAll();
+        List<GoodsApiResponse> goodsApiResponseList = goodsList.stream()
+                .map(goods -> response(goods))
+                .collect(Collectors.toList());
+        return goodsApiResponseList;
+    }
 }
