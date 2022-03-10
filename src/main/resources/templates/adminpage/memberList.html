@@ -421,342 +421,53 @@ $(window).scroll(determineDropDirection);
 		<!-- BEGIN CONTENT-->
 		<div id="content">
 			<section>
-		
-				<div class="section-body">
-					<div class="tab-pane" id="daily">
-						<div class="row">
-							<div class="col-md-3 col-xl-2 hidden-xs hidden-sm">
-		
-								<div class="card">
-									<div class="card-body no-padding">
-		
-										<ul class="nav nav-pills nav-stacked" id="group_list">
-											<li class="active">
-												<a href="/mgweb/adminpage/memberList.html/?">
-													전체 사용자											<small class="margin-left-lg text-bold opacity-75">3</small>
-												</a>
-											</li>
-		
-											<li class="">
-												<a href="#" class="">
-													그룹 없음											<small class="margin-left-lg text-bold opacity-75 _no_group_cnt">
-														3											</small>
-												</a>
-											</li>
-		
-											<script>$(function(){});</script>								</ul>
-		
-										<ul class="nav nav-pills nav-stacked">
-											<li class="no-hover" id="new_group_btn" data-base_url="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D">
-												<a href="javascript:;" class="text-primary" onclick="MEMBER_GROUP.openGroupForm()">새 그룹 만들기</a>
-											</li>
-										</ul>
-									</div><!--end.card-body-->
-								</div><!--end.card-->
-						
-							</div><!--end.col-->
-		
-							<div class="col-md-9 col-xl-10">
-								<div class="row">
-									<div class="col-md-10">
-										<div class="card">
-											<div class="card-body no-padding">
-												<form role="search" class="user-search" id="userSearch">
-													<div class="form-group">
-		
-														<a class="icon_set left" href="javascript:;" onclick="searchUser()">
-															<i class="btl bt-search"></i>
-														</a>
-		
-														<div id="prefetch">
-															<span class="twitter-typeahead" style="position: relative; display: inline-block;">
-																<input type="hidden" name="q" value="YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30=" class="form-control typeahead">
-																<input type="text" class="form-control typeahead tt-input" name="keyword" placeholder="검색" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
-																<pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Noto Sans&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;">														</pre>
-																<div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-																	<div class="tt-dataset tt-dataset-users"></div>
-																</div>
-															</span>
-														</div>
-													</div>
-												</form>
-											</div>
-										</div><!--end.card-->
-									</div><!--end.col-->
-									<div class="col-md-2 hidden-xs">
-										<div class="card">
-											<div class="excel-down">
-												<a href="javascript:;" onclick="MEMBER_EXCEL.openModalMemberExcelDownload('')">
-													<i class="btl bt-download"></i>
-													내보내기										</a>
-											</div>
-										</div>
-									</div>
-		
-		
-									<div class="col-md-12">
-										<div class="card">
-											<div class="card-head">
-												<header class="small">전체 사용자											<span class="text-primary">3</span>명										</header>
-		
-											</div>
-		
-											<div class="card-body no-padding">
-												<div class="li_table" id="UI_TABLE">
-													<ul class="subject _thead">
-														<li class="check">
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox" value="" class="_all_check" onclick="TABLE_LIST.allCheckToggle(function(idxs){MEMBER_GROUP.checkMember(idxs);})"><span></span>
-																</label>
-															</div>
-														</li>
-														<li class="nick"><a href="#">닉네임</a></li>
-														<li class="account">계정</li>
-														<li class="account">회원 유형</li>
-														<li class="group">그룹</li>
-																										<li class="date_join">
-															<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;join_order=asc">가입일														<i class="md md-expand-less"></i> <!--역순일 때 <i class="md md-expand-less"></i> -->
-															</a>
-														</li>
-														<li class="date_mileage text-right">적립금</li>
-														<li class="count_post">글/댓글/구매평/문의</li>
-														<li class="purchase text-right hidden-xs hidden-sm">누적 구매금액</li>
-														<li class="memo text-center">메모</li>
-														<li class="app_android"></li>
-														<li class="app_ios"></li>
-														<li class="action"></li>
-													</ul>
-																									<ul class="content _tbody" id="member_item_m2022012993adead3e950c" data-nick="김영재" data-app=""><!-- 체크박스 체크된 상태 selected-->
-															<li class="check">
-																<div class="checkbox checkbox-styled no-margin">
-																	<label>
-																																			<input type="checkbox" value="m2022012993adead3e950c" data-idx="15224356" data-code="m2022012993adead3e950c" onclick="TABLE_LIST.checkItem(function(idxs){MEMBER_GROUP.checkMember(idxs);});">
-																			<span></span>
-																																	</label>
-																</div>
-															</li>
-															<li class="nick">
-																														<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;mode=add&amp;idx=15224356" onclick="">
-																	김영재														</a>
-															</li>
-															<li class="account">
-																<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;mode=add&amp;idx=15224356" onclick="">kimyj5582@naver.com</a>
-															</li>
-															<li class="account">
-																일반회원													</li>
-															<li class="group">
-																<div class="dropdown">
-																																																<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-flat no-padding _drop_group_btn_15224356">
-																			그룹없음																</button>
-																		<ul class="dropdown-menu animation-dock check" role="menu" aria-labelledby="dLabel">
-																			<div class="select_group _drop_group_list _drop_group_list_15224356" data-groups="" data-subscribe_groups="" data-member="15224356" data-nogroup="Y">
-																			</div>
-																			<div class="footer">
-																				<li class="divider"></li>
-																				<li>
-																					<a href="javascript:;" onclick="MEMBER_GROUP.openGroupForm()">새 그룹</a>
-																				</li>
-																			</div>
-																		</ul>
-																															</div>
-															</li>
-																												<li class="date_join hidden-xs">2022-01-29</li>
-															<li class="date_mileage text-right">
-																													</li>
-															<li class="count_post hidden-xs hidden-sm">
-																0														/0														/0														/0													</li>
-															<!-- 구매내역이 없을경우 표기하지 않음, 표기 : n회 ₩5,000  -->
-															<li class="purchase text-right hidden-xs hidden-sm">
-																													</li>
-																												<li class="memo">
-																															<a href="javascript:;" onclick="adminMember.openAdminMemoForm('m2022012993adead3e950c')" class="btn btn-flat text-gray-bright">
-																		<i class="icon-note"></i>
-																																	</a>
-																													</li>
-		
-															<li class="app_android hidden-xs hidden-sm"></li>
-															<li class="app_ios hidden-xs hidden-sm"></li>
-															<li class="action">
-																															<div class="dropdown">
-																		<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-flat">
-																			<i class="zmdi zmdi-more"></i>
-																		</button>
-																		<ul class="dropdown-menu animation-dock right" role="menu" aria-labelledby="dLabel">
-																																																																							
-																			<li>
-																				<a href="javascript:;" onclick="adminMember.openDeleteMember(&quot;[{\&quot;member_code\&quot;: \&quot;m2022012993adead3e950c\&quot;, \&quot;delete_old_auth_log\&quot;: false}]&quot;)">삭제</a>
-																			</li>
-																																					<li>
-																					<a href="javascript:;" onclick="adminMember.openMemberPushForm(['m2022012993adead3e950c'])">알림</a>
-																				</li>
-																																							<li>
-																						<a href="javascript:;" onclick="adminMember.openMemberSmsForm(['m2022012993adead3e950c'])">SMS</a>
-																					</li>
-																																						<li>
-																					<a href="javascript:;" onclick="adminMember.openManageMemberPoint('m2022012993adead3e950c')">적립금 지급/차감</a>
-																				</li>
-																																				</ul>
-																	</div>
-																													</li>
-														</ul>
-																										<ul class="content _tbody" id="member_item_m2022012911ce7a56a3e9c" data-nick="김영재" data-app=""><!-- 체크박스 체크된 상태 selected-->
-															<li class="check">
-																<div class="checkbox checkbox-styled no-margin">
-																	<label>
-																																			<input type="checkbox" value="m2022012911ce7a56a3e9c" data-idx="15224293" data-code="m2022012911ce7a56a3e9c" onclick="TABLE_LIST.checkItem(function(idxs){MEMBER_GROUP.checkMember(idxs);});">
-																			<span></span>
-																																	</label>
-																</div>
-															</li>
-															<li class="nick">
-																														<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;mode=add&amp;idx=15224293" onclick="">
-																	김영재														</a>
-															</li>
-															<li class="account">
-																<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;mode=add&amp;idx=15224293" onclick="">test@naver.com</a>
-															</li>
-															<li class="account">
-																일반회원													</li>
-															<li class="group">
-																<div class="dropdown">
-																																																<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-flat no-padding _drop_group_btn_15224293">
-																			그룹없음																</button>
-																		<ul class="dropdown-menu animation-dock check" role="menu" aria-labelledby="dLabel">
-																			<div class="select_group _drop_group_list _drop_group_list_15224293" data-groups="" data-subscribe_groups="" data-member="15224293" data-nogroup="Y">
-																			</div>
-																			<div class="footer">
-																				<li class="divider"></li>
-																				<li>
-																					<a href="javascript:;" onclick="MEMBER_GROUP.openGroupForm()">새 그룹</a>
-																				</li>
-																			</div>
-																		</ul>
-																															</div>
-															</li>
-																												<li class="date_join hidden-xs">2022-01-29</li>
-															<li class="date_mileage text-right">
-																													</li>
-															<li class="count_post hidden-xs hidden-sm">
-																0														/0														/0														/0													</li>
-															<!-- 구매내역이 없을경우 표기하지 않음, 표기 : n회 ₩5,000  -->
-															<li class="purchase text-right hidden-xs hidden-sm">
-																													</li>
-																												<li class="memo">
-																															<a href="javascript:;" onclick="adminMember.openAdminMemoForm('m2022012911ce7a56a3e9c')" class="btn btn-flat text-gray-bright">
-																		<i class="icon-note"></i>
-																																	</a>
-																													</li>
-		
-															<li class="app_android hidden-xs hidden-sm"></li>
-															<li class="app_ios hidden-xs hidden-sm"></li>
-															<li class="action">
-																															<div class="dropdown">
-																		<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-flat">
-																			<i class="zmdi zmdi-more"></i>
-																		</button>
-																		<ul class="dropdown-menu animation-dock right" role="menu" aria-labelledby="dLabel">
-																																																																							
-																			<li>
-																				<a href="javascript:;" onclick="adminMember.openDeleteMember(&quot;[{\&quot;member_code\&quot;: \&quot;m2022012911ce7a56a3e9c\&quot;, \&quot;delete_old_auth_log\&quot;: false}]&quot;)">삭제</a>
-																			</li>
-																																					<li>
-																					<a href="javascript:;" onclick="adminMember.openMemberPushForm(['m2022012911ce7a56a3e9c'])">알림</a>
-																				</li>
-																																							<li>
-																						<a href="javascript:;" onclick="adminMember.openMemberSmsForm(['m2022012911ce7a56a3e9c'])">SMS</a>
-																					</li>
-																																						<li>
-																					<a href="javascript:;" onclick="adminMember.openManageMemberPoint('m2022012911ce7a56a3e9c')">적립금 지급/차감</a>
-																				</li>
-																																				</ul>
-																	</div>
-																													</li>
-														</ul>
-																										<ul class="content _tbody" id="member_item_m202201267075a2ef3f98f" data-nick="관리자" data-app=""><!-- 체크박스 체크된 상태 selected-->
-															<li class="check">
-																<div class="checkbox checkbox-styled no-margin">
-																	<label>
-																																			<input type="checkbox" value="m202201267075a2ef3f98f" data-idx="15184024" data-code="m202201267075a2ef3f98f" onclick="TABLE_LIST.checkItem(function(idxs){MEMBER_GROUP.checkMember(idxs);});">
-																			<span></span>
-																																	</label>
-																</div>
-															</li>
-															<li class="nick">
-																														<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;mode=add&amp;idx=15184024" onclick="">
-																	관리자<span class="badge">소유자</span>														</a>
-															</li>
-															<li class="account">
-																<a href="/mgweb/adminpage/memberList.html/?q=YToxOntzOjEwOiJqb2luX29yZGVyIjtzOjQ6ImRlc2MiO30%3D&amp;mode=add&amp;idx=15184024" onclick="">test45@gmail.com</a>
-															</li>
-															<li class="account">
-																일반회원													</li>
-															<li class="group">
-																<div class="dropdown">
-																																																<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-flat no-padding _drop_group_btn_15184024">
-																			그룹없음																</button>
-																		<ul class="dropdown-menu animation-dock check" role="menu" aria-labelledby="dLabel">
-																			<div class="select_group _drop_group_list _drop_group_list_15184024" data-groups="" data-subscribe_groups="" data-member="15184024" data-nogroup="Y">
-																			</div>
-																			<div class="footer">
-																				<li class="divider"></li>
-																				<li>
-																					<a href="javascript:;" onclick="MEMBER_GROUP.openGroupForm()">새 그룹</a>
-																				</li>
-																			</div>
-																		</ul>
-																															</div>
-															</li>
-																												<li class="date_join hidden-xs">2022-01-26</li>
-															<li class="date_mileage text-right">
-																													</li>
-															<li class="count_post hidden-xs hidden-sm">
-																0														/0														/0														/0													</li>
-															<!-- 구매내역이 없을경우 표기하지 않음, 표기 : n회 ₩5,000  -->
-															<li class="purchase text-right hidden-xs hidden-sm">
-																													</li>
-																												<li class="memo">
-																															<a href="javascript:;" onclick="adminMember.openAdminMemoForm('m202201267075a2ef3f98f')" class="btn btn-flat text-gray-bright">
-																		<i class="icon-note"></i>
-																																	</a>
-																													</li>
-		
-															<li class="app_android hidden-xs hidden-sm"></li>
-															<li class="app_ios hidden-xs hidden-sm"></li>
-															<li class="action">
-																															<div class="dropdown">
-																		<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-flat">
-																			<i class="zmdi zmdi-more"></i>
-																		</button>
-																		<ul class="dropdown-menu animation-dock right" role="menu" aria-labelledby="dLabel">
-																																				
-																			<li>
-																				<a href="javascript:;" onclick="adminMember.openDeleteMember(&quot;[{\&quot;member_code\&quot;: \&quot;m202201267075a2ef3f98f\&quot;, \&quot;delete_old_auth_log\&quot;: false}]&quot;)">삭제</a>
-																			</li>
-																																					<li>
-																					<a href="javascript:;" onclick="adminMember.openMemberPushForm(['m202201267075a2ef3f98f'])">알림</a>
-																				</li>
-																																							<li>
-																						<a href="javascript:;" onclick="adminMember.openMemberSmsForm(['m202201267075a2ef3f98f'])">SMS</a>
-																					</li>
-																																						<li>
-																					<a href="javascript:;" onclick="adminMember.openManageMemberPoint('m202201267075a2ef3f98f')">적립금 지급/차감</a>
-																				</li>
-																																				</ul>
-																	</div>
-																													</li>
-														</ul>
-																								</div><!--end.li_table-->
-												<nav class="text-center">
-																							</nav>
-											</div><!--end.card-body-->
-										</div><!--end.card-->
-									</div><!--end.col-->
-								</div><!--end.row-->
-							</div><!--end.col-->
-						</div><!--end.row-->
-					</div><!--end.tab-pane-->
-				</div> <!--end.section-body.tab-content-->
+
+				<link rel="stylesheet" type="text/css"
+					  href="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.css" />
+				<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.js"></script>
+				<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+				<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+				<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+				<script type="text/javascript" charset="utf8"
+						src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+				<script>
+					$(document).ready(function () {
+						$('#table_id').DataTable();
+					});
+				</script>
+				<table class="table display no-margin" id="table_id">
+					<thead>
+					<tr>
+						<th>No.</th>
+						<th>성함</th>
+						<th>ID</th>
+						<th>전화번호</th>
+						<th>등록일</th>
+						<th>가입 방법</th>
+						<th>도로명</th>
+						<th>상세주소(1)</th>
+						<th>상세주소(2)</th>
+
+					</tr>
+					</thead>
+
+					<tbody>
+					<tr th:each="m : ${UserLsit}">
+						<a th:href="@{/adminpage/memberList}"><td th:text="${m.userIdx}"></td></a>
+						<td th:text="${m.userName}">x</td>
+						<td th:text="${m.userUserid}">x</td>
+						<td th:text="${m.userHp}">x</td>
+						<td th:text="${m.userRegdate}">x</td>
+						<td th:text="${m.userSns}">x</td>
+						<td th:text="${m.userZipcode}">x</td>
+						<td th:text="${m.userAddress1}">x</td>
+						<td th:text="${m.userAddress2}">x</td>
+
+					</tr>
+					</tbody>
+				</table>
 			</section>
 		
 		</div><!--end #content-->
