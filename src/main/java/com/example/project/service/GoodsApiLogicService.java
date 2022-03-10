@@ -90,7 +90,6 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                 .map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
-    
     @Transactional
     @Override
     public Header delete(Long id) {
@@ -144,5 +143,4 @@ public class GoodsApiLogicService extends BaseService<GoodsApiRequest, GoodsApiR
                 .collect(Collectors.toList());
         return goodsApiResponseList;
     }
-
 }

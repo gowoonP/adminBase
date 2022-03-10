@@ -473,6 +473,7 @@
 						<input type="hidden" name="idx" value="0" />
 						<!-- default_type - js 처리용 -->
 						<input type="hidden" name="default_type" id="default_type" value="parcel">
+					<form method="post">
 						<div class="row">
 							<div class="col-md-9">
 								<div class="row margin-bottom-xxl flexed sm-flex-direction-column">
@@ -1318,322 +1319,7 @@
 								</div>
 		
 							</div>
-							<div class="col-md-3 fixed-top">
-								<div class="card style-default-light">
-									<div class="card-head">
-										<header>분류</header>
-									</div>
-									<div class="card-body no-padding-top">
-										<div class="form-group">
-											<div class="col-md-12 no-padding-x">
-												<label class="control-label">카테고리 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="카테고리" data-content="상품을 유형에 따라 분류하여 효과적으로 고객에게 노출하고 관리할 수 있습니다.(다중 카테고리 사용 가능)"><i class="btm bt-question-circle"></i></a></label>
-												<div data-toggle="dropdown" aria-expanded="false">
-													<input class="form-control" type="text" placeholder="입력 또는 선택" onkeyup="SHOP_PROD_MANAGE.searchCategoryTree($(this).val())">
-												</div>
-												<ol class="dropdown-menu animation-dock dropdown-list product-dropdown" role="menu" style="width: 100%; left: 0; top: 50px;">
-													<li class="dropdown-item" style="padding: 10px 0" id="prod_category_list">
-													</li>
-													<div class="card-actionbar-row text-left" style="border-top: 1px solid #ddd">
-														<a class="btn btn-flat btn-primary ink-reaction" href="javascript:;" onclick="SHOP_PROD_MANAGE.openCategoryManage('dashboard')">카테고리 관리</a>
-													</div>
-												</ol>
-												<div class="shop-category-list" style="padding-top: 15px" id="prod_selected_category_list">
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-md-12 no-padding-x">
-												<label class="control-label">기획전 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="기획전" data-content="메인페이지 등에서 카테고리와 별도로 진열하고 싶다면 기획전을 지정하세요. (디자인 모드의 쇼핑 기획전 위젯에서 사용 가능)"><i class="btm bt-question-circle"></i></a></label>
-												<div >
-													<select id="prod_showcase" class="select-chosen" data-placeholder="입력 또는 선택" style="width:100%;" multiple>
-														<option value="c20220222a312b9364a8e0" >gkdld</option>											</select>
-													<div style="margin-top:5px;"><a href="javascript:;" class="text-primary" onclick="SHOP_PROD_LIST.openShowcaseForm('','add')">기획전 추가</a></div>
-		
-												</div>
-											</div>
-										</div>
-		
-										<div class="form-group">
-											<label class="control-label">상품 뱃지 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-html="true" data-placement="top" title="상품 뱃지" data-content="<p>지정하신 뱃지가 상품 목록 또는 상세페이지 제목 등에서 표시됩니다. 뱃지 변경은 디자인 모드의 쇼핑 위젯 설정에서 가능합니다.</p><p><strong class='text-danger'>참고:</strong> 신상품 뱃지는 쇼핑 위젯의 뱃지 설정에서 신상품 기간을 상품설정에 따름으로 선택시에만 설정이 적용됩니다. 그렇지 않을 경우 쇼핑 위젯 뱃지 설정을 자동으로 따릅니다.</p>"><i class="btm bt-question-circle"></i></a></label>
-											<div style="margin-top:14px;">
-												<div class="checkbox checkbox-styled">
-													<label>
-														<input type="checkbox" name="is_badge_new" value="ok" >
-														<span>신상품</span>
-													</label>
-												</div>
-												<div class="checkbox checkbox-styled">
-													<label>
-														<input type="checkbox" name="is_badge_best" value="ok" >
-														<span>베스트</span>
-													</label>
-												</div>
-												<div class="checkbox checkbox-styled">
-													<label>
-														<input type="checkbox" name="is_badge_md" value="ok" >
-														<span>MD추천</span>
-													</label>
-												</div>
-												<div class="checkbox checkbox-styled">
-													<label>
-														<input type="checkbox" name="is_badge_hot" value="ok" >
-														<span>주문폭주</span>
-													</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-md-12 no-padding-x">
-												<label for="f_origin" class="control-label">원산지 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="원산지" data-content="상품 상세페이지에 입력한 원산지 정보가 표시됩니다. 원산지 정보를 표시하고 싶지 않다면 디자인 모드의 메뉴관리에서 상품 상세페이지로 이동 후 상품 상세페이지 설정에서 원산지 항목을 체크 해제해 주세요."><i class="btm bt-question-circle"></i></a></label>
-												<input type="text" id="f_origin" class="form-control" name="origin" value="" autocomplete="off" />
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-md-12 no-padding-x">
-												<label for="f_maker" class="control-label">제조사 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="제조사" data-content="제조사를 표기합니다. 입력하지 않아도 무방하며, 네이버 쇼핑, 카카오 쇼핑하우등의 연동시에도 적용됩니다. 가급적 정확한 명칭을 입력해 주세요."><i class="btm bt-question-circle"></i></a></label>
-												<input type="text" id="f_maker" class="form-control" name="maker" value="" autocomplete="off" placeholder="예: LG전자" />
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-md-12 no-padding-x">
-												<label for="f_brand" class="control-label">브랜드 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" data-html="true" title="브랜드" data-content="<p>브랜드를 표기합니다. 입력하지 않아도 무방하나 입력시 네이버 쇼핑, 카카오 쇼핑하우, Facebook 다이내믹 광고 등의 연동시에도 적용됩니다. 가급적 정확한 명칭을 입력해 주세요.</p><p>Facebook 다이내믹 광고 진행시(상품 카탈로그 등록시) 브랜드명은 필수사항입니다.</p>"><i class="btm bt-question-circle"></i></a></label>
-												<input type="text" id="f_brand" class="form-control" name="brand" value="" autocomplete="off" placeholder="Facebook 다이내믹, 크리테오 광고시 필수" />
-											</div>
-										</div>
-									</div>
-								</div>
-															<div class="card style-default-light _prod_display_unit_list_wrap" style="display: none">
-										<input type="hidden" name="display_unit[]" value="u2022013061f56f410379e">
-									</div>
-														<div class="card style-default-light">
-									<div class="card-head">
-										<header>SEO (검색엔진 최적화)</header>
-									</div>
-									<div class="card-body no-padding-y">
-										<div class="form-group">
-											<div class="form-group">
-												<label for="customProdCode" class="control-label">제목</label>
-												<input type="text" id="seo_title" name="seo_title" value="" placeholder="미입력 시 상품 제목 및 사이트명 출력" class="form-control"/>
-											</div>
-											<div class="form-group">
-												<label for="customProdCode" class="control-label">메타 설명</label>
-												<input type="text" id="seo_description" name="seo_description" value="" placeholder="미입력 시 상품 상세 텍스트 출력" class="form-control"/>
-											</div>
-											<div class="form-group no-padding-top">
-												<div class="checkbox checkbox-styled" style="padding-top:8px;">
-													<label>
-														<input type="checkbox" name="seo_access_bot" value="Y" 1/>
-														<span>이 상품을 검색엔진에서 제외</span>
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card style-default-light _prod_display_list_wrap">
-									<div class="card-head">
-										<header>외부 노출 <a href="javascript:;" class="text-gray vertical-bottom" role="button" data-toggle="popover" data-placement="top" title="외부 노출" data-html="true" data-content="<p>각종 외부 서비스에 해당 상품을 연동할지 여부를 설정합니다. 해당 서비스를 사용하고 있지 않다면 이 설정을 사용하더라도 적용되지 않습니다.</p><p>네이버 쇼핑, 카카오 쇼핑하우, 네이버페이 구매가능 설정은 한국어 사이트에서만 동작합니다.</p><ul class='description-list'><li><a href='/admin/shopping/naver' target='_blank' class='text-primary'>네이버 쇼핑 연동 설정</a></li><li><a href='/admin/shopping/naver' target='_blank' class='text-primary'>카카오 쇼핑하우 연동 설정</a></li><li><a href='/admin/config/pg?mode=naver' target='_blank' class='text-primary'>네이버페이 설정</a></li><li><a href='/admin/marketing/trace' target='_blank' class='text-primary'>Facebook 다이내믹 광고 설정</a></li></ul>"><i class="btm bt-question-circle" style="font-size:14px; vertical-align: inherit;"></i></a></header>
-									</div>
-									<div class="card-body no-padding-y">
-										<div class="form-group">
-																					<div class="checkbox checkbox-styled" style="">
-													<label>
-														<input type="checkbox" name="display[]" value="NAVER"  checked />
-														<span>네이버 쇼핑</span>
-													</label>
-												</div>
-																						<div class="checkbox checkbox-styled" style="">
-													<label>
-														<input type="checkbox" name="display[]" value="DAUM"  checked />
-														<span>카카오 쇼핑하우</span>
-													</label>
-												</div>
-																						<div class="checkbox checkbox-styled" style="">
-													<label>
-														<input type="checkbox" name="display[]" value="NPAY"  checked />
-														<span>네이버 페이 구매가능</span>
-													</label>
-												</div>
-																						<div class="checkbox checkbox-styled" style="">
-													<label>
-														<input type="checkbox" name="display[]" value="TALKPAY"  checked />
-														<span>카카오 페이 구매가능</span>
-													</label>
-												</div>
-																						<div class="checkbox checkbox-styled" style="">
-													<label>
-														<input type="checkbox" name="display[]" value="FACEBOOK"  checked />
-														<span>Facebook 다이내믹 광고</span>
-													</label>
-												</div>
-																						<div class="checkbox checkbox-styled" style="">
-													<label>
-														<input type="checkbox" name="display[]" value="CRITEO"  checked />
-														<span>크리테오</span>
-													</label>
-												</div>
-																				</div>
-									</div>
-								</div>
-								<div class="card style-default-light">
-									<div class="card-head">
-										<header>외부 연동용 정보 <a href="javascript:;" class="text-gray vertical-bottom" role="button" data-toggle="popover" data-placement="top" title="외부 연동용 정보" data-content="네이버 쇼핑, 카카오 쇼핑하우 입점 및 Facebook 다이내믹 광고 진행시(상품 카탈로그 등록시) 해당되는 기능입니다. 이곳에서 입력한 정보는 네이버 쇼핑, 카카오 쇼핑하우 또는 Facebook 광고 등에서만 확인 가능합니다."><i class="btm bt-question-circle" style="font-size:14px; vertical-align: inherit;"></i></a></header>
-									</div>
-									<div class="card-body no-padding-top">
-																			<div class="form-group">
-												<div class="row">
-													<div class="col-md-12">
-														<label for="" class="control-label">네이버, 카카오 노출용 상품명 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="네이버, 카카오 노출용 상품명" data-content="네이버 또는 카카오 쇼핑에 쇼핑몰 상품명과 다른 상품명을 노출하고 싶을 때 입력하세요."><i class="btm bt-question-circle"></i></a></label>
-														<input type="text" class="form-control" placeholder="비워두면 상품명과 동일하게 적용" name="pay_product_name" value="" autocomplete="off">
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="row">
-													<div class="col-md-12">
-														<label for="" class="control-label">네이버 쇼핑 이벤트 문구 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-html="true" data-placement="top" title="네이버 쇼핑 이벤트 문구" data-content="<p>상품 관련 기획전/이벤트정보에 한해 표기합니다.</p><div>이벤트 문구가 노출되기 위해서는 <a href='https://center.shopping.naver.com//' target='_blank' class='text-primary'>쇼핑파트너센터</a> > 상품관리 > 상품정보수신현황의 이벤트필드EP노출상태 등록요청을 통하여 별도 요청하여야합니다. (네이버 쇼핑 입점시 해당) <a href='https://ssl.pstatic.net/imgshopping/adcenter/web/download/NaverShopping_Product_Event_Guide_20150715.pdf' target='_blank' class='text-primary'>자세히 알아보기</a></div>"><i class="btm bt-question-circle"></i></a></label>
-														<input type="text" class="form-control" placeholder="예: 10주년 10%할인 이벤트" name="event_words" value="" autocomplete="off">
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="row">
-													<div class="col-md-12">
-														<label for="" class="control-label">네이버 쇼핑 카테고리 ID <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-html="true" data-placement="top" title="네이버 쇼핑 카테고리 ID" data-content="<p>입력하지 않으면 네이버쇼핑 시스템에 의해 상품명을 기반으로 자동으로 네이버 쇼핑 카테고리에 매칭됩니다.</p><div>원하는 카테고리에 매칭되지 않거나 별도의 카테고리에 지정하고 싶다면 아래 카테고리 ID 확인하기 버튼을 눌러 지정할 수 있습니다.</div>"><i class="btm bt-question-circle"></i></a></label>
-														<input type="text" id="inputNaverCategory" class="form-control" placeholder="숫자만 입력" name="naver_category" value="" maxlength="8" autocomplete="off">
-														<span class="help-block">
-														<a href="javascript: void(0);" onclick="SHOP_PROD_MANAGE.openNaverCategoryList();" class="text-primary">카테고리 ID 확인하기</a>
-													</span>
-													</div>
-												</div>
-											</div>
-																		<div class="form-group">
-											<div class="row">
-												<div class="col-md-12 m-margin-bottom-xl">
-													<label for="" class="control-label">상품상태 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-html="true" data-placement="top" title="상품상태" data-content="<p>이 상품의 상태를 설정합니다. 네이버 쇼핑, 카카오 쇼핑하우, Facebook 다이내믹 광고(상품 카탈로그 등록시)에서 사용되는 정보입니다.</p><p>Facebook 다이내믹 광고에서는 신상품, 중고, 리퍼만 인식되며 나머지 상태(전시, 반품, 스크래치)는 리퍼로 처리됩니다. 또한 주문제작상품, 병행수입, 해외구매대행, 도서공연비 소득공제는 인식되지 않습니다.</p>"><i class="btm bt-question-circle"></i></a></label>
-													<select name="condition" class="form-control">
-														<option value="신상품" selected>신상품</option>
-														<option value="중고">중고</option>
-														<option value="리퍼">리퍼</option>
-																											<option value="전시">전시</option>
-															<option value="반품">반품</option>
-															<option value="스크래치">스크래치</option>
-																									</select>
-																									<div class="form-control-static" style="margin-top:10px">
-															<div class="checkbox checkbox-styled">
-																<label>
-																	<input type="checkbox" name="order_made" value="ok" />
-																	<span>주문제작상품</span>
-																</label>
-															</div>
-															<div class="checkbox checkbox-styled">
-																<label>
-																	<input type="checkbox" name="parallel_import" value="ok" />
-																	<span>병행수입</span>
-																</label>
-															</div>
-															<div class="checkbox checkbox-styled">
-																<label>
-																	<input type="checkbox" name="import_flag" value="ok" />
-																	<span>해외구매대행</span>
-																</label>
-															</div>
-															<div class="checkbox checkbox-styled">
-																<label>
-																	<input type="checkbox" name="is_culture_benefit" value="ok" />
-																	<span>도서공연비 소득공제</span>
-																</label>
-															</div>
-														</div>
-																							</div>
-																							<div class="col-md-12 m-margin-bottom-xl">
-														<label for="" class="control-label">판매방식 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-html="true" data-placement="top" title="판매방식" data-content="판매방식은 네이버 쇼핑, 카카오 쇼핑하우에만 연동되는 정보입니다. 해당되는 판매방식을 설정해 주세요."><i class="btm bt-question-circle"></i></a></label>
-														<select id="" name="product_flag" class="form-control">
-															<option value="소매" selected>소매</option>
-															<option value="도매">도매</option>
-															<option value="렌탈">렌탈</option>
-															<option value="대여">대여</option>
-															<option value="할부">할부</option>
-															<option value="예약판매">예약판매</option>
-															<option value="구매대행">구매대행(이케아, 코스트코 등 오프라인 구매대행)</option>
-														</select>
-													</div>
-																					</div>
-										</div>
-									</div>
-								</div>
-								<div class="card style-default-light">
-									<div class="card-head">
-										<header>기타 설정</header>
-									</div>
-									<div class="card-body no-padding-top">
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-12">
-													<label for="" class="control-label">최소 구매수량 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="최소 구매수량" data-content="고객이 최소한으로 구매할 수 있는 개수를 입력합니다. 비워두면 제한하지 않습니다. 최대 구매수량과 동시 설정시 최소 구매 수량은 같거나 작아야 합니다."><i class="btm bt-question-circle"></i></a></label>
-													<input type="text" data-decimal-count="0" data-decimal-char="." data-thousand-char="," class="form-control _prod_price" placeholder="숫자만 입력" name="minimum_purchase_quantity" value="" autocomplete="off">
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-12">
-													<label for="" class="control-label">1회 구매시 최대 수량 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="최대 구매수량" data-content="고객이 최대한으로 구매할 수 있는 개수를 입력합니다. 비워두면 제한하지 않습니다."><i class="btm bt-question-circle"></i></a></label>
-													<input type="text" data-decimal-count="0" data-decimal-char="." data-thousand-char="," class="form-control _prod_price" placeholder="숫자만 입력" name="maximum_purchase_quantity" value="" autocomplete="off">
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-12">
-													<label for="" class="control-label">1인 구매시 최대 수량 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="1인 최대 구매수량" data-content="1인이 최대한으로 구매할 수 있는 개수를 입력합니다. 비워두면 제한하지 않습니다. (비회원 구매가 제한됩니다)"><i class="btm bt-question-circle"></i></a></label>
-													<input type="text" data-decimal-count="0" data-decimal-char="." data-thousand-char="," class="form-control _prod_price" placeholder="숫자만 입력" name="member_maximum_purchase_quantity" value="" autocomplete="off">
-												</div>
-											</div>
-										</div>
-																		<div class="form-group">
-											<div class="row">
-												<div class="col-md-12">
-													<label for="" class="control-label">0원 선택옵션 구매시 최대 구매 수량</label>
-													<select name="optional_limit_type" onchange="SHOP_PROD_MANAGE.changed_optional_limit_type(this.value);" class="form-control margin-bottom-lg _optional_limit_type">
-														<option value="relative"  selected="selected" >본상품 구매 수량만큼 구매 가능</option>
-														<option value="limit" >최대 구매 수량 제한</option>
-														<option value="unique" >1개만 구매 가능</option>
-													</select>
-													<input type="text" data-decimal-count="0" data-decimal-char="." data-thousand-char="," class="form-control _prod_price _optional_limit" placeholder="숫자만 입력" name="optional_limit" value="" autocomplete="off" style=" display: none; ">
-												</div>
-											</div>
-										</div>
-		
-																												<div class="form-group">
-												<div class="row">
-													<div class="col-md-12 m-margin-bottom-xl">
-														<label for="" class="control-label">개인통관고유부호 사용 설정 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-html="true" data-placement="top" title="개인통관고유부호 사용 설정" data-content="<p>구매대행 및 직수입 상품 등 해외에서 국내로 배송되는 상품의 경우 국내법에 의해 개인통관고유부호가 필요합니다.</p><p>이 설정 사용시 결제 페이지에서 개인통관고유부호 항목이 필수로 입력받게 됩니다.</p><p>항상 개인통관 고유부호를 입력받길 원하신다면 <a href='/admin/shopping/config' class='text-primary' target='_blank'>쇼핑 환경설정</a>에서 개인통관고유부호 항상 필수로 입력받기</a>를 선택해 주시기 바랍니다.</p>"><i class="btm bt-question-circle"></i></a></label>
-		
-														<select name="use_unipass_number" class="form-control">
-															<option value="default" selected>기본 방법을 따름 (쇼핑 환경설정)</option><option value="Y" >사용</option><option value="N" >사용안함</option>												</select>
-													</div>
-												</div>
-											</div>
-		
-											<div class="form-group no-margin">
-												<div class="row">
-													<div class="col-md-12">
-														<label class="checkbox checkbox-styled">
-															<input type="checkbox" name="adult" value="ok"														   onclick="
-																																  alert(LOCALIZE_ADMIN.설명_미성년자구매불가능설정()); return false;
-																																  "/>
-															<span>미성년자 구매 불가능 <a href="javascript:;" class="text-gray" role="button" data-toggle="popover" data-placement="top" title="미성년자 구매 불가능" data-content="본인확인 + 성인인증 서비스를 사용한 경우에만 동작합니다. 이 옵션이 적용되면 성인인증하지 않은 고객은 상품 조회 및 구매 불가합니다.(신청: 환경설정 > 본인인증/성인인증)"><i class="btm bt-question-circle"></i></a></span>
-														</label>
-													</div>
-												</div>
-											</div>
-		
-																	</div>
-								</div>
-		
-							</div>
-						</div>
+					</form>
 
 				</div><!--섹션 끝 -->
 			</section>
@@ -2356,40 +2042,57 @@
 		</script>
 		<script>
 
-			$(function () {
-				var $body = $('body');
-				var $btn = $('#toggle_button');
-				var sidebar_mini_class = 'sidebar-mini';
-				var current_sidebar_mini_class = "";
-				var $menubar_toggle = $body.find('#header .menubar-toggle');
-				var $close_btn = $('._close_btn');
-				$btn.off('click touch').on('click touch', function () {
-					if ($body.hasClass(sidebar_mini_class)) {
-						setSideMenu('show');
+			// $(function () {
+			// 	var $body = $('body');
+			// 	var $btn = $('#toggle_button');
+			// 	var sidebar_mini_class = 'sidebar-mini';
+			// 	var current_sidebar_mini_class = "";
+			// 	var $menubar_toggle = $body.find('#header .menubar-toggle');
+			// 	var $close_btn = $('._close_btn');
+			// 	$btn.off('click touch').on('click touch', function () {
+			// 		if ($body.hasClass(sidebar_mini_class)) {
+			// 			setSideMenu('show');
+			// 		} else {
+			// 			setSideMenu('hide');
+			// 		}
+			// 	});
+			// 	if (current_sidebar_mini_class === sidebar_mini_class) $body.addClass(sidebar_mini_class);
+			// 	else $body.removeClass(sidebar_mini_class);
+			// 	function setSideMenu(show) {
+			// 		$.ajax({
+			// 			type: 'POST',
+			// 			data: { 'status': show },
+			// 			url: ('/admin/ajax/inc/set_side_menu.cm'),
+			// 			dataType: 'json',
+			// 			async: false,
+			// 			cache: false,
+			// 			success: function (res) {
+			// 				if (res.msg === "show") {
+			// 					$body.removeClass(sidebar_mini_class);
+			// 				} else {
+			// 					$body.addClass(sidebar_mini_class);
+			// 				}
+			// 			}
+			// 		});
+			// 	}
+			// });
+
+			$.ajax({
+				url:"/admin/management_add",
+				type:"POST",
+				data:JSON.stringify(params),
+				contentType: "application/json",
+				success: function (result){
+					if (result){
+						alert("등록 되었습니다.");
 					} else {
-						setSideMenu('hide');
+						alert("등록에 실패했습니다.");
 					}
-				});
-				if (current_sidebar_mini_class === sidebar_mini_class) $body.addClass(sidebar_mini_class);
-				else $body.removeClass(sidebar_mini_class);
-				function setSideMenu(show) {
-					$.ajax({
-						type: 'POST',
-						data: { 'status': show },
-						url: ('/admin/ajax/inc/set_side_menu.cm'),
-						dataType: 'json',
-						async: false,
-						cache: false,
-						success: function (res) {
-							if (res.msg === "show") {
-								$body.removeClass(sidebar_mini_class);
-							} else {
-								$body.addClass(sidebar_mini_class);
-							}
-						}
-					});
+				},
+				error: function () {
+					alert("에러 발생");
 				}
-			});
+			})
 
 		</script>
 		<!-- 카테고리 팝업창 -->
@@ -2629,52 +2332,6 @@
 
 	<iframe name="hidden_frame" id="hidden_frame"
 		style="position: absolute; left: -9999px; width: 1px; height: 1px; top:-9999px;"></iframe>
-
-	<!-- Channel Script -->
-	<script type="text/javascript">
-		window.channelPluginSettings = { "pluginKey": "6a8aaaf7-8e2f-400b-9946-491b9354592f", "userId": "M202201275eb775fe0f3aa", "profile": { "name": "\ubc15\uace0\uc6b4", "mobileNumber": "11111111", "email": "ckfdma@gmail.com", "avatarUrl": "\/common\/img\/default_profile.png", "memberType": "Free", "educationApplication": "N", "visitsCount": 13, "usingConsulting": "", "siteVersion": "Free", "isSiteExpired": "N", "makeDate": "2022-01-27 14:08:49", "expireDate": null, "siteMemberCount": 1, "mainDomain": "test.imweb.me", "imwebDomain": "test.imweb.me", "useSSL": "", "usingTrace": "N", "pgName": "\ubbf8\uac00\uc785", "usingNpay": false, "npayVersion": 1, "totalSalePrice": 0, "lastMonthSalePrice": 0 }, "locale": "ko", "zIndex": 1000 };
-		(function () {
-			var w = window;
-			if (w.ChannelIO) {
-				return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
-			}
-			var d = window.document;
-			var ch = function () {
-				ch.c(arguments);
-			};
-			ch.q = [];
-			ch.c = function (args) {
-				ch.q.push(args);
-			};
-			w.ChannelIO = ch;
-			function l() {
-				if (w.ChannelIOInitialized) {
-					return;
-				}
-				w.ChannelIOInitialized = true;
-				var s = document.createElement('script');
-				s.type = 'text/javascript';
-				s.async = true;
-				s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-				s.charset = 'UTF-8';
-				var x = document.getElementsByTagName('script')[0];
-				x.parentNode.insertBefore(s, x);
-			}
-			if (document.readyState === 'complete') {
-				l();
-			} else if (window.attachEvent) {
-				window.attachEvent('onload', l);
-			} else {
-				window.addEventListener('DOMContentLoaded', l, false);
-				window.addEventListener('load', l, false);
-			}
-		})();
-	</script>
-
-
-
-	<script>
-	</script>
 
 
 	<div id="device-breakpoints">
