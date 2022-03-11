@@ -26,15 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**").permitAll()
-                .antMatchers("/board/**").authenticated()
-                .and().formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/login_fin")
-                .failureUrl("/login")
-                .and()
-                .logout();
+                .antMatchers("/**").permitAll();
+//                .antMatchers("/board/**").authenticated()
+//                .and().formLogin()
+//                .loginPage("/login")
+//                .loginProcessingUrl("/login")
+//                .defaultSuccessUrl("/login_fin")
+//                .failureUrl("/login")
+//                .and()
+//                .logout();
     }
 
     public PasswordEncoder passwordEncoder() {
