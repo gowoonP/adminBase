@@ -4,6 +4,7 @@
       xmlns:th="http://www.thymeleaf.org/">
 
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -40,6 +41,48 @@
         var IS_GUEST = false;
         var MEMBER_HASH = '33a3f270cf1ffde9db3efaaa746835d6ddc643f1';
         var CHECK_OFFICE = false;
+=======
+	<script
+			src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			crossorigin="anonymous"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="robots" content="noindex">
+	<!--<link href="http://cocoaphp.com/publish/bootstrap/css/material-design-iconic-font.min.css" rel="stylesheet">-->
+	<script>
+		var TEST_SERVER = false;
+		var VENDOR_DOMAIN = 'https://vendor-cdn.imweb.me';
+		var UPLOAD_URL = '/upload/';
+		var CDN_UPLOAD_URL = 'https://cdn.imweb.me/upload/';
+		var IS_MAIN = false;
+		var IS_MOBILE = false;
+		var ADMIN_URL = '/admin/';
+		var THUMBNAIL_URL = '/thumbnail/';
+		var CDN_THUMBNAIL_URL = 'https://cdn.imweb.me/thumbnail/';
+		var SITE_CODE = 'S20220126fb815f20c3669';
+		var UNIT_CODE = 'u2022012661f14f8d7bca0';
+		var SITE_NO = 'S20220126fb815f20c3669';
+		var UNIT_NO = 'u2022012661f14f8d7bca0';
+		var MAIN_DOMAIN = 'test.imweb.me';
+		var CURRENT_DOMAIN = 'test.imweb.me';
+		var CURRENT_PROTOCOL = 'https://';
+		var GOOGLE_API_KEY = 'AIzaSyA8CCexf9XTJcH09mStr-HRW4nin4k8J7w';
+		var FROALA_VERSION = 311;
+		var FROALA_KEY = '6LF5g1B3D3F3C6C3E2F-11SLJCKHXOSLMc1YGSGb1ZXHSe1CgB5A4D4C3E3C2A13A19B7B2==';
+		var ADOBE_AVIARY_KEY = '94bd22b5cc05424494c5e7aeabab8466';
+		var LIMIT_API_LIST = [];
+		var NO_IMAGE_URL = '/img/no-image.png';
+		var ADMIN_LANG_CODE = 'KR';
+		var SITE_COUNTRY_CODE = 'kr';
+		var KOREA_COUNTRY_CODE = 'kr';
+		var TAIWAN_COUNTRY_CODE = 'tw';
+		var IS_GUEST = false;
+		var MEMBER_HASH = '33a3f270cf1ffde9db3efaaa746835d6ddc643f1';
+		var CHECK_OFFICE = false;
+>>>>>>> genius
 
         /****************************************************************/
         /* m_Completepayment  설명                                      */
@@ -323,6 +366,7 @@
             </div>
             <!--end.card-top-->
 
+<<<<<<< HEAD
             <div class="section-body">
                 <div class="tab-pane" id="daily">
                     <div class="row">
@@ -340,6 +384,49 @@
                                                 margin: 0 auto;
                                                 position: relative;
                                             }
+=======
+				<div class="headerbar-right">
+					<ul class="header-nav header-nav-options _option_list">
+						<li><a class="btn btn-default-bright" href="javascript:;">취소</a></li>
+						<li><a class="btn btn-primary join_button">추가</a></li>
+					</ul>
+					<!--end .header-nav-options -->
+				</div>
+				<!--끝 #header-navbar-collapse -->
+				<!--끝 #header-navbar-collapse -->
+			</div>
+		</header>
+		<!-- BEGIN CONTENT-->
+		<div id="content">
+			<section>
+				<div class="card style-transparent card-top no-tab"
+					style="z-index: auto; position: relative; top: 0px;">
+					<div class="card-head">
+						<header>
+							<a th:href="@{/admin/memberlist}"><i class="zmdi zmdi-arrow-back"></i>리스트로 돌아가기</a>
+						</header>
+						<div class="tools">
+							<div class="“btn-group”">
+								<div class="btn-group">
+									<a href="#" class="btn btn-icon-toggle dropdown-toggle" data-toggle="dropdown"><i
+											class="zmdi zmdi-more"></i></a>
+									<ul class="dropdown-menu animation-dock right check menu-card-styling" role="menu"
+										style="text-align: left;">
+										<li>
+											<a href="javascript:;" onclick="adminMember.openMemberSmsForm([''])">SMS</a>
+										</li>
+										<li>
+											<a href="javascript:;" onclick="adminMember.openMemberPushForm([''])">알림</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end.card-head-->
+				</div>
+				<!--end.card-top-->
+>>>>>>> genius
 
                                             #drop_profile_img {
                                                 position: absolute;
@@ -427,6 +514,7 @@
                                                     var addr = ''; // 주소 변수
                                                     var extraAddr = ''; // 참고항목 변수
 
+<<<<<<< HEAD
                                                     //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                                                     if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                                                         addr = data.roadAddress;
@@ -634,6 +722,19 @@
                                     <div style="text-align: center">
                                         <input type="submit" value="가입완료">&nbsp;<input type="reset" value="다시작성">
                                     </div>
+=======
+										<div class="profile-info">
+											<form id="join_form" action="" method="POST" class="form-horizontal form-validate"
+												role="form" target="hidden_frame" enctype="multipart/form-data"
+												autocomplete="off" novalidate="novalidate">
+												<input type="hidden" name="idx" value="">
+												<input type="hidden" name="code" value="">
+												<input type="hidden" name="join_type_code"
+													value="t2022012647528791dbb90">
+												<input type="hidden" name="photo" value="">
+												<input type="hidden" name="photo_tmp_idx" value="" id="photo_tmp_idx">
+												<input type="hidden" name="from_permission" value="">
+>>>>>>> genius
 
 
                                     </form>
@@ -714,11 +815,46 @@
     })
 
 
+<<<<<<< HEAD
     $(function () {
         MEMBER_MANAGE.init('add', '');
         SHOP_MEMBER_POINT.init('/mgweb/adminpage/memberList.html/?q=YToyOntzOjEyOiJtZW1iZXJfZ3JvdXAiO3M6Nzoibm9ncm91cCI7czoxMDoiam9pbl9vcmRlciI7czo0OiJkZXNjIjt9&mode=add');
         MEMBER_MANAGE.changeJoinTypeForm();
     });
+=======
+												<div class="form-group">
+													<label class="col-sm-3 control-label text-right" for="userUserid">
+														계정 <span class="text-danger">(필수)</span>
+													</label>
+													<div class="col-md-9">
+														<input type="text" required="required" name="userUserid"
+															id="userUserid" class="form-control" value="" data-nick=""
+															aria-required="true">
+														<div class="form-control-line"></div>
+													</div>
+												</div>
+
+												<div class="form-group" id="password_wrap">
+													<label class="col-sm-3 control-label text-right">비밀번호</label>
+													<div class="col-md-9">
+														<a href="javascript:;" role="button"
+															class="btn btn-default-bright"
+															onclick="MEMBER_MANAGE.showPasswdHtml()">비밀번호를 입력해 주세요.</a>
+													</div>
+												</div>
+												<div class="_type_form_wrap">
+													<div class="form-group">
+														<label class="col-sm-3 control-label text-right"
+															for="userName">
+															이름 <span class="text-danger">(필수)</span>
+														</label>
+														<div class="col-md-9">
+															<input type="text" autocomplete="off" required=""
+																name="name" id="userName" class="form-control"
+																value="">
+														</div>
+													</div>
+>>>>>>> genius
 
 
     $(document).ready(function () {
@@ -767,6 +903,7 @@
             <div class="menubar-scroll-panel" style="padding-bottom: 50px;">
                 <div class="tabled full-width">
 
+<<<<<<< HEAD
 
                     <ul class="dropdown-menu global_setting animation-dock menu-card-styling">
                         <li class="holder ">
@@ -778,6 +915,151 @@
                                              src="/common/img/flag_shapes/flag_kr_circle.png">
                                     </div>
                                     <div class="table-cell vertical-middle domain">
+=======
+												<input type="submit" class="join_button" value="추가"/>
+											</form>
+										</div>
+									</div>
+									<!--end.card-body-->
+								</div>
+								<!--end.card-->
+							</div>
+							<!--end.col-->
+
+						</div>
+						<!--end.row-->
+					</div>
+					<!--end.tab-pane-->
+				</div>
+				<!--end.section-body.tab-content-->
+
+			</section>
+			<!--섹션 끝 -->
+
+			<!-- 사용자 삭제 모달 시작 -->
+			<div class="modal fade" id="remove_member" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
+									class="btm bt-times"></i></button>
+							<h3 class="modal-title" id="formModalLabel">사용자 삭제</h3>
+						</div>
+						<div class="modal-body">
+							%1명의 사용자를 삭제하시겠습니까? 삭제된 사용자는 복원할 수 없습니다 </div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary btn-flat">삭제</button>
+						</div>
+
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			<!-- 모달 끝 -->
+			<!-- 사용자 차단 모달 시작 -->
+			<div class="modal fade" id="add_ban" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
+									class="btm bt-times"></i></button>
+							<h3 class="modal-title" id="formModalLabel1">사용자 차단</h3>
+						</div>
+						<div class="modal-body">
+							해당 사용자의 마지막 로그인 IP를 기준으로 차단합니다. 차단 관리에서 확인 및 변경이 가능합니다.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary btn-flat">차단</button>
+						</div>
+
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			<!-- 모달 끝 -->
+		</div>
+		<!--end #content-->
+		<!-- END CONTENT -->
+
+		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+		<script>
+			$(".btn.btn-default-bright").one('click', function () {
+				$(this).parent().append("<input type='password' autocomplete='off' name='userUserpw' id='userUserpw' class='form-control' placeholder='비밀번호'>")
+			})
+
+			$("#user_name").click(function () {
+				$(".btn.btn-primary.disabled").removeClass("disabled");
+			})
+
+
+			$(function () {
+				MEMBER_MANAGE.init('add', '');
+				SHOP_MEMBER_POINT.init('/mgweb/adminpage/memberList.html/?q=YToyOntzOjEyOiJtZW1iZXJfZ3JvdXAiO3M6Nzoibm9ncm91cCI7czoxMDoiam9pbl9vcmRlciI7czo0OiJkZXNjIjt9&mode=add');
+				MEMBER_MANAGE.changeJoinTypeForm();
+			});
+
+
+			$(document).ready(function () {
+				toastr.options = {
+					"closeButton": false,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": false,
+					"positionClass": "on-modal",
+					"preventDuplicates": false,
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+				$('._referrer_code_copy').off('click').on('click', function () {
+					$('._recommend_tmp_input').select();
+					document.execCommand("Copy");
+
+					toastr.info('추천인 코드가 복사되었습니다!');
+				});
+			});
+		</script>
+		<script>
+			$(window).on("keyup", function (e) {
+				if ($.cocoaDialog.isOpen()) {
+					$.cocoaDialog.modalControl(e);
+				}
+				return false;
+			});</script>
+		<!-- BEGIN MENUBAR-->
+		<button type="button" class="hidden-lg hidden-md toggle-btn" data-dismiss="menubar">
+			<span class="sr-only">Toggle navigation</span>
+			<i class="btl bt-times"></i>
+		</button>
+
+
+		<div id="menubar" class="animate">
+			<div class="nano has-scrollbar" style="height: 719px;">
+				<div class="nano-content" tabindex="0" style="right: -15px;">
+					<div class="menubar-scroll-panel" style="padding-bottom: 50px;">
+						<div class="tabled full-width">
+
+
+							<ul class="dropdown-menu global_setting animation-dock menu-card-styling">
+								<li class="holder ">
+									<a
+										href="/admin/?type=page&amp;_ga=2.254642240.996359343.1645365816-1966519718.1645110617">
+										<div class="tabled">
+											<div class="table-cell vertical-middle width-1">
+												<img width="30" height="30"
+													src="/common/img/flag_shapes/flag_kr_circle.png">
+											</div>
+											<div class="table-cell vertical-middle domain">
+>>>>>>> genius
 
 												<span data-original-title="일반 방문자의 접속이 제한됩니다. 글로벌 버전으로 업그레이드 해주세요"
                                                       data-toggle="tooltip" class="badge" data-placement="top"
@@ -948,12 +1230,35 @@
 <script>
 </script>
 
+<<<<<<< HEAD
 <div id="device-breakpoints">
     <div class="device-xs visible-xs" data-breakpoint="xs"></div>
     <div class="device-sm visible-sm" data-breakpoint="sm"></div>
     <div class="device-md visible-md" data-breakpoint="md"></div>
     <div class="device-lg visible-lg" data-breakpoint="lg"></div>
 </div>
+=======
+
+	<script>
+	</script>
+	<script>
+
+		$(document).ready(function(){
+			//회원가입 버튼(회원가입 기능 작동)
+			$(".join_button").click(function(){
+				$("#join_form").attr("action", "/admin/member/join.do");
+				$("#join_form").submit();
+			});
+		});
+
+	</script>
+	<div id="device-breakpoints">
+		<div class="device-xs visible-xs" data-breakpoint="xs"></div>
+		<div class="device-sm visible-sm" data-breakpoint="sm"></div>
+		<div class="device-md visible-md" data-breakpoint="md"></div>
+		<div class="device-lg visible-lg" data-breakpoint="lg"></div>
+	</div>
+>>>>>>> genius
 </body>
 
 </html>
