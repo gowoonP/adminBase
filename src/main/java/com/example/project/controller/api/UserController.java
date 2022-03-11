@@ -44,7 +44,7 @@ public class UserController extends CrudController<UserApiRequest, UserApiRespon
     */
 
     @Override
-    @PostMapping("") //http://localhost:8080/test (post)
+    @PostMapping("/new") //http://localhost:8080/test (post)
     public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request) {
         return userApiLogicService.create(request);
     }
@@ -56,13 +56,13 @@ public class UserController extends CrudController<UserApiRequest, UserApiRespon
     }
 
     @Override
-    @PutMapping("")
+    @PutMapping("/update")
     public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> request) {
         return userApiLogicService.update(request);
     }
 
     @Override
-    @DeleteMapping("{id}")
+    @DeleteMapping("/delete/{id}")
     public Header<UserApiResponse> delete(@PathVariable(name="id") Long id) {
         return userApiLogicService.delete(id);
     }

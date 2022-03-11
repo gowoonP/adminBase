@@ -127,5 +127,13 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         return Header.OK(userApiResponseList);
     }
 
+    public List<UserApiResponse> getUserList(){
+        List<User> userList = baseRepository.findAll();
+        List<UserApiResponse> userApiResponseList  = userList.stream()
+                .map(user -> response(user))
+                .collect(Collectors.toList());
+        return userApiResponseList;
+    }
+
 
 }
