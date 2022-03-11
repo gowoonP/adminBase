@@ -1,6 +1,7 @@
 package com.example.project.controller.api;
 
 import com.example.project.controller.CrudController;
+import com.example.project.model.DTO.GoodsDTO;
 import com.example.project.model.entity.Goods;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
@@ -21,22 +22,22 @@ import java.util.List;
 public class GoodsController extends CrudController<GoodsApiRequest, GoodsApiResponse, Goods> {
     /*
     {
-        "transaction_time":"2022-03-04",
+"transaction_time":"2022-03-04",
             "resultCode":"ok",
             "description":"ok",
             "data":{
-        "gdName":"test",
-                "gdPrice":"100000",
-                "gdCount":"10",
+                "gdName":"안좋은의자",
+                "gdPrice":1,
+                "gdCount":1,
                 "gdBrand":"duoback",
-                "gdSaleprice":"10000",
-                "gdCategory":"duoback",
-                "gdSalepercent":"5",
-                "gdHit":"1",
-                "gdImg":"gd",
-                "gdOption":"",
-                "gdContent":"gd",
-                "gdDetailimg":"gd"
+                "gdSaleprice":1,
+                "gdCategory":"의자",
+                "gdSalepercent":1,
+                "gdHit":1,
+                "gdImg":"z",
+                "gdOption":"파란색",
+                "gdContent":"1",
+                "gdDetailimg":"zz"
     }
     }
 
@@ -87,6 +88,5 @@ public class GoodsController extends CrudController<GoodsApiRequest, GoodsApiRes
     public Header<List<GoodsApiResponse>> listBrand(String gdBrand){
         return goodsApiLogicService.listBrand(gdBrand);
     }
-
 
 }
