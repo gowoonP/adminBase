@@ -1,4 +1,8 @@
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org/">
+<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -490,63 +494,63 @@
 
 				<h3>상품추가</h3>
 
-				<form method="post" id="goodsadd">
+				<form method="post">
 
 					<table border="1" width="400" height="400">
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 이름</td>
-							<td><input type="text" th:name="gdname"></td>
+							<td><input type="text" id="gdName"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 가격</td>
-							<td><input type="text" th:name="gdprice"></td>
+							<td><input type="text" name="gdPrice" id="gdPrice"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 수량</td>
-							<td><input type="text" th:name="gdcount"></td>
+							<td><input type="text" name="gdCount" id="gdCount"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 브랜드</td>
-							<td><input type="text" th:name="gdbrand"></td>
+							<td><input type="text" name="gdBrand" id="gdBrand"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 카테고리</td>
-							<td><input type="text" th:name="gdcategory"></td>
+							<td><input type="text" name="gdCategory" id="gdCategory"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">할인 가격</td>
-							<td><input type="text" th:name="gdsaleprice"></td>
+							<td><input type="text" name="gdSaleprice" id="gdSaleprice"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">할인률</td>
-							<td><input type="text" th:name="gdsalepercent"></td>
+							<td><input type="text" name="gdSalepercent" id="gdSalepercent"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 이미지</td>
-							<td><input type="text" th:name="gdimg"></td>
+							<td><input type="text" name="gdImg" id="gdImg"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 옵션</td>
-							<td><input type="text" th:name="gdoption"></td>
+							<td><input type="text" name="gdOption" id="gdOption"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상품 설명</td>
-							<td><input type="text" th:name="gdcontent"></td>
+							<td><input type="text" name="gdContent" id="gdContent"></td>
 						</tr>
 
 						<tr>
 							<td align="center" bgcolor="#FFFFCC">상세 이미지</td>
-							<td><input type="text" th:name="gddetailimg"></td>
+							<td><input type="text" name="gdDetailimg" id="gdDetailimg"></td>
 						</tr>
 
 						<!--		<tr>-->
@@ -567,7 +571,7 @@
 
 					</table>
 
-					<input type="button" id="submit" value="등록하기" class="register">
+					<input type="button" id="btn-save" value="등록하기">
 					<input type="reset" value="다시작성">
 
 				</form>
@@ -578,53 +582,61 @@
 	</div>
 </div>
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+		src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+
+
 <script>
 
-	$(document).ready(function(){
-		$('#submit').click(function(){   //submit 버튼을 클릭하였을 때
-			$('goodsadd').submit();
-		});
-	});
-
-
-
-
-
-	// $('#submit').on('click', function(){
-	// 	$.ajax({
-	// 		url: "/goods/list",
-	// 		type: "POST",
-	// 		data: $("goodsadd").serialize(),
-	// 		success: function(data){
-	// 			$('#message').text(data);
-	// 			alert("등록 성공");
-	// 		},
-	// 		error: function(){
-	// 			alert("등록 실패");
-	// 		}
+	// $(document).ready(function(){
+	// 	//회원가입 버튼(회원가입 기능 작동)
+	// 	$(".join_button").click(function(){
+	// 		$("#goodsadd").submit();
 	// 	});
 	// });
+	let index = {
+		init: function() {
+			$("#btn-save").on("click", () => { //this를 바인딩하기 위해 화샬표 함수 사용
+				this.save();
+			});
+		},
+		save: function() {
 
-
-	// $(document).ready(function() {
-	// 	$('#submit').click(function () {
-	//
-	// 		$.ajax({
-	// 			url: '',
-	// 			type: 'post',
-	// 			data: {"gdname": "gdname"},
-	// 			success: function (data) {
-	// 				alert("성공");
-	// 			},
-	// 			error: function (error) {
-	// 				alert("실패");
-	// 			}
-	// 		});
-	// 		});
-	//
-	//
-	// 	});
+			let data = { //JavaScript Object
+				"transaction_time": "2022-03-04",
+				"resultCode": "ok",
+				"description": "ok",
+				"data": {
+					gdName: $("#gdName").val(),
+					gdPrice: $("#gdPrice").val(),
+					gdCount: $("#gdCount").val(),
+					gdBrand: $("#gdBrand").val(),
+					gdCategory: $("#gdCategory").val(),
+					gdSaleprice: $("#gdSaleprice").val(),
+					gdSalepercent: $("#gdSalepercent").val(),
+					gdImg: $("#gdImg").val(),
+					gdOption: $("#gdOption").val(),
+					gdContent: $("#gdContent").val(),
+					gdDetailimg: $("#gdDetailimg").val(),
+				}
+			}
+			$.ajax({
+				type: "POST", //Http method
+				url: "/goods/new", //API 주소
+				data: JSON.stringify(data), //JSON으로 변환
+				contentType: "application/json; charset=utf-8", //MIME 타입
+				dataType: "json" //응답 데이터
+			}).done(function(res) {
+				alert("등록 성공");
+				location.href = "/";
+			}).fail(function(err) {
+				alert(JSON.stringify(err));
+			});
+		}
+	}
+	index.init();
 
 </script>
 

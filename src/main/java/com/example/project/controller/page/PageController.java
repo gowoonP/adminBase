@@ -1,17 +1,16 @@
 package com.example.project.controller.page;
 
-import com.example.project.model.DTO.GoodsDTO;
 import com.example.project.model.entity.Goods;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
+import com.example.project.repository.GoodsRepository;
 import com.example.project.service.GoodsApiLogicService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 
 //@Controller
 //@RequestMapping("/pages") // http://localhost:8080/pages
@@ -41,6 +40,9 @@ import java.util.HashMap;
 public class PageController {
 
     private final GoodsApiLogicService goodsApiLogicService;
+
+    @Autowired
+    private GoodsRepository goodsRepository;
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -86,15 +88,14 @@ public class PageController {
         model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
         return "adminpage/shoppingmanagement";}
 
-    @PostMapping("/management_add")
-    public String goods_add(){ return "adminpage/shoppingManagement_add";}
 
     @GetMapping("/management_add")
     public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
 
 //    @PostMapping("/management_add")
-//    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request){
-//        return goodsApiLogicService.create(request);
+//    public String create(@RequestBody Goods goods){
+//        goodsRepository.save(goods);
+//        return "redirect:/admin/management";
 //    }
 
     @GetMapping("/management_hide")

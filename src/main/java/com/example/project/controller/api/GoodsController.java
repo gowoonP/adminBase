@@ -1,19 +1,21 @@
 package com.example.project.controller.api;
 
 import com.example.project.controller.CrudController;
-import com.example.project.model.DTO.GoodsDTO;
+import com.example.project.model.DTO.NoticeDTO;
 import com.example.project.model.entity.Goods;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
-import com.example.project.service.CartApiLogicService;
 import com.example.project.service.GoodsApiLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController //json으로 주고 받는 컨트롤러
@@ -78,6 +80,11 @@ public class GoodsController extends CrudController<GoodsApiRequest, GoodsApiRes
     public Header<List<GoodsApiResponse>> list(){
         return goodsApiLogicService.list();
     }
+
+//   @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+//   public void goodslist(HttpServletRequest request, HttpServletResponse response) {
+//
+//   }
 
     @GetMapping("/list/category") // http://localhost:8080/goods/list/category?gdCategory=*
     public Header<List<GoodsApiResponse>> listCategory(String gdCategory){
