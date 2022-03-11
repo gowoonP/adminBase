@@ -65,11 +65,11 @@ public class PageController {
     @GetMapping("/memberjoin")
     public String memberjoin() { return "adminpage/memberjoin";}
 
-    @RequestMapping(value="/member/join.do", method = {RequestMethod.POST})
+    @PostMapping("/join.do")
     public String create(User user) {
 
         userRepository.save(user);
-        return "redirect:/adminpage/memberlist";
+        return "redirect:/admin/memberlist";
     }
 
     @GetMapping("/membermail")

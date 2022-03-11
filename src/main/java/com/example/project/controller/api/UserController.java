@@ -76,5 +76,4 @@ public class UserController extends CrudController<UserApiRequest, UserApiRespon
         return userApiLogicService.list();
     }
 
-
 }
