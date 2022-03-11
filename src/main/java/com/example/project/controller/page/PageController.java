@@ -1,10 +1,27 @@
 package com.example.project.controller.page;
 
+<<<<<<< HEAD
 import com.example.project.model.entity.User;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
 import com.example.project.repository.UserRepository;
+=======
+<<<<<<< HEAD
+=======
+import com.example.project.controller.CrudController;
+import com.example.project.model.entity.Goods;
+import com.example.project.model.entity.User;
+>>>>>>> genius
+import com.example.project.model.network.Header;
+import com.example.project.model.network.request.GoodsApiRequest;
+import com.example.project.model.network.response.GoodsApiResponse;
+<<<<<<< HEAD
+=======
+import com.example.project.model.network.response.UserApiResponse;
+import com.example.project.repository.UserRepository;
+>>>>>>> genius
+>>>>>>> 992da0bd104b7f30863ea83578df55748997c6d9
 import com.example.project.service.GoodsApiLogicService;
 import com.example.project.service.UserApiLogicService;
 import lombok.AllArgsConstructor;
@@ -43,6 +60,9 @@ public class PageController {
     private final GoodsApiLogicService goodsApiLogicService;
     private final UserApiLogicService userApiLogicService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("")
     public String admin() { return "index";}
 
@@ -73,6 +93,13 @@ public class PageController {
         return "redirect:/adminpage/memberlist";
     }
 
+
+    @RequestMapping(value="/member/join.do", method = {RequestMethod.POST})
+    public String create(User user) {
+
+        userRepository.save(user);
+        return "redirect:/adminpage/memberlist";
+    }
 
     @GetMapping("/membermail")
     public String membermail() { return "adminpage/membermail";}

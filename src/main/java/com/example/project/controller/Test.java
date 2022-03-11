@@ -22,24 +22,17 @@ public class Test {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("")
+    @PostMapping("/join.do")
     public String create(User user) {
 
         userRepository.save(user);
-        return "redirect:/user/signUp";
+        return "redirect:/admin";
     }
 
     @GetMapping("/signUp")
     public String user(){
         return "signUp";
     }
-
-
-
-
-
-
-
 
 
 
