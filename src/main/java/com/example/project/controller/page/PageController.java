@@ -1,11 +1,15 @@
 package com.example.project.controller.page;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
 import com.example.project.model.entity.User;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
 import com.example.project.repository.UserRepository;
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -22,6 +26,8 @@ import com.example.project.model.network.response.UserApiResponse;
 import com.example.project.repository.UserRepository;
 >>>>>>> genius
 >>>>>>> 992da0bd104b7f30863ea83578df55748997c6d9
+=======
+>>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
 import com.example.project.service.GoodsApiLogicService;
 import com.example.project.service.UserApiLogicService;
 import lombok.AllArgsConstructor;
@@ -59,9 +65,12 @@ public class PageController {
 
     private final GoodsApiLogicService goodsApiLogicService;
     private final UserApiLogicService userApiLogicService;
+<<<<<<< HEAD
 
     @Autowired
     private UserRepository userRepository;
+=======
+>>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -74,10 +83,23 @@ public class PageController {
 
     @GetMapping("/memberlist")
     public String memberlist(Model model) {
+<<<<<<< HEAD
         model.addAttribute("UserList", userApiLogicService.getUserList());
         return "adminpage/memberList";}
 
 
+=======
+    model.addAttribute("UserList" , userApiLogicService.getUserList());
+        return "adminpage/memberlist";}
+
+    private UserRepository userRepository;
+
+    @PostMapping("/join_ok")
+    public String member_join(User user){
+        userRepository.save(user);
+        return "redirect :/adminpage/memberlist";
+    }
+>>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
 
     @GetMapping("/memberjoin")
     public String memberjoin(){
