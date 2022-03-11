@@ -454,7 +454,7 @@ $(window).scroll(determineDropDirection);
 					</thead>
 
 					<tbody>
-					<tr th:each="m : ${UserLsit}">
+					<tr th:each="m : ${UserList}">
 						<a th:href="@{/adminpage/memberList}"><td th:text="${m.userIdx}"></td></a>
 						<td th:text="${m.userName}">x</td>
 						<td th:text="${m.userUserid}">x</td>
