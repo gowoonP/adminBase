@@ -5,9 +5,7 @@ import com.example.project.model.network.Header;
 import com.example.project.model.network.Pagination;
 import com.example.project.model.network.request.UserApiRequest;
 import com.example.project.model.network.response.UserApiResponse;
-import com.example.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,9 +18,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse, User> {
-
-    @Autowired
-    private UserRepository userRepository;
 
     private final CartApiLogicService cartApiLogicService;
     private final GoodsApiLogicService goodsApiLogicService;
@@ -132,11 +127,5 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         return Header.OK(userApiResponseList);
     }
 
-    public List<UserApiResponse> getUserList(){
-        List<User> userList = baseRepository.findAll();
-        List<UserApiResponse> userApiResponseList  = userList.stream()
-                .map(user -> response(user))
-                .collect(Collectors.toList());
-                return userApiResponseList;
-    }
+
 }
