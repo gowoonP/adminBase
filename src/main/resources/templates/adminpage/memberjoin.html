@@ -4,6 +4,10 @@
 	  xmlns:th="http://www.thymeleaf.org/">
 
 <head>
+	<script
+			src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			crossorigin="anonymous"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -293,7 +297,7 @@
 				<div class="headerbar-right">
 					<ul class="header-nav header-nav-options _option_list">
 						<li><a class="btn btn-default-bright" href="javascript:;">취소</a></li>
-						<li><a class="btn btn-primary disabled">추가</a></li>
+						<li><a class="btn btn-primary join_button">추가</a></li>
 					</ul>
 					<!--end .header-nav-options -->
 				</div>
@@ -435,7 +439,7 @@
 										<!--end.profile-image-->
 
 										<div class="profile-info">
-											<form id="dof" method="post" class="form-horizontal form-validate"
+											<form id="join_form" action="" method="POST" class="form-horizontal form-validate"
 												role="form" target="hidden_frame" enctype="multipart/form-data"
 												autocomplete="off" novalidate="novalidate">
 												<input type="hidden" name="idx" value="">
@@ -461,12 +465,12 @@
 
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label text-right" for="member_item_">
+													<label class="col-sm-3 control-label text-right" for="userUserid">
 														계정 <span class="text-danger">(필수)</span>
 													</label>
 													<div class="col-md-9">
-														<input type="text" required="required" name="uid"
-															id="member_item_" class="form-control" value="" data-nick=""
+														<input type="text" required="required" name="userUserid"
+															id="userUserid" class="form-control" value="" data-nick=""
 															aria-required="true">
 														<div class="form-control-line"></div>
 													</div>
@@ -483,12 +487,12 @@
 												<div class="_type_form_wrap">
 													<div class="form-group">
 														<label class="col-sm-3 control-label text-right"
-															for="user_name">
+															for="userName">
 															이름 <span class="text-danger">(필수)</span>
 														</label>
 														<div class="col-md-9">
 															<input type="text" autocomplete="off" required=""
-																name="name" id="user_name" class="form-control"
+																name="name" id="userName" class="form-control"
 																value="">
 														</div>
 													</div>
@@ -498,7 +502,7 @@
 
 												</div>
 
-
+												<input type="submit" class="join_button" value="추가"/>
 											</form>
 										</div>
 									</div>
@@ -514,7 +518,7 @@
 					<!--end.tab-pane-->
 				</div>
 				<!--end.section-body.tab-content-->
-				<div><a class="btn btn-primary disabled">추가</a></div>
+
 			</section>
 			<!--섹션 끝 -->
 
@@ -569,7 +573,7 @@
 
 		<script>
 			$(".btn.btn-default-bright").one('click', function () {
-				$(this).parent().append("<input type='password' autocomplete='off' name='passwd' id='user_password' class='form-control' placeholder='비밀번호'>")
+				$(this).parent().append("<input type='password' autocomplete='off' name='userUserpw' id='userUserpw' class='form-control' placeholder='비밀번호'>")
 			})
 
 			$("#user_name").click(function () {
@@ -808,7 +812,17 @@
 
 	<script>
 	</script>
+	<script>
 
+		$(document).ready(function(){
+			//회원가입 버튼(회원가입 기능 작동)
+			$(".join_button").click(function(){
+				$("#join_form").attr("action", "/admin/member/join.do");
+				$("#join_form").submit();
+			});
+		});
+
+	</script>
 	<div id="device-breakpoints">
 		<div class="device-xs visible-xs" data-breakpoint="xs"></div>
 		<div class="device-sm visible-sm" data-breakpoint="sm"></div>

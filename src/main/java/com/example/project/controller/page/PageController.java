@@ -2,13 +2,16 @@ package com.example.project.controller.page;
 
 import com.example.project.controller.CrudController;
 import com.example.project.model.entity.Goods;
+import com.example.project.model.entity.User;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.request.UserApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
 import com.example.project.model.network.response.UserApiResponse;
+import com.example.project.repository.UserRepository;
 import com.example.project.service.GoodsApiLogicService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +47,9 @@ public class PageController {
 
     private final GoodsApiLogicService goodsApiLogicService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("")
     public String admin() { return "index";}
 
@@ -58,6 +64,13 @@ public class PageController {
 
     @GetMapping("/memberjoin")
     public String memberjoin() { return "adminpage/memberjoin";}
+
+    @RequestMapping(value="/member/join.do", method = {RequestMethod.POST})
+    public String create(User user) {
+
+        userRepository.save(user);
+        return "redirect:/adminpage/memberlist";
+    }
 
     @GetMapping("/membermail")
     public String membermail() { return "adminpage/membermail";}
