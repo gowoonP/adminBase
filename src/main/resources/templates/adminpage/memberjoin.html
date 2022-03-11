@@ -346,80 +346,243 @@
 									</div>
 
 										<!--end.profile-image-->
+									<script>
+										function sample6_execDaumPostcode() {
+											new daum.Postcode({
+												oncomplete: function(data) {
+													// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-										<div class="profile-info">
-											<form id="join_form" method="POST">
-<!--												<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
-<!--												<input type="hidden" name="idx" value="">-->
-<!--												<input type="hidden" name="code" value="">-->
-<!--												<input type="hidden" name="join_type_code"-->
-<!--													value="t2022012647528791dbb90">-->
-<!--												<input type="hidden" name="photo" value="">-->
-<!--												<input type="hidden" name="photo_tmp_idx" value="" id="photo_tmp_idx">-->
-<!--												<input type="hidden" name="from_permission" value="">-->
+													// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+													// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+													var addr = ''; // 주소 변수
+													var extraAddr = ''; // 참고항목 변수
+
+													//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+													if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+														addr = data.roadAddress;
+													} else { // 사용자가 지번 주소를 선택했을 경우(J)
+														addr = data.jibunAddress;
+													}
+
+													// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+													if(data.userSelectedType === 'R'){
+														// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+														// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+														if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+															extraAddr += data.bname;
+														}
+														// 건물명이 있고, 공동주택일 경우 추가한다.
+														if(data.buildingName !== '' && data.apartment === 'Y'){
+															extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+														}
+														// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+														if(extraAddr !== ''){
+															extraAddr = ' (' + extraAddr + ')';
+														}
+														// 조합된 참고항목을 해당 필드에 넣는다.
+														document.getElementById("sample6_extraAddress").value = extraAddr;
+
+													} else {
+														document.getElementById("sample6_extraAddress").value = '';
+													}
+
+													// 우편번호와 주소 정보를 해당 필드에 넣는다.
+													document.getElementById('userZipcode').value = data.zonecode;
+													document.getElementById("userAddress1").value = addr;
+													// 커서를 상세주소 필드로 이동한다.
+													document.getElementById("userAddress2").focus();
+												}
+											}).open();
+										}
+									</script>
+
+									<script>
+										function sendit() {
+											const userid = document.getElementById('userUserid');
+											const userpw = document.getElementById('userUserpw');
+											const userpw_re = document.getElementById('userpw_re');
+											const name = document.getElementById('useruserName');
+											const hp = document.getElementById('userHp');
+
+											if (userid.value == '') {
+												alert('아이디를 입력하세요');
+												userid.focus();
+												return false;
+											}
+											if (userid.value.length < 4 || userid.value.length > 20) {
+												alert('아이디는 4자이상 20자 이하로 입력하세요');
+												userid.focus();
+												return false;
+											}
+
+											if (userpw.value == '') {
+												alert('비밀번호를 입력하세요');
+												userpw.focus();
+												return false;
+											}
+											if (userpw.value.length < 4 || userid.value.length > 20) {
+												alert('비밀번호는 4자이상 20자 이하로 입력하세요');
+												userpw.focus();
+												return false;
+											}
+
+											if (userpw.value != userpw_re.value) {
+												alert('비밀번호와 비밀번호 확인의 값이 다릅니다');
+												userpw.focus();
+												return false;
+											}
+											if (!expNameText.test(name.value)) {
+												alert('이름 형식을 확인하세요\n 한글만 입력가능합니다');
+												name.focus();
+												return false;
+											}
+											if (!expHpText.test(hp.value)) {
+												alert('휴대폰번호 형식을 확인하세요\n 하이픈(-)을 포함해야 합니다');
+												hp.focus();
+												return false;
+											}
+										}
 
 
-												<div class="form-group">
-													<label class="col-sm-3 control-label text-right">회원 유형</label>
-													<div class="col-md-9">
-														<select name="join_type_select" class="form-control"
-															onchange="MEMBER_MANAGE.changeJoinTypeForm()">
-															<option value="t2022012647528791dbb90" selected="">일반회원
-															</option>
-														</select>
-														<div class="form-control-line"></div>
+									</script>
+
+									<div class="profile-info" style="text-align: center">
+
+										<form   id="join_form"  method="POST" onsubmit="return sendit()" >
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													성함 :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userName"
+														   id="userName" class="form-control" value="" data-nick=""
+														   aria-required="true" >
+													<div class="form-control-line">
+
 													</div>
 												</div>
+											</div>
 
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													ID :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userUserid"
+														   id="userUserid" class="form-control" value="" >
 
-												<div class="form-group">
-													<label class="col-sm-3 control-label text-right" for="userUserid">
-														계정 <span class="text-danger">(필수)</span>
-													</label>
-													<div class="col-md-9">
-														<input type="text" required="required" name="userUserid"
-															id="userUserid" class="form-control" value="" data-nick=""
-															aria-required="true">
-														<div class="form-control-line"></div>
+													<div class="form-control-line"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													비밀번호 :
+												</label>
+												<div class="col-md-9">
+													<input type="password" required="required" name="userUserpw"
+														   id="userUserpw" class="form-control" value="">
+													<div class="form-control-line"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													비밀번호확인 :
+												</label>
+												<div class="col-md-9">
+													<input type="password" required="required" name="userpw_re"
+														   id="userpw_re" class="form-control" value="" data-nick=""
+														   aria-required="true">
+													<div class="form-control-line"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													전화번호 :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userHp"
+														   id="userHp" class="form-control" value="" data-nick=""
+														   aria-required="true" >
+													<div class="form-control-line">
+
 													</div>
 												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													Email :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userEmail"
+														   id="userEmail" class="form-control" value="">
+													<div class="form-control-line"></div>
+												</div>
+											</div>
+											<p>
+												<input type="button" value="우편번호 검색" onclick="sample6_execDaumPostcode()">
+											</p>
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													우편번호 :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userZipcode"
+														   id="userZipcode" class="form-control" value=""
+														   data-nick=""
+														   aria-required="true">
 
-												<div class="form-group" id="password_wrap">
-													<label class="col-sm-3 control-label text-right">비밀번호</label>
-													<div class="col-md-9">
-														<a href="javascript:;" role="button"
-															class="btn btn-default-bright"
-															onclick="MEMBER_MANAGE.showPasswdHtml()">비밀번호를 입력해 주세요.</a>
+													<div class="form-control-line">
 													</div>
 												</div>
-												<div class="_type_form_wrap">
-													<div class="form-group">
-														<label class="col-sm-3 control-label text-right"
-															for="userName">
-															이름 <span class="text-danger">(필수)</span>
-														</label>
-														<div class="col-md-9">
-															<input type="text" autocomplete="off" required=""
-																name="userName" id="userName" class="form-control"
-																value="">
-														</div>
-													</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													주소 :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userAddress1"
+														   id="userAddress1" class="form-control" value=""
+														   data-nick=""
+														   aria-required="true">
+													<div class="form-control-line"></div>
 												</div>
-												<input type="button" id="btn-save" value="등록하기" class="btn btn-primary">
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													상세주소 :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="userAddress2"
+														   id="userAddress2" class="form-control" value=""
+														   data-nick=""
+														   aria-required="true">
+													<div class="form-control-line"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label text-right" >
+													참고항목 :
+												</label>
+												<div class="col-md-9">
+													<input type="text" required="required" name="address3"
+														   id="sample6_extraAddress" class="form-control" value=""
+														   data-nick=""
+														   aria-required="true">
+													<div class="form-control-line"></div>
+												</div>
+											</div>
+
+											<div style="text-align: center">
+												<input type="submit" id="btn-save" value="등록하기" class="btn btn-primary">
 												<input type="reset" value="다시작성" class="btn btn-default-bright">
-											</form>
-										</div>
-									</div>
-									<!--end.card-body-->
-								</div>
-								<!--end.card-->
-							</div>
-							<!--end.col-->
-
-						</div>
-						<!--end.row-->
-					</div>
-					</section>
+											</div>
+										</form>
 					<!--end.tab-pane-->
 				</div>
 				<!--end.section-body.tab-content-->
@@ -476,56 +639,9 @@
 
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-		<script>
-			$(".btn.btn-default-bright").one('click', function () {
-				$(this).parent().append("<input type='password' autocomplete='off' th:name='userUserpw' id='userUserpw' class='form-control' placeholder='비밀번호'>")
-			})
 
-			$("#user_name").click(function () {
-				$(".btn.btn-primary.disabled").removeClass("disabled");
-			})
+	e;
 
-
-			$(function () {
-				MEMBER_MANAGE.init('add', '');
-				SHOP_MEMBER_POINT.init('/mgweb/adminpage/memberList.html/?q=YToyOntzOjEyOiJtZW1iZXJfZ3JvdXAiO3M6Nzoibm9ncm91cCI7czoxMDoiam9pbl9vcmRlciI7czo0OiJkZXNjIjt9&mode=add');
-				MEMBER_MANAGE.changeJoinTypeForm();
-			});
-
-
-			$(document).ready(function () {
-				toastr.options = {
-					"closeButton": false,
-					"debug": false,
-					"newestOnTop": false,
-					"progressBar": false,
-					"positionClass": "on-modal",
-					"preventDuplicates": false,
-					"onclick": null,
-					"showDuration": "300",
-					"hideDuration": "1000",
-					"timeOut": "5000",
-					"extendedTimeOut": "1000",
-					"showEasing": "swing",
-					"hideEasing": "linear",
-					"showMethod": "fadeIn",
-					"hideMethod": "fadeOut"
-				};
-				$('._referrer_code_copy').off('click').on('click', function () {
-					$('._recommend_tmp_input').select();
-					document.execCommand("Copy");
-
-					toastr.info('추천인 코드가 복사되었습니다!');
-				});
-			});
-		</script>
-		<script>
-			$(window).on("keyup", function (e) {
-				if ($.cocoaDialog.isOpen()) {
-					$.cocoaDialog.modalControl(e);
-				}
-				return false;
-			});</script>
 		<!-- BEGIN MENUBAR-->
 		<button type="button" class="hidden-lg hidden-md toggle-btn" data-dismiss="menubar">
 			<span class="sr-only">Toggle navigation</span>
@@ -742,6 +858,11 @@
 						userUserid: $("#userUserid").val(),
 						userUserpw: $("#userUserpw").val(),
 						userName: $("#userName").val(),
+						userAddress1: $("#userAddress1").val(),
+						userAddress2: $("#userAddress2").val(),
+						userZipcode: $("#userZipcode").val(),
+						userHp:$("#userHp").val(),
+						userEamil:$("#userEmail").val()
 					}
 				}
 				$.ajax({
