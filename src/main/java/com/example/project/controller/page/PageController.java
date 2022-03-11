@@ -1,33 +1,18 @@
 package com.example.project.controller.page;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
-import com.example.project.model.entity.User;
+import com.example.project.model.entity.Goods;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
-import com.example.project.repository.UserRepository;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
+import com.example.project.repository.GoodsRepository;
+
 import com.example.project.controller.CrudController;
 import com.example.project.model.entity.Goods;
 import com.example.project.model.entity.User;
->>>>>>> genius
-import com.example.project.model.network.Header;
-import com.example.project.model.network.request.GoodsApiRequest;
-import com.example.project.model.network.response.GoodsApiResponse;
-<<<<<<< HEAD
-=======
+
 import com.example.project.model.network.response.UserApiResponse;
 import com.example.project.repository.UserRepository;
->>>>>>> genius
->>>>>>> 992da0bd104b7f30863ea83578df55748997c6d9
-=======
->>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
+
 import com.example.project.service.GoodsApiLogicService;
 import com.example.project.service.UserApiLogicService;
 import lombok.AllArgsConstructor;
@@ -65,12 +50,9 @@ public class PageController {
 
     private final GoodsApiLogicService goodsApiLogicService;
     private final UserApiLogicService userApiLogicService;
-<<<<<<< HEAD
 
     @Autowired
-    private UserRepository userRepository;
-=======
->>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
+    private GoodsRepository goodsRepository;
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -83,12 +65,7 @@ public class PageController {
 
     @GetMapping("/memberlist")
     public String memberlist(Model model) {
-<<<<<<< HEAD
-        model.addAttribute("UserList", userApiLogicService.getUserList());
-        return "adminpage/memberList";}
 
-
-=======
     model.addAttribute("UserList" , userApiLogicService.getUserList());
         return "adminpage/memberlist";}
 
@@ -99,7 +76,7 @@ public class PageController {
         userRepository.save(user);
         return "redirect :/adminpage/memberlist";
     }
->>>>>>> 1ff9dc98c8d4ca63dc7cf7b7fc3ee083397ace7e
+
 
     @GetMapping("/memberjoin")
     public String memberjoin(){
@@ -152,13 +129,15 @@ public class PageController {
         model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
         return "adminpage/shoppingmanagement";}
 
+
     @GetMapping("/management_add")
     public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
 
-    @PostMapping("/management_add")
-    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request){
-        return goodsApiLogicService.create(request);
-    }
+//    @PostMapping("/management_add")
+//    public String create(@RequestBody Goods goods){
+//        goodsRepository.save(goods);
+//        return "redirect:/admin/management";
+//    }
 
     @GetMapping("/management_hide")
     public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
