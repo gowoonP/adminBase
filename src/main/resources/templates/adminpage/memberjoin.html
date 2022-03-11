@@ -512,16 +512,15 @@
                                             }
                                         }
                                     </script>
-
                                     <div class="profile-info" style="text-align: center">
 
-                                        <form  class="form-horizontal form-validate" role="form" action="/member_join"  method="post" onsubmit="return sendit()">
+                                        <form method="POST" class="form-horizontal form-validate" th:action="@{/join_ok}"  onsubmit="return sendit()">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label text-right" >
                                                     ID :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="text" required="required" name="userid"
+                                                    <input type="text" required="required" th:name="userUserid"
                                                            id="userid" class="form-control" value="" >
 
                                                     <div class="form-control-line"></div>
@@ -533,7 +532,7 @@
                                                     비밀번호 :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="password" required="required" name="userpw"
+                                                    <input type="password" required="required" th:name="userUserpw"
                                                            id="userpw" class="form-control" value="">
                                                     <div class="form-control-line"></div>
                                                 </div>
@@ -556,7 +555,7 @@
                                                     전화번호 :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="text" required="required" name="hp"
+                                                    <input type="text" required="required" th:name="userName"
                                                            id="hp" class="form-control" value="" data-nick=""
                                                            aria-required="true" >
                                                     <div class="form-control-line">
@@ -569,7 +568,7 @@
                                                     Email :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="text" required="required" name="userEmail"
+                                                    <input type="text" required="required" th:name="userEmail"
                                                            id="userEmail" class="form-control" value="">
                                                     <div class="form-control-line"></div>
                                                 </div>
@@ -582,7 +581,7 @@
                                                     우편번호 :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="text" required="required" name="zipcode"
+                                                    <input type="text" required="required" th:name="userZipcode"
                                                            id="sample6_postcode" class="form-control" value=""
                                                            data-nick=""
                                                            aria-required="true">
@@ -597,7 +596,7 @@
                                                     주소 :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="text" required="required" name="address1"
+                                                    <input type="text" required="required" th:name="userAddress1"
                                                            id="sample6_address" class="form-control" value=""
                                                            data-nick=""
                                                            aria-required="true">
@@ -610,7 +609,7 @@
                                                     상세주소 :
                                                 </label>
                                                 <div class="col-md-9">
-                                                    <input type="text" required="required" name="address2"
+                                                    <input type="text" required="required" th:name="userAddress2"
                                                            id="sample6_detailAddress" class="form-control" value=""
                                                            data-nick=""
                                                            aria-required="true">
@@ -630,12 +629,9 @@
                                                     <div class="form-control-line"></div>
                                                 </div>
                                             </div>
-                                    </div>
                                     <div style="text-align: center">
-                                        <input type="submit" value="가입완료">&nbsp;<input type="reset" value="다시작성">
+                                        <input class="send_our_list" type="submit" value="가입완료"><input type="reset" value="다시작성">
                                     </div>
-
-
                                     </form>
                                 </div>
                             </div>

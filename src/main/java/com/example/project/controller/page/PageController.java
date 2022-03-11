@@ -1,9 +1,12 @@
 package com.example.project.controller.page;
 
+import com.example.project.model.entity.User;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
+import com.example.project.repository.UserRepository;
 import com.example.project.service.GoodsApiLogicService;
+import com.example.project.service.UserApiLogicService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +40,7 @@ import org.springframework.web.bind.annotation.*;
 public class PageController {
 
     private final GoodsApiLogicService goodsApiLogicService;
+    private final UserApiLogicService userApiLogicService;
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -48,7 +52,17 @@ public class PageController {
     public String analytics() { return "adminpage/analytics";}
 
     @GetMapping("/memberlist")
-    public String memberlist() { return "adminpage/memberlist";}
+    public String memberlist(Model model) {
+    model.addAttribute("UserList" , userApiLogicService.getUserList());
+        return "adminpage/memberlist";}
+
+    private UserRepository userRepository;
+
+    @PostMapping("/join_ok")
+    public String member_join(User user){
+        userRepository.save(user);
+        return "redirect :/adminpage/memberlist";
+    }
 
     @GetMapping("/memberjoin")
     public String memberjoin() { return "adminpage/memberjoin";}
