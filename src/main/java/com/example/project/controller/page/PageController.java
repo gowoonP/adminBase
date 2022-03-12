@@ -74,7 +74,11 @@ public class PageController {
         model.addAttribute("UserList", userApiLogicService.getUserList());
         return "adminpage/memberList";}
 
-
+    @GetMapping("/memberview/{userIdx}")
+    public String memberView(Model model, @PathVariable(name="userIdx") Long userIdx){
+        model.addAttribute("view", userApiLogicService.read(userIdx));
+        return "adminpage/memberView";
+    }
 
     @GetMapping("/memberjoin")
     public String memberjoin(){

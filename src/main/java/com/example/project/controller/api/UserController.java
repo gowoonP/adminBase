@@ -62,9 +62,9 @@ public class UserController extends CrudController<UserApiRequest, UserApiRespon
     }
 
     @Override
-    @DeleteMapping("/delete/{id}")
-    public Header<UserApiResponse> delete(@PathVariable(name="id") Long id) {
-        return userApiLogicService.delete(id);
+    @DeleteMapping("/delete/{userIdx}")
+    public Header<UserApiResponse> delete(@PathVariable(name="userIdx") Long userIdx) {
+        return userApiLogicService.delete(userIdx);
     }
 
 //    @GetMapping("") // http://localhost:8080/

@@ -449,15 +449,13 @@
 					<th>도로명</th>
 					<th>상세주소(1)</th>
 					<th>상세주소(2)</th>
-					<th>수정</th>
-					<th>삭제</th>
+					<th>수정/삭제</th>
 				</tr>
 				</thead>
 
 				<tbody>
 				<tr th:each="m : ${UserList}">
-					<a th:href="@{/adminpage/memberList}">
-						<td th:text="${m.userIdx}"></td></a>
+					<td th:text="${m.userIdx}"></td>
 					<td th:text="${m.userName}">x</td>
 					<td th:text="${m.userUserid}">x</td>
 					<td th:text="${m.userHp}">x</td>
@@ -466,9 +464,7 @@
 					<td th:text="${m.userZipcode}">x</td>
 					<td th:text="${m.userAddress1}">x</td>
 					<td th:text="${m.userAddress2}">x</td>
-					<td><input type="button" id="btn-modify" value="수정"></td>
-
-					<td><input type="button" id="btn-delete" value="삭제"><span id="delete_idx" th:value="${m.userIdx}"></span></td>
+					<td><a th:href="@{/admin/memberview/}+${m.userIdx}"><input type="button" id="btn-modif" value="수정/삭제"></a></td>
 				</tr>
 				</tbody>
 			</table>
@@ -2569,6 +2565,9 @@
 
 
 	<script>
+		function edit(id){
+			window.href = "/admin/adminpage/{id}"
+		}
 	</script>
 	<script>
 		let today = new Date();
@@ -2616,12 +2615,17 @@
 			},
 			save: function() {
 
-				let data = {
+				let data = { //JavaScript Object
+					"transaction_time": today,
+					"resultCode": "ok",
+					"description": "ok",
+					"data": {
 						userIdx: $("#delete_idx").val(),
+					}
 				}
 				$.ajax({
 					type: "DELETE", //Http method
-					url: "/duoback/delete/"+data.userIdx, //API 주소
+					url: "/duoback/delete"+data.data.userIdx, //API 주소
 					data: JSON.stringify(data), //JSON으로 변환
 					contentType: "application/json; charset=utf-8", //MIME 타입
 					dataType: "json" //응답 데이터
@@ -2635,4 +2639,6 @@
 		}
 		index.init();
 	</script>
-	<div id="device-breakpoints"><div class="device-xs visible-xs" data-breakpoint="xs"></div><div class="device-sm visible-sm" data-breakpoint="sm"></div><div class="device-md visible-md" data-breakpoint="md"></div><div class="device-lg visible-lg" data-breakpoint="lg"></div></div></body>
+	<div id="device-breakpoints"><div class="device-xs visible-xs" data-breakpoint="xs"></div><div class="device-sm visible-sm" data-breakpoint="sm"></div><div class="device-md visible-md" data-breakpoint="md"></div><div class="device-lg visible-lg" data-breakpoint="lg"></div></div>
+</body>
+</html>
