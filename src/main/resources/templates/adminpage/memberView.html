@@ -348,7 +348,7 @@
 								<!--end.profile-image-->
 
 								<div class="profile-info">
-									<form id="join_form" method="">
+									<form id="frm" method="post" th:action="@{/admin/memberlist}">
 										<div class="form-group">
 											<label class="col-sm-3 control-label text-right" for="userUserid">
 												아이디 <span class="text-danger">(필수)</span>
@@ -386,7 +386,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label text-right"
 													   for="userHp">
-													연락처
+													전화번호
 												</label>
 												<div class="col-md-9">
 													<input type="tel" autocomplete="off" required=""
@@ -438,7 +438,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label text-right"
 													   for="userAddress1">
-													주소1
+													상세주소(1)
 												</label>
 												<div class="col-md-9">
 													<input type="text" autocomplete="off" required=""
@@ -451,7 +451,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label text-right"
 													   for="userAddress2">
-													주소2
+													상세주소(2)
 												</label>
 												<div class="col-md-9">
 													<input type="text" autocomplete="off" required=""
@@ -461,7 +461,14 @@
 											</div>
 										</div>
 										<input type="button" id="btn-save" value="수정완료" class="btn btn-primary">
-										<input type="button" id="btn-delete" value="삭제" class="btn btn-default-bright">
+										<input type="hidden" id="method" name="_method"/>
+										<input type="submit">
+<!--										<input type="button" id="btn-delete" value="삭제" class="btn btn-default-bright">-->
+										<span th:value="${view.getData().getUserIdx()}" id="userIdx"></span>
+
+									</form>
+									<form th:method="delete" th:action="@{/admin/memberdelete/}+${view.getData().getUserIdx()}">
+										<input type="submit" id="delete" th:value="파일삭제">
 									</form>
 								</div>
 							</div>
@@ -495,8 +502,10 @@
 				<div class="modal-body">
 					%1명의 사용자를 삭제하시겠습니까? 삭제된 사용자는 복원할 수 없습니다 </div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat">삭제</button>
+<!--					<button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">취소</button>-->
+<!--					<form th:action="@{/duoback/delete}+${view.getData().getUserIdx()}" th:method>-->
+<!--					<button type="submit" class="btn btn-primary btn-flat">삭제</button>-->
+<!--					</form>-->
 				</div>
 
 			</div><!-- /.modal-content -->
@@ -764,61 +773,46 @@
 
 
 <script>
+	$(document).ready(function() {
+		$("#delete").on("click", function () {
+			$("input:hidden[name=_method]").val("delete");
+
+			var frm = $("#frm")[0];
+			frm.submit();
+			location.href = "/admin/memberlist";
+		});
+	})
+
 </script>
-<script>
-	let today = new Date();
-	'use strict'
-	// $(document).ready(function(){
-	// 	//회원가입 버튼(회원가입 기능 작동)
-	// 	$(".join_button").click(function(){
-	// 		$("#goodsadd").submit();
-	// 	});
-	// });
-	let index = {
-		init: function() {
-			$("#btn-save").on("click", () => { //this를 바인딩하기 위해 화샬표 함수 사용
-				this.save();
-			});
-		},
-		save: function() {
+<!--<script th:inline="javascript">-->
+<!--	let today = new Date();-->
+<!--	let userIdx = $("#userIdx").val();-->
 
-			let data = { //JavaScript Object
-				"transaction_time": today,
-				"resultCode": "ok",
-				"description": "ok",
-				"data": {
-					userUserid: $("#userUserid").val(),
-					userUserpw: $("#userUserpw").val(),
-					userName: $("#userName").val(),
-				}
-			}
-			$.ajax({
-				type: "POST", //Http method
-				url: "/duoback/new", //API 주소
-				data: JSON.stringify(data), //JSON으로 변환
-				contentType: "application/json; charset=utf-8", //MIME 타입
-				dataType: "json" //응답 데이터
-			}).done(function(res) {
-				alert("등록 성공");
-				location.href = "/admin/memberlist";
-			}).fail(function(err) {
-				alert(JSON.stringify(err));
-			});
-		}
-	}
-	index.init();
+<!--	let index = {-->
+<!--		init: function() {-->
+<!--			$("#btn-delete").on("click", () => { //this를 바인딩하기 위해 화샬표 함수 사용-->
+<!--				if(confirm("삭제하시겠습니까?")){-->
+<!--				this.save();-->
+<!--				}-->
+<!--			});-->
+<!--		},-->
+<!--		save: function() {-->
+<!--			$.ajax({-->
+<!--				type: "DELETE", //Http method-->
+<!--				url: "/duoback/delete/"+userIdx, //API 주소-->
 
-
-
-
-	//
-	// $(document).ready(function(){
-	// 	//회원가입 버튼(회원가입 기능 작동)
-	// 	$(".join_button").click(function(){
-	// 		$("#join_form").submit();
-	// 	});
-	// });
-
+<!--				contentType: "application/json; charset=utf-8", //MIME 타입-->
+<!--				dataType: "json" //응답 데이터-->
+<!--			}).done(function(res) {-->
+<!--				alert("삭제 성공");-->
+<!--				location.href = "/admin/memberlist";-->
+<!--			}).fail(function(err) {-->
+<!--				alert(JSON.stringify(err));-->
+<!--			});-->
+<!--		}-->
+<!--	}-->
+<!--	index.init();-->
+<!--	/*]]*/-->
 </script>
 <div id="device-breakpoints">
 	<div class="device-xs visible-xs" data-breakpoint="xs"></div>
