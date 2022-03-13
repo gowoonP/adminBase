@@ -443,19 +443,19 @@
 					<th>성함</th>
 					<th>ID</th>
 					<th>전화번호</th>
-					<th>등록일</th>
 					<th>가입 방법</th>
 					<th>도로명</th>
 					<th>상세주소(1)</th>
 					<th>상세주소(2)</th>
+					<th>등록일</th>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
 				</thead>
 
 				<tbody>
-				<tr th:each="m : ${UserList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getUserIdx()}|}'|">
-						<td th:text="${m.userIdx}"></td></a>
+				<tr th:each="m : ${UserList}" th:onclick="|location.href='@{|/memberview/${m.getUserIdx()}|}'|">
+					<td th:text="${m.userIdx}"></td></a>
 					<td th:text="${m.userName}">x</td>
 					<td th:text="${m.userUserid}">x</td>
 					<td th:text="${m.userHp}">x</td>

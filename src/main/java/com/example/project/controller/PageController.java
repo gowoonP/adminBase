@@ -66,7 +66,7 @@ public class PageController {
     @GetMapping("/memberlist")
     public String memberlist(Model model) {
 
-<<<<<<< .merge_file_a16132
+
     model.addAttribute("UserList" , userApiLogicService.getUserList());
         return "adminpage/memberlist";}
 
@@ -78,13 +78,13 @@ public class PageController {
         return "redirect :/adminpage/memberlist";
     }
 
-=======
+
     @GetMapping("/memberview/{userIdx}")
     public String memberView(Model model, @PathVariable(name="userIdx") Long userIdx){
         model.addAttribute("view", userApiLogicService.read(userIdx));
         return "adminpage/memberView";
     }
->>>>>>> .merge_file_a03232
+
 
     @GetMapping("/memberjoin")
     public String memberjoin(){
