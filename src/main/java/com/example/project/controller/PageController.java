@@ -1,15 +1,19 @@
-package com.example.project.controller;
+package com.example.project.controller.page;
 
-import com.example.project.model.entity.Goods;
+
+import com.example.project.model.entity.User;
 import com.example.project.model.network.Header;
 import com.example.project.model.network.request.GoodsApiRequest;
+import com.example.project.model.network.request.UserApiRequest;
 import com.example.project.model.network.response.GoodsApiResponse;
-import com.example.project.repository.GoodsRepository;
+import com.example.project.repository.UserRepository;
 
 import com.example.project.controller.CrudController;
 import com.example.project.model.entity.Goods;
 import com.example.project.model.entity.User;
-
+import com.example.project.model.network.Header;
+import com.example.project.model.network.request.GoodsApiRequest;
+import com.example.project.model.network.response.GoodsApiResponse;
 import com.example.project.model.network.response.UserApiResponse;
 import com.example.project.repository.UserRepository;
 
@@ -20,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //@Controller
 //@RequestMapping("/pages") // http://localhost:8080/pages
@@ -52,7 +58,7 @@ public class PageController {
     private final UserApiLogicService userApiLogicService;
 
     @Autowired
-    private GoodsRepository goodsRepository;
+    private UserRepository userRepository;
 
     @GetMapping("")
     public String admin() { return "index";}
@@ -65,19 +71,8 @@ public class PageController {
 
     @GetMapping("/memberlist")
     public String memberlist(Model model) {
-
-
-    model.addAttribute("UserList" , userApiLogicService.getUserList());
-        return "adminpage/memberlist";}
-
-    private UserRepository userRepository;
-
-    @PostMapping("/join_ok")
-    public String member_join(User user){
-        userRepository.save(user);
-        return "redirect :/adminpage/memberlist";
-    }
-
+        model.addAttribute("UserList", userApiLogicService.getUserList());
+        return "adminpage/memberList";}
 
     @GetMapping("/memberview/{userIdx}")
     public String memberView(Model model, @PathVariable(name="userIdx") Long userIdx){
@@ -85,12 +80,17 @@ public class PageController {
         return "adminpage/memberView";
     }
 
-
     @GetMapping("/memberjoin")
     public String memberjoin(){
         return "adminpage/memberjoin";
     }
 
+
+    @DeleteMapping("/memberdelete/{userIdx}")
+    public String memberDelete(@PathVariable(name="userIdx") Long userIdx){
+        userApiLogicService.delete(userIdx);
+        return "adminpage/memberlist";
+    }
 
 
     @PostMapping("/join.do")
@@ -129,15 +129,13 @@ public class PageController {
         model.addAttribute("goodsList", goodsApiLogicService.getGoodsList());
         return "adminpage/shoppingmanagement";}
 
-
     @GetMapping("/management_add")
     public String shoppingmanagement_add() { return "adminpage/shoppingManagement_add";}
 
-//    @PostMapping("/management_add")
-//    public String create(@RequestBody Goods goods){
-//        goodsRepository.save(goods);
-//        return "redirect:/admin/management";
-//    }
+    @PostMapping("/management_add")
+    public Header<GoodsApiResponse> create(@RequestBody Header<GoodsApiRequest> request){
+        return goodsApiLogicService.create(request);
+    }
 
     @GetMapping("/management_hide")
     public String shoppingmanagement_hide() { return "adminpage/shoppingManagement_hide";}
