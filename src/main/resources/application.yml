@@ -22,3 +22,4 @@ spring:
 #      jdbc:oracle:thin:@db202202180852_high?TNS_ADMIN=/Users/jongnyeonglee/Desktop/Wallet_DB202202180852
 #    username: admin
 #    password: Leaf950515!!
+
