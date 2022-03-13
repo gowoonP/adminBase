@@ -5,23 +5,22 @@
 #    username: admin
 #    password: Gusdnwkd2029@
 
-#spring:
-#  datasource:
-#    driver-class-name: oracle.jdbc.OracleDriver
-#    url:
-#      jdbc:oracle:thin:@db202202180852_high?TNS_ADMIN=C:/Genius/Spring/Wallet_DB202202180852
-#    username: admin
-#    password: Leaf950515!!
-
-<<<<<<< HEAD
-
-
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url:
-      jdbc:oracle:thin:@db202202180852_high?TNS_ADMIN=/Users/jongnyeonglee/Desktop/Wallet_DB202202180852
+      jdbc:oracle:thin:@db202202180852_high?TNS_ADMIN=C:/Genius/Spring/Wallet_DB202202180852
     username: admin
     password: Leaf950515!!
-=======
->>>>>>> genius
+
+
+
+#
+#spring:
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    url:
+#      jdbc:oracle:thin:@db202202180852_high?TNS_ADMIN=/Users/jongnyeonglee/Desktop/Wallet_DB202202180852
+#    username: admin
+#    password: Leaf950515!!
+

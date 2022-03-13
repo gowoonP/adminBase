@@ -439,23 +439,22 @@
 			<table class="table display no-margin" id="table_id">
 				<thead>
 				<tr>
-					<th>No.</th>
-					<th>성함</th>
-					<th>ID</th>
+					<th>유저 고유번호</th>
+					<th>이름</th>
+					<th>아이디</th>
 					<th>전화번호</th>
-					<th>가입 방법</th>
-					<th>도로명</th>
+					<th>가입날짜</th>
+					<th>SNS</th>
+					<th>우편번호</th>
 					<th>상세주소(1)</th>
 					<th>상세주소(2)</th>
-					<th>등록일</th>
-					<th>수정</th>
-					<th>삭제</th>
+					<th>수정/삭제</th>
 				</tr>
 				</thead>
 
 				<tbody>
-				<tr th:each="m : ${UserList}" th:onclick="|location.href='@{|/memberview/${m.getUserIdx()}|}'|">
-					<td th:text="${m.userIdx}"></td></a>
+				<tr th:each="m : ${UserList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getUserIdx()}|}'|">
+						<td th:text="${m.userIdx}"></td></a>
 					<td th:text="${m.userName}">x</td>
 					<td th:text="${m.userUserid}">x</td>
 					<td th:text="${m.userHp}">x</td>
@@ -464,9 +463,7 @@
 					<td th:text="${m.userAddress1}">x</td>
 					<td th:text="${m.userAddress2}">x</td>
 					<td th:text="${m.userRegdate}">x</td>
-					<td><input type="button" id="btn-modify" value="수정"></td>
-
-					<td><input type="button" id="btn-delete" value="삭제"><span id="delete_idx" th:value="${m.userIdx}"></span></td>
+					<td><a th:href="@{/admin/memberview/}+${m.userIdx}"><input type="button" id="btn-modify" value="수정/삭제"></a></td>
 				</tr>
 				</tbody>
 			</table>
