@@ -577,7 +577,7 @@
 											</thead>
 
 											<tbody>
-											<tr th:each="m : ${goodsList}">
+											<tr th:each="m : ${goodsList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getGdIdx()}|}'|">
 												<td th:text="${m.gdIdx}"></td>
 												<td th:text="${m.gdImg}"></td>
 												<td th:text="${m.gdName}"></td>
@@ -597,7 +597,6 @@
 						</div>
 					</div>
 				</div>
-		</div>
 		</section>
 			<!--섹션 끝 -->
 		</div>

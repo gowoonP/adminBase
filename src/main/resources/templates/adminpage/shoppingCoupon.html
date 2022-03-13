@@ -82,6 +82,10 @@
 	<script src="../js/KR_KRW_currency.js?1643094288"></script>
 	<script src="../js/KR.js?1643094288"></script>
 	<!--KR.js 끝-->
+	<!--	부트스트랩 테이블 생성 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 	<!--css vendor cdn 시작-->
 	<link rel="stylesheet" type="text/css" href="https://vendor-cdn.imweb.me/css/bootstrap.css?1630317764">
@@ -330,1021 +334,79 @@
 		</header>
 		<!-- BEGIN CONTENT-->
 		<div id="content">
-			<section class="no-padding-bottom">
-				<div class="section-body">
-					<div class="row">
-						
-						<!--end.col-->
 
-						<!--onclick="location.href='#'" 데이터 전송하는 거라 일단 막아둠! 나중에 이거 고쳐서 쓸 것 같음-->
-						<div class="col-md-9 col-lg-10 col-xl-10">
-							<ul class="nav nav-tabs" data-toggle="tabs" style="margin-bottom: 24px;"
-								id="prod_status_tab">
-								<li class="owl_dashboard _owl_dashboard owl-carousel owl-theme owl-loaded">
-									<div class="owl-stage-outer">
-										<div class="owl-stage"
-											style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 281px;">
-											<div class="owl-item active" style="width: auto; margin-right: 0px;">
-												<ul class="owl-nav-tabs">
-													<li class="active _all"><a href="javascript:;"
-															onclick="location.href='#'">모든 쿠폰
-															<span class="_count text-primary">3</span></a></li>
-												</ul>
-											</div>
-											<div class="owl-item active" style="width: auto; margin-right: 0px;">
-												<ul class="owl-nav-tabs">
-													<li class=" _sale"><a href="javascript:;"
-															onclick="location.href='#'">진행 중
-															<span class="_count text-primary">1</span></a></li>
-												</ul>
-											</div>
-											<div class="owl-item active" style="width: auto; margin-right: 0px;">
-												<ul class="owl-nav-tabs">
-													<li class=" _soldout"><a href="javascript:;"
-															onclick="location.href='#'">만료됨
-															<span class="_count text-primary">2</span></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-
-										<!--onclick="location.href='#'" 데이터 전송하는 거라 일단 막아둠! 나중에 이거 고쳐서 쓸 것 같음-->
-									<div class="owl-controls">
-										<div class="owl-nav">
-											<div class="owl-prev" style="display: none;">prev</div>
-											<div class="owl-next" style="display: none;">next</div>
-										</div>
-										<div class="owl-dots" style="">
-											<div class="owl-dot active"><span></span></div>
-											<div class="owl-dot"><span></span></div>
-											<div class="owl-dot"><span></span></div>
-											<div class="owl-dot"><span></span></div>
-										</div>
-									</div>
-								</li>
-								<li class="list-view-size hidden-xs hidden-sm">
-									<select
-										onchange="">
-										<option value="10">10개씩 보기</option>
-										<option value="20" selected="">20개씩 보기</option>
-										<option value="50">50개씩 보기</option>
-										<option value="100">100개씩 보기</option>
-									</select>
-									<!--<select
-										onchange="location.href='./?q_enc=YToxOntzOjY6InN0YXR1cyI7czozOiJhbGwiO30%3D&amp;pagesize=' + $(this).val()+'&amp;category=&amp;showcase=&amp;status=all'">
-										<option value="10">10개씩 보기</option>
-										<option value="20" selected="">20개씩 보기</option>
-										<option value="50">50개씩 보기</option>
-										<option value="100">100개씩 보기</option>
-									</select>-->
-								</li>
-							</ul>
 							<div class="row">
-								<div class="col-md-12">
-									<div class="clearfix search_form">
-										<div class="card form_left">
-											<div class="card-body no-padding">
-												<form role="search" class="prod-search" id="prod_search_form"
-													onsubmit="return false;">
-													<div class="twitter_wrap">
-														<span class="twitter-typeahead"
-															style="position: relative; display: inline-block;">
-															<input type="text"
-																class="_keyword_search form-control typeahead tt-input"
-																placeholder="쿠폰 검색" autocomplete="off"
-																spellcheck="false" dir="auto"
-																style="position: relative; vertical-align: top; border: none; background-color: transparent; padding-left: 0"
-																onkeydown="if (event.keyCode==13) SHOP_PROD_LIST.startKeywordSearch()"
-																value="">
-														</span>
-													</div>
+								<section class="no-padding-bottom">
+									<div class="section-body">
+										<div class="row">
 
-													<div class="serach_wrap big_search">
-														<div class="dd-filter-serach">
-															<label class="icon_set">
-																<i class="btl bt-search"
-																	onclick="SHOP_PROD_LIST.startKeywordSearch()"></i>
-															</label>
+											<!--end.col-->
+											<div class="col-md-9 col-lg-10 col-xl-10">
+												<div class="row">
+
+													<div class="card">
+														<div class="table-responsive shop-table check" id="prod_list" style="">
+
+															<link rel="stylesheet" type="text/css"
+																  href="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.css" />
+															<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.js"></script>
+															<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+
+															<script type="text/javascript" charset="utf8"
+																	src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+															<script>
+																$(document).ready(function () {
+																	$('#table_id').DataTable();
+																});
+															</script>
+															<table class="table display no-margin" id="table_id">
+																<thead>
+																<tr>
+																	<th>No.</th>
+																	<th>이미지</th>
+																	<th>상품명</th>
+																	<th>판매가</th>
+																	<th>브랜드</th>
+																	<th>카테고리</th>
+																	<th>재고</th>
+																	<th>상태</th>
+																	<th>등록 날짜</th>
+
+																</tr>
+																</thead>
+
+																<tbody>
+																<tr th:each="m : ${goodsList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getGdIdx()}|}'|">
+																	<td th:text="${m.gdIdx}"></td>
+																	<td th:text="${m.gdImg}"></td>
+																	<td th:text="${m.gdName}"></td>
+																	<td th:text="${m.gdPrice}"></td>
+																	<td th:text="${m.gdBrand}"></td>
+																	<td th:text="${m.gdCategory}"></td>
+																	<td th:text="${m.gdCount}"></td>
+																	<td th:text="${m.gdStatus}"></td>
+																	<td th:text="${m.gdRegdate}"></td>
+																</tr>
+																</tbody>
+															</table>
 														</div>
 													</div>
-												</form>
-											</div>
-										</div>
+												</div>
 
-										
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="card style-transparent card-top no-tab" style="display: none"
-										id="prod_list_no_prod">
-										<div class="card-head">
-											<header class="style-price-header force-padding">
-												<h2>판매 시작을 위해 상품을 추가해 주세요</h2>
-												<div class="sub-title text-gray-bright text-center"
-													style="font-size: 18px;">의류, 전자제품, 식품 등 무엇이든 판매할 수 있습니다.</div>
-											</header>
-										</div>
-										<div class="card-body no-padding-y">
-											<div class="text-center text-gray force-padding">
-												<button type="button"
-													class="btn ink-reaction btn-lg btn-primary margin-bottom-xl"
-													onclick="alert('Free 버전에서 사용할 수 있는 상품 등록은 최대 5개 입니다.')">상품추가</button>
-
-												<p><a href="javascript:;" class="text-primary"
-														onclick="alert('상품 일괄 추가 기능은 Pro, Global 버전에서만 사용 가능합니다.')">대량
-														상품 등록</a></p>
 											</div>
 										</div>
 									</div>
-									<div class="card style-transparent card-top no-tab" style="display: none"
-										id="showcase_list_no_prod">
-										<div class="card-head">
-											<header class="style-price-header force-padding">
-												<h2>이 기획전에 포함된 상품이 없습니다.</h2>
-												<div class="sub-title text-gray-bright text-center"
-													style="font-size: 18px;">카테고리에서 기획전에 추가할 상품을 추가할 수 있습니다.</div>
-											</header>
-										</div>
-										<div class="card-body">
-											<div class="text-center">
-												<img src="/admin/img/imweb-category.gif" style="max-width: 100%">
-											</div>
-										</div>
-									</div>
-									<div class="card style-transparent card-top no-tab" style="display: none"
-										id="prod_list_no_search">
-										<div class="card-head">
-											<header class="style-price-header force-padding">
-												<h2>검색된 상품이 없습니다</h2>
-											</header>
-										</div>
-									</div>
-									<div class="card">
-										<div class="table-responsive shop-table check" id="prod_list" style="">
-											<table class="table no-margin">
+								</section>
 
-												<thead class="subject _prodListHeaderDeselected"
-													style="display: table-header-group"
-													id="prod_list_header_deselected">
-													<tr>
-														<th class="check">
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox" value=""
-																		class="_prodListAllCheck"
-																		onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'),function(codes){SHOP_PROD_LIST.checkProd(codes)})"><span></span>
-																</label>
-															</div>
-														</th>
-														<th></th>
-														<th class="">내용<a href="javascript:;" class="text-gray html-popover" role="button" data-toggle="popover" data-placement="right" title="" data-content="쿠폰의 이름, 할인 조건 등을 표시합니다." data-original-title="내용"><i class="btm bt-question-circle"></i></a>
-														</th>
-														<th class="">쿠폰형식<a href="javascript:;" class="text-gray html-popover" role="button" data-toggle="popover" data-placement="right" title="" data-content="<strong>고객 다운로드</strong>: 고객이 마이페이지에서 쿠폰을 받는 방식입니다.<br/><strong>쿠폰코드</strong>: 구매자가 쿠폰번호를 입력하면 할인되는 방식입니다.<br/><strong>내역확인</strong>: 쿠폰의 사용 내역이나 쿠폰코드를 확인할 수 있습니다." data-original-title="쿠폰형식"><i class="btm bt-question-circle"></i></a>
-														</th>
-														<th class="">사용됨	<a href="javascript:;" class="text-gray html-popover" role="button" data-toggle="popover" data-placement="right" title="" data-content="고객이 결제시 해당 쿠폰을 사용한 총 횟수입니다." data-original-title="사용됨"><i class="btm bt-question-circle"></i></a>
-														</th>
-														<th class="">시작/종료</th>
-														<th></th>
-														<th class="">등록일</th>
-														<th class=""></th>
-													</tr>
-													</thead>
-													</tr>
-												</thead>
-												<thead class="select-thead _prodListHeaderSelected"
-													style="display: none" id="prod_list_header_selected">
-													<tr>
-														<th>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox" value=""
-																		class="_prodListAllCheck"
-																		onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-																</label>
-															</div>
-														</th>
-														<th>
-														</th>
-														<th colspan="12" style="padding: 0;">
-															<span>선택 쿠폰을</span>
-															<a class="btn btn-default-bright" href="javascript:;"
-																style="margin-right: 10px"
-																onclick="SHOP_PROD_LIST.copyProdMulti()">삭제</a>
-														</th>
-													</tr>
-													<tr id="prod_page_all_selected" style="display: none">
-														<!--                                        <tr id="prod_page_all_selected">-->
-														<th colspan="12"
-															style="padding: 0; background-color: #FAFAFA; height: 50px; text-align: center">
-															<div id="prod_page_selected">
-																<a class="" href="javascript:;">
-																	<span id="changeable_prod_selected_message"></span>
-																	<!--                                                        이 페이지에 있는 상품 <span id="prod_page_selected_count" class="text-bold"></span>개가 모두 선택되었습니다.-->
-																	<span id="changeable_prod_all_selected"
-																		class="text-primary">
-																		<!--                                                            <span onclick="SHOP_PROD_LIST.prodAllSelect(true);">-->
-																		<!--                                                                <span id="prod_page_status"></span> 상품 <span id="prod_page_total_count" class="text-bold"></span>개 모두 선택-->
-																		<!--                                                            </span>-->
-																	</span>
-																</a>
-															</div>
-														</th>
-													</tr>
-												</thead>
-												<tbody id="prod_list_body" class="_prod_list_body ui-sortable">
-													<!--<tr class='content on">-->
-													<tr class="content _prodListItem"
-														id="prod_list_s20220127e8644dc8bdcbe"
-														data-code="s20220127e8644dc8bdcbe">
-														<td class="check">
-															<div class="drag _showcase_handle ui-sortable-handle"></div>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox"
-																		value="s20220127e8644dc8bdcbe"
-																		class="_prodListCheck" onclick="SHOP_PROD_LIST.listSetSelect('s20220127e8644dc8bdcbe',function(codes){
-								SHOP_PROD_LIST.checkProd(codes);
-								})"><span></span>
-																</label>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<a href="/adminpage/couponfix2.html">
-															<span>1주년</span><span class="badge ">만료됨</span>
-															</a>
-															<div class="text-gray-bright text-13">1000원 할인 </div>
-														</td>
-														
-															<td>
-																<p>
-																<span>고객 다운로드</span>
-																</p>
-																<div>
-																	
-																	<a href="javascript:;" data-code="c20220203728be802c02aa" data-create-mult-type="N" class="btn btn-xs btn-sm-padding btn-default-bright _issue_btn">내역확인</a>
-																</div>
-															</td>
-														</td>
-														<!--	<td class="sku"><a href="javascript:;">3847-112</a></td>-->
-														<td class="pay text-right">
-															0회<br> </td>
-														<!--	<td class="stock">100</td>-->
-														<!--	<td class="lately">100</td>-->
-														<td class="text-13">
-															<div>2022-02-03 09:45 부터</div>
-															<div>2022-02-10 23:59 까지</div>
-														</td>
-														<!--	<td class="diplay"><img src="../img/doz-icon.png" style="margin: 0 5px 3px 0;"><img src="../img/naver-icon.png"></td>-->
-														
-															
-														
-														<td class="text-12" style="padding-left: 20px">
-															- </td>
-														<td class="r_date text-12">2022-02-03</td>
-														
-														<td class="more">
-															<div class="dropdown">
-																<button class="btn btn-flat" aria-expanded="true"
-																	data-toggle="dropdown" type="button" id="dLabel">
-																	<i class="zmdi zmdi-more"></i>
-																</button>
-																<ul aria-labelledby="dLabel" role="menu"
-																	class="dropdown-menu animation-dock right">
-																	<li>
-																		<a href="/adminpage/couponfix2.html">수정</a>
-																			
-																	</li>
-																	<li>
-																		<a href="javascript:;" class="_delete_btn" data-code="c20220203728be802c02aa">삭제</a>
-																	</li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													<!--<tr class='content on">-->
-														<tr class="content _prodListItem"
-														id="prod_list_s20220127e8644dc8bdcbe"
-														data-code="s20220127e8644dc8bdcbe">
-														<td class="check">
-															<div class="drag _showcase_handle ui-sortable-handle"></div>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox"
-																		value="s20220127e8644dc8bdcbe"
-																		class="_prodListCheck" onclick="SHOP_PROD_LIST.listSetSelect('s20220127e8644dc8bdcbe',function(codes){
-								SHOP_PROD_LIST.checkProd(codes);
-								})"><span></span>
-																</label>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<a href="/adminpage/couponfix2.html">
-																<span>1주년</span><span class="badge ">만료됨</span>
-																</a>
-															<div class="text-gray-bright text-13">1000원 할인 </div>
-														</td>
-														
-															<td>
-																<p>
-																<span>고객 다운로드</span>
-																</p>
-																<div>
-																	<a href="javascript:;" data-code="c20220203728be802c02aa" data-create-mult-type="N" class="btn btn-xs btn-sm-padding btn-default-bright _issue_btn">내역확인</a>
-																</div>
-															</td>
-														</td>
-														<!--	<td class="sku"><a href="javascript:;">3847-112</a></td>-->
-														<td class="pay text-right">
-															0회<br> </td>
-														<!--	<td class="stock">100</td>-->
-														<!--	<td class="lately">100</td>-->
-														<td class="text-13">
-															<div>2022-02-03 09:45 부터</div>
-															<div>2022-02-10 23:59 까지</div>
-														</td>
-														<!--	<td class="diplay"><img src="../img/doz-icon.png" style="margin: 0 5px 3px 0;"><img src="../img/naver-icon.png"></td>-->
-														
-															
-														
-														<td class="text-12" style="padding-left: 20px">
-															- </td>
-														<td class="r_date text-12">2022-02-03</td>
-														
-														<td class="more">
-															<div class="dropdown">
-																<button class="btn btn-flat" aria-expanded="true"
-																	data-toggle="dropdown" type="button" id="dLabel">
-																	<i class="zmdi zmdi-more"></i>
-																</button>
-																<ul aria-labelledby="dLabel" role="menu"
-																	class="dropdown-menu animation-dock right">
-																	<li>
-																		<a href="/adminpage/couponfix2.html">수정</a>
-																			
-																	</li>
-																	<li>
-																		<a href="javascript:;"
-																			onclick="SHOP_PROD_LIST.changeProdOrder('pre','s20220127e8644dc8bdcbe', '');">
-																			삭제</a>
-																	</li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													<!--<tr class='content on">-->
-														<tr class="content _prodListItem"
-														id="prod_list_s20220127e8644dc8bdcbe"
-														data-code="s20220127e8644dc8bdcbe">
-														<td class="check">
-															<div class="drag _showcase_handle ui-sortable-handle"></div>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox"
-																		value="s20220127e8644dc8bdcbe"
-																		class="_prodListCheck" onclick="SHOP_PROD_LIST.listSetSelect('s20220127e8644dc8bdcbe',function(codes){
-								SHOP_PROD_LIST.checkProd(codes);
-								})"><span></span>
-																</label>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<a href="/adminpage/couponfix2.html">
-																<span>1주년</span><span class="badge ">만료됨</span>
-																</a>
-															<div class="text-gray-bright text-13">1000원 할인 </div>
-														</td>
-														
-															<td>
-																<p>
-																<span>고객 다운로드</span>
-																</p>
-																<div>
-																	<a href="javascript:;" data-code="c20220203728be802c02aa" data-create-mult-type="N" class="btn btn-xs btn-sm-padding btn-default-bright _issue_btn">내역확인</a>
-																</div>
-															</td>
-														</td>
-														<!--	<td class="sku"><a href="javascript:;">3847-112</a></td>-->
-														<td class="pay text-right">
-															0회<br> </td>
-														<!--	<td class="stock">100</td>-->
-														<!--	<td class="lately">100</td>-->
-														<td class="text-13">
-															<div>2022-02-03 09:45 부터</div>
-															<div>2022-02-10 23:59 까지</div>
-														</td>
-														<!--	<td class="diplay"><img src="../img/doz-icon.png" style="margin: 0 5px 3px 0;"><img src="../img/naver-icon.png"></td>-->
-														
-															
-														
-														<td class="text-12" style="padding-left: 20px">
-															- </td>
-														<td class="r_date text-12">2022-02-03</td>
-														
-														<td class="more">
-															<div class="dropdown">
-																<button class="btn btn-flat" aria-expanded="true"
-																	data-toggle="dropdown" type="button" id="dLabel">
-																	<i class="zmdi zmdi-more"></i>
-																</button>
-																<ul aria-labelledby="dLabel" role="menu"
-																	class="dropdown-menu animation-dock right">
-																	<li>
-																		<a href="/adminpage/couponfix2.html">수정</a>
-																			
-																	</li>
-																	<li>
-																		<a href="javascript:;"
-																			onclick="SHOP_PROD_LIST.changeProdOrder('pre','s20220127e8644dc8bdcbe', '');">
-																			삭제</a>
-																	</li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													<!--<tr class='content on">-->
-														<tr class="content _prodListItem"
-														id="prod_list_s20220127e8644dc8bdcbe"
-														data-code="s20220127e8644dc8bdcbe">
-														<td class="check">
-															<div class="drag _showcase_handle ui-sortable-handle"></div>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox"
-																		value="s20220127e8644dc8bdcbe"
-																		class="_prodListCheck" onclick="SHOP_PROD_LIST.listSetSelect('s20220127e8644dc8bdcbe',function(codes){
-								SHOP_PROD_LIST.checkProd(codes);
-								})"><span></span>
-																</label>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<a href="/adminpage/couponfix2.html">
-																<span>1주년</span><span class="badge ">만료됨</span>
-																</a>
-															<div class="text-gray-bright text-13">1000원 할인 </div>
-														</td>
-														
-															<td>
-																<p>
-																<span>고객 다운로드</span>
-																</p>
-																<div>
-																	<a href="javascript:;" data-code="c20220203728be802c02aa" data-create-mult-type="N" class="btn btn-xs btn-sm-padding btn-default-bright _issue_btn">내역확인</a>
-																</div>
-															</td>
-														</td>
-														<!--	<td class="sku"><a href="javascript:;">3847-112</a></td>-->
-														<td class="pay text-right">
-															0회<br> </td>
-														<!--	<td class="stock">100</td>-->
-														<!--	<td class="lately">100</td>-->
-														<td class="text-13">
-															<div>2022-02-03 09:45 부터</div>
-															<div>2022-02-10 23:59 까지</div>
-														</td>
-														<!--	<td class="diplay"><img src="../img/doz-icon.png" style="margin: 0 5px 3px 0;"><img src="../img/naver-icon.png"></td>-->
-														
-															
-														
-														<td class="text-12" style="padding-left: 20px">
-															- </td>
-														<td class="r_date text-12">2022-02-03</td>
-														
-														<td class="more">
-															<div class="dropdown">
-																<button class="btn btn-flat" aria-expanded="true"
-																	data-toggle="dropdown" type="button" id="dLabel">
-																	<i class="zmdi zmdi-more"></i>
-																</button>
-																<ul aria-labelledby="dLabel" role="menu"
-																	class="dropdown-menu animation-dock right">
-																	<li>
-																		<a href="/adminpage/couponfix2.html">수정</a>
-																			
-																	</li>
-																	<li>
-																		<a href="javascript:;"
-																			onclick="SHOP_PROD_LIST.changeProdOrder('pre','s20220127e8644dc8bdcbe', '');">
-																			삭제</a>
-																	</li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													<!--<tr class='content on">-->
-														<tr class="content _prodListItem"
-														id="prod_list_s20220127e8644dc8bdcbe"
-														data-code="s20220127e8644dc8bdcbe">
-														<td class="check">
-															<div class="drag _showcase_handle ui-sortable-handle"></div>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox"
-																		value="s20220127e8644dc8bdcbe"
-																		class="_prodListCheck" onclick="SHOP_PROD_LIST.listSetSelect('s20220127e8644dc8bdcbe',function(codes){
-								SHOP_PROD_LIST.checkProd(codes);
-								})"><span></span>
-																</label>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<a href="/adminpage/couponfix2.html">
-																<span>1주년</span><span class="badge ">만료됨</span>
-																</a>
-															<div class="text-gray-bright text-13">1000원 할인 </div>
-														</td>
-														
-															<td>
-																<p>
-																<span>고객 다운로드</span>
-																</p>
-																<div>
-																	<a href="javascript:;" data-code="c20220203728be802c02aa" data-create-mult-type="N" class="btn btn-xs btn-sm-padding btn-default-bright _issue_btn">내역확인</a>
-																</div>
-															</td>
-														</td>
-														<!--	<td class="sku"><a href="javascript:;">3847-112</a></td>-->
-														<td class="pay text-right">
-															0회<br> </td>
-														<!--	<td class="stock">100</td>-->
-														<!--	<td class="lately">100</td>-->
-														<td class="text-13">
-															<div>2022-02-03 09:45 부터</div>
-															<div>2022-02-10 23:59 까지</div>
-														</td>
-														<!--	<td class="diplay"><img src="../img/doz-icon.png" style="margin: 0 5px 3px 0;"><img src="../img/naver-icon.png"></td>-->
-														
-															
-														
-														<td class="text-12" style="padding-left: 20px">
-															- </td>
-														<td class="r_date text-12">2022-02-03</td>
-														
-														<td class="more">
-															<div class="dropdown">
-																<button class="btn btn-flat" aria-expanded="true"
-																	data-toggle="dropdown" type="button" id="dLabel">
-																	<i class="zmdi zmdi-more"></i>
-																</button>
-																<ul aria-labelledby="dLabel" role="menu"
-																	class="dropdown-menu animation-dock right">
-																	<li>
-																		<a href="/adminpage/couponfix2.html">수정</a>
-																			
-																	</li>
-																	<li>
-																		<a href="javascript:;"
-																			onclick="SHOP_PROD_LIST.changeProdOrder('pre','s20220127e8644dc8bdcbe', '');">
-																			삭제</a>
-																	</li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													<!--<tr class='content on">-->
-														<tr class="content _prodListItem"
-														id="prod_list_s20220127e8644dc8bdcbe"
-														data-code="s20220127e8644dc8bdcbe">
-														<td class="check">
-															<div class="drag _showcase_handle ui-sortable-handle"></div>
-															<div class="checkbox checkbox-styled no-margin">
-																<label>
-																	<input type="checkbox"
-																		value="s20220127e8644dc8bdcbe"
-																		class="_prodListCheck" onclick="SHOP_PROD_LIST.listSetSelect('s20220127e8644dc8bdcbe',function(codes){
-								SHOP_PROD_LIST.checkProd(codes);
-								})"><span></span>
-																</label>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<a href="/adminpage/couponfix2.html">
-																<span>1주년</span><span class="badge ">만료됨</span>
-																</a>
-															<div class="text-gray-bright text-13">1000원 할인 </div>
-														</td>
-														
-															<td>
-																<p>
-																<span>고객 다운로드</span>
-																</p>
-																<div>
-																	<a href="javascript:;" data-code="c20220203728be802c02aa" data-create-mult-type="N" class="btn btn-xs btn-sm-padding btn-default-bright _issue_btn">내역확인</a>
-																</div>
-															</td>
-														</td>
-														<!--	<td class="sku"><a href="javascript:;">3847-112</a></td>-->
-														<td class="pay text-right">
-															0회<br> </td>
-														<!--	<td class="stock">100</td>-->
-														<!--	<td class="lately">100</td>-->
-														<td class="text-13">
-															<div>2022-02-03 09:45 부터</div>
-															<div>2022-02-10 23:59 까지</div>
-														</td>
-														<!--	<td class="diplay"><img src="../img/doz-icon.png" style="margin: 0 5px 3px 0;"><img src="../img/naver-icon.png"></td>-->
-														
-															
-														
-														<td class="text-12" style="padding-left: 20px">
-															- </td>
-														<td class="r_date text-12">2022-02-03</td>
-														
-														<td class="more">
-															<div class="dropdown">
-																<button class="btn btn-flat" aria-expanded="true"
-																	data-toggle="dropdown" type="button" id="dLabel">
-																	<i class="zmdi zmdi-more"></i>
-																</button>
-																<ul aria-labelledby="dLabel" role="menu"
-																	class="dropdown-menu animation-dock right">
-																	<li>
-																		<a href="/adminpage/couponfix2.html">수정</a>
-																			
-																	</li>
-																	<li>
-																		<a href="javascript:;"
-																			onclick="SHOP_PROD_LIST.changeProdOrder('pre','s20220127e8644dc8bdcbe', '');">
-																			삭제</a>
-																	</li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													
-													
-		<!--end #content-->
-		<!-- END CONTENT -->
 
-		<script>
-			var load_prod_list = function () {
-				SHOP_PROD_LIST.loadList('1', { 'status': 'all', 'prod_name': '', 'category': '', 'showcase': '', 'pagesize': 20 }, "/admin/shopping/product/?q=YToxOntzOjY6InN0YXR1cyI7czozOiJhbGwiO30%3D");
-			};
-
-			$(function () {
-				SHOP_PROD_LIST.init();
-				SHOP_PROD_MANAGE.addUnitData('u2022012761f228e111b38', 'KR', '₩', ',', '.', 0);
-				SHOP_PROD_MANAGE.setDefaultUnitCode('u2022012761f228e111b38');
-				SHOP_PROD_MANAGE.setCurrentUnitCode('u2022012761f228e111b38');
-				load_prod_list();
-				SHOP_PROD_MANAGE.loadCategoryList(function () {
-					$('#prod_list_category_').addClass('active');
-				}, true, 'prod_list');
-			});
-			$(document).ready(function () {
-				$("._owl_dashboard").owlCarousel({
-					autoWidth: true
-				});
-			});
-		</script>
-		<style>
-			.dd {
-				position: relative;
-				display: block;
-				margin: 0;
-				padding: 0;
-				list-style: none;
-			}
-
-			.dd-list {
-				display: block;
-				position: relative;
-				margin: 0;
-				padding: 0;
-				list-style: none;
-			}
-
-			.dd-list .dd-list {
-				padding-left: 0px;
-			}
-
-			.dd-collapsed .dd-list {
-				display: none;
-			}
-
-			.dd-item,
-			.dd-empty {
-				display: block;
-				position: relative;
-				margin: 0;
-				padding: 0;
-				min-height: 20px;
-				line-height: 20px;
-			}
-
-			.dd-placeholder {
-				display: block;
-				position: relative;
-				z-index: 9999;
-				margin: 0;
-				padding: 0;
-				height: 3px;
-				width: 100%;
-				background: #ff0000;
-			}
-
-			.dd-placeholder .line {
-				position: absolute;
-				width: 100%;
-				top: 0px;
-				height: 3px;
-				background: #6F6F73;
-				z-index: 999;
-			}
-
-			.dd-handle {
-				display: block;
-				text-decoration: none;
-				height: 30px;
-				line-height: 31px;
-				padding-left: 26px;
-				font-size: 13px;
-				text-overflow: ellipsis;
-				overflow: hidden;
-				white-space: nowrap;
-				cursor: -moz-grab;
-				cursor: -webkit-grab;
-				cursor: grab;
-			}
-
-			
-
-			.dd-handle.disable {
-				opacity: .3;
-			}
-
-			
-
-			.dd-handle.active.ico {
-				color: #fff;
-			}
-
-			.dd-handle.ico:after {
-				display: inline-block;
-				font: normal normal normal 14px/1 "Black Tie";
-				vertical-align: -14.28571429%;
-				text-rendering: auto;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-				transform: translate(0, 0);
-				font-size: 15px;
-				padding-left: 5px;
-				font-weight: 200;
-				opacity: .7;
-			}
-
-			.dd-handle.ico.shopping:after {
-				content: "\f03b";
-			}
-
-			.dd-handle.ico.link:after {
-				content: "\f0b0";
-			}
-
-			.dd-handle.ico.lock:after {
-				content: "\f039"
-			}
-
-	
-
-			.dd-handle {
-				position: relative;
-			}
-
-			.dd-dragel .dd-handle {
-				position: relative;
-			}
-
-			.dd-dragel .dd-handle i {
-				display: none
-			}
-
-			.dd-dragel .dd-handle {
-				background: #f2f3f5;
-			}
-
-			.dd-handle.active {
-				background: rgba(26, 109, 255, 0.1) !important;
-				color: #1A6DFF !important;
-				font-weight: bold;
-			}
-
-			.clone-item .dd-handle {
-				opacity: 0.5;
-			}
-
-			.dd-item>button {
-				cursor: pointer;
-				float: left;
-				width: 20px;
-				height: 26px;
-				padding: 0;
-				text-indent: 100%;
-				white-space: nowrap;
-				overflow: hidden;
-				border: 0;
-				background: transparent;
-				line-height: 1;
-				text-align: center;
-				font-weight: bold;
-				z-index: 50;
-				left: 15px;
-			}
-
-			.dd-list .dd-list .dd-item>button {
-				left: 25px;
-			}
-
-			.dd-list .dd-list .dd-list .dd-item>button {
-				left: 35px;
-			}
-
-			.dd-list .dd-list .dd-handle {
-				padding-left: 36px;
-			}
-
-			.dd-list .dd-list .dd-list .dd-handle {
-				padding-left: 46px;
-			}
-
-			.dd-list .dd-list .dd-list .dd-list .dd-handle {
-				padding-left: 56px;
-			}
-
-			.dd-item>button:before {
-				content: '\f2f2';
-				font-family: Material-Design-Iconic-Font !important;
-				vertical-align: -14.28571429%;
-				text-rendering: auto;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-				-webkit-transform: rotate(270deg);
-				-ms-transform: rotate(270deg);
-				-o-transform: rotate(270deg);
-				transform: rotate(270deg);
-				display: block;
-				position: absolute;
-				width: 100%;
-				text-align: center;
-				text-indent: 0;
-				font-weight: normal;
-				font-size: 16px;
-				top: 7px;
-
-			}
-
-			.dd-item>button[data-action="collapse"]:before {
-				-webkit-transform: rotate(0deg);
-				-ms-transform: rotate(0deg);
-				-o-transform: rotate(0deg);
-				transform: rotate(0deg);
-			}
-
-			.category-body .dropdown-item>button:before {
-				color: #333;
-			}
-
-			.dd-empty {
-				padding: 0;
-				min-height: 26px;
-				background: #f9f9f9;
-				border: 1px dashed #dddddd;
-			}
-
-			.dd-empty {
-				border: 1px dashed #dddddd;
-				min-height: 26px;
-				background-color: #f9f9f9;
-				background-size: 60px 60px;
-				background-position: 0 0, 30px 30px;
-			}
-
-			.dd-dummy {
-				min-height: 20px;
-				background-color: #fff;
-			}
-
-			.dd-dragel {
-				position: absolute;
-				pointer-events: none;
-				z-index: 9999;
-			}
-
-			.dd-dragel>.dd-item .dd-handle {
-				margin-top: 0;
-			}
-
-			.dd-dragel .dd-handle {
-				-webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
-				box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
-				cursor: grabbing;
-				cursor: -moz-grabbing;
-				cursor: -webkit-grabbing;
-			}
-
-			.dd-inverse .dd-handle {
-				color: #ffffff;
-				background: #999999;
-			}
-
-			
-
-			.dd-inverse .dd-item>button:before {
-				color: #ffffff;
-			}
-
-			.category-body .dropdown-handle>span {
-				pointer-events: none;
-			}
-
-			.nav-category .dd-list .dd-handle span:before {
-				display: none;
-			}
-
-			.collapse_btn {
-				position: absolute;
-				left: 6px;
-				top: 0;
-				font-size: 18px;
-				line-height: 30px;
-				height: 30px;
-				background: transparent;
-				z-index: 10;
-			}
-
-			.collapse_btn:before {
-				content: '\f2f2';
-				font-family: Material-Design-Iconic-Font !important;
-				display: block;
-			}
-
-			.collapse_btn.collapsed:before {
-				margin-left: 0;
-				-webkit-transform: rotate(270deg);
-				-ms-transform: rotate(270deg);
-				-o-transform: rotate(270deg);
-				transform: rotate(270deg);
-			}
-
-			.nav-category .dd-list .dd-handle~.collapse_btn {
-				left: 19px;
-			}
-
-			.prod_category_list {
-				padding-bottom: 24px;
-			}
-
-			.nav>li>a {
-				padding: 15px 24px 15px 26px;
-			}
-
-			.nav #prod_list_category_>a {
-				padding-left: 26px;
-			}
-
-			.nav-category .dd-handle span {
-				padding-left: 27px;
-			}
-
-			.nav-category .dd-list .dd-handle span {
-				padding-left: 40px;
-			}
-
-			.nav-category .dd-list .dd-list .dd-handle span {
-				padding-left: 50px;
-			}
-
-			.bg-gray {
-				padding: 11px 16px 8px;
-				background: #FAFAFA;
-				border-radius: 4px;
-			}
-		</style>
-		<script>
-			$(window).on("keyup", function (e) {
-				if ($.cocoaDialog.isOpen()) {
-					$.cocoaDialog.modalControl(e);
-				}
-				return false;
-			});</script>
-		<!-- BEGIN MENUBAR-->
-		<button type="button" class="hidden-lg hidden-md toggle-btn" data-dismiss="menubar">
-			<span class="sr-only">Toggle navigation</span>
-			<i class="btl bt-times"></i>
-		</button>
 
 
 		<div id="menubar" class="animate">
 			<div class="nano has-scrollbar" style="height: 719px;"><div class="nano-content" tabindex="0" style="right: -15px;"><div class="menubar-scroll-panel" style="padding-bottom: 50px;">
 				<div class="tabled full-width">
-					
-						
+
+
 					<ul class="dropdown-menu global_setting animation-dock menu-card-styling">					<li class="holder ">
 								<a href="/admin/?type=page&amp;_ga=2.254642240.996359343.1645365816-1966519718.1645110617">
 									<div class="tabled">
@@ -1352,7 +414,7 @@
 											<img width="30" height="30" src="/common/img/flag_shapes/flag_kr_circle.png">
 										</div>
 										<div class="table-cell vertical-middle domain">
-											
+
 											<span data-original-title="일반 방문자의 접속이 제한됩니다. 글로벌 버전으로 업그레이드 해주세요" data-toggle="tooltip" class="badge" data-placement="top" style="margin-left: 5px; vertical-align: top;">미결제</span>
 																					<div class="text-gray-bright text-12">hyunwoo1001.imweb.me</div>
 																			</div>
@@ -1367,7 +429,7 @@
 								<li class="active expanded expanding" data-title="dashboard"><a th:href="@{/admin/dashboard}" class=" active">
 								<div class="gui-icon"><i class="db-dashboard"></i></div>
 								<span class="title title_controls">대시보드</span></a></li>
-			
+
 								<li class="gui-folder" data-title="member"><a href="/admin/member" class="sidebar-nav-menu" onclick="return false;">
 								<div class="gui-icon"><i class="db-user"></i></div>
 								<span class="title title_controls">사용자 관리</span></a>
@@ -1376,7 +438,7 @@
 								</ul>
 							</li>
 								<li class="gui-folder expanded" data-title="shopping"><a href="/admin/shopping" class="sidebar-nav-menu" onclick="return false;">
-			
+
 									<div class="gui-icon"><i class="db-shopping-bag"></i></div>
 									<span class="title title_controls">쇼핑 관리</span></a>
 									<ul>
@@ -1391,16 +453,16 @@
 									</ul>
 								</li>
 								<li class="gui-folder" data-title="contents"><a href="/admin/contents" class="sidebar-nav-menu" onclick="return false;">
-			
+
 								<div class="gui-icon"><i class="db-pencil"></i></div>
 								<span class="title title_controls">컨텐츠 관리</span></a>
 									<ul>
 									<li class="  " data-title="contents_post"><a th:href="@{/admin/review}"><span class="title title_controls">구매평 관리</span></a></li>
 									<li class="  " data-title="contents_comment"><a th:href="@{/admin/answer}"><span class="title title_controls">문의 관리</span></a></li>
 									</ul>
-									
+
 							</ul>
-		
+
 			</div></div><div class="nano-pane"><div class="nano-slider" style="height: 516px; top: 46.2052px;"></div></div></div>
 		</div>
 
@@ -1409,13 +471,13 @@
 				<a href="#" class="logo_icon_menu">
 					<img src="./common/img/duobackLogo.png"></a>
 			</div>
-			
+
 		</div>
 		<script>
 
 			/*야매로 modal팝업창 뜨게 하기*/
 			/*$("#pdOutModalBtn").click(function(){
-				
+
 				$("#cocoaModal").show();
 			});*/
 
@@ -1430,52 +492,6 @@
 			}
 
 
-			/*아니
-			$(#closeBtnModal).click(function(){
-				$("#cocoaModal").hide();
-		
-			});
-			*/
-
-
-			/*		jsp? 암튼 ajax 비동기 통신 	
-			
-			
-			
-						$(function () {
-							var $body = $('body');
-							var $btn = $('#toggle_button');
-							var sidebar_mini_class = 'sidebar-mini';
-							var current_sidebar_mini_class = "";
-							var $menubar_toggle = $body.find('#header .menubar-toggle');
-							var $close_btn = $('._close_btn');
-							$btn.off('click touch').on('click touch', function () {
-								if ($body.hasClass(sidebar_mini_class)) {
-									setSideMenu('show');
-								} else {
-									setSideMenu('hide');
-								}
-							});
-							if (current_sidebar_mini_class === sidebar_mini_class) $body.addClass(sidebar_mini_class);
-							else $body.removeClass(sidebar_mini_class);
-							function setSideMenu(show) {
-								$.ajax({
-									type: 'POST',
-									data: { 'status': show },
-									url: ('http://127.0.0.1:5500/gowoon\adminTP\adminpage\shoppingManagementModar.html'),
-									dataType: 'json', 
-									async: false,
-									cache: false,
-									success: function (status) {
-										if (res.msg === "show") {
-											$body.removeClass(sidebar_mini_class);
-										} else {
-											$body.addClass(sidebar_mini_class);
-										}
-									}
-								});
-							}
-						});*/
 
 		</script>
 	</div> <!-- END BASE -->
@@ -1486,9 +502,9 @@
 		<input id="dummy_input" type="text">
 	</div>
 
-	
 
-	
+
+
 
 
 

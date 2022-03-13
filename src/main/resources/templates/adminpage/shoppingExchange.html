@@ -83,6 +83,10 @@
 
 	<!--KR.js 시작-->
 	<script src="../js/KR.js"></script>
+<!--	부트스트랩 테이블 생성 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="../js/KR_KRW_currency.js"></script>
 	<!--KR.js 끝-->
 	<!--cdn 시작-->
@@ -325,321 +329,66 @@
 		</header>
 		<!-- BEGIN CONTENT-->
 		<div id="content">
-			<section>
+			<section class="no-padding-bottom">
 				<div class="section-body">
-					<div class="holder">
-						<ul class="nav nav-tabs" data-toggle="tabs" style="margin-bottom: 12px;" id="order_status_tab">
-							<li class="owl_dashboard _owl_dashboard owl-carousel owl-theme owl-loaded">
-								<div class="owl-stage-outer">
-									<div class="owl-stage"
-										style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 545px;">
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class="active _NEW"><a href="#"
-														onclick="location.href='/admin/shopping/exchange?status=NEW&amp;reset_status=N'">신규교환
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _EXCHANGE_REQUEST"><a href="#"
-														onclick="location.href='/admin/shopping/exchange?status=EXCHANGE_REQUEST&amp;reset_status=N'">교환요청
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _EXCHANGE_COLLECTING"><a href="#"
-														onclick="location.href='/admin/shopping/exchange?status=EXCHANGE_COLLECTING&amp;reset_status=N'">수거중
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _EXCHANGE_COLLECT_DONE"><a href="#"
-														onclick="location.href='/admin/shopping/exchange?status=EXCHANGE_COLLECT_DONE&amp;reset_status=N'">수거완료
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _REDELIVERING"><a href="#"
-														onclick="location.href='/admin/shopping/exchange?status=REDELIVERING&amp;reset_status=N'">재배송중
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _EXCHANGE"><a href="#"
-														onclick="location.href='/admin/shopping/exchange?status=EXCHANGE&amp;reset_status=N'">교환완료
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="owl-controls">
-									<div class="owl-nav">
-										<div class="owl-prev" style="display: none;">prev</div>
-										<div class="owl-next" style="display: none;">next</div>
-									</div>
-									<div class="owl-dots" style="">
-										<div class="owl-dot active"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="table-responsive shop-table orders check" id="order_list">
-									<!-- check class 추가시 테이블 헤더 변경됨 --->
-									<div class="table-btn-group">
-										<div class="btn-group-left">
-											<div class="btn-group">
 
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_ACCEPT')"
-													class="btn btn-white btn-sm btn-sm-padding btn-pickup" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="운송업체에게 교환상품 수거를 지시(요청)한 경우 처리해주세요.(네이버페이 주문은 수거지시 불필요. 자동 수거지시로 처리되거나 구매자 직접 반품/교환)">수거지시</a>
+						<!--end.col-->
+						<div class="col-md-9 col-lg-10 col-xl-10">
+							<div class="row">
 
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_COLLECT_DONE')"
-													class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="교환 상품을 수거하셨고 교환비용 및 상품에 문제가 없다면 교환수거 완료 처리를 해주세요. 추가 비용을 청구해야 한다면 교환보류설정을 해주시기 바랍니다.">교환수거
-													완료</a>
+								<div class="card">
+									<div class="table-responsive shop-table check" id="prod_list" style="">
 
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_REDELIVERING')"
-													class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="교환 상품 수거완료 이후 교환할 상품으로 재배송 하실 경우 교환 재발송 처리 후 배송업체 및 운송장번호를 입력하세요.">교환
-													재발송</a>
+										<link rel="stylesheet" type="text/css"
+											  href="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.css" />
+										<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.js"></script>
+										<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
 
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_REJECT')"
-													class="btn btn-white btn-sm btn-sm-padding btn-nono-exchange" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="교환요청 주문을 거부하고 일반 주문으로 전환합니다. 거부시엔 반드시 구매자와 사전 협의를 해주세요.">교환
-													거부</a>
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_WITHHOLD')"
-													class="btn btn-white btn-sm btn-sm-padding btn-withhold" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="구매자에게 반품 배송비 또는 기타 반품 추가 비용을 청구해야 하거나 반품 재배송이 불가할 때 사용합니다.">교환
-													보류</a>
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_RELEASEHOLD')"
-													class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="교환 보류 사유가 해결되어 교환 진행이 계속 가능할 때 사용합니다.">교환 보류
-													해제</a>
-												<div class="holder inline-blocked btn btn-white btn-sm btn-sm-padding">
-													<a href="javascript:;" class="" data-toggle="dropdown"
-														aria-haspopup="true" aria-expanded="false">기타 교환처리 <span
-															class="caret"></span></a>
-													<ul class="dropdown-menu">
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_EXCHANGE_REQUEST')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="수거중, 수거완료, 재배송중, 교환완료 주문을 교환요청으로 되돌립니다.(Npay 불가)">교환요청으로
-																되돌리기</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_EXCHANGE_COLLECTING')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="수거완료, 재배송중, 교환완료 주문을 수거중으로 되돌립니다.(Npay 불가)">수거중으로
-																되돌리기</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_EXCHANGE_COLLECT_DONE')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="재배송중, 교환완료 주문을 수거완료로 되돌립니다.(Npay 불가)">수거완료로
-																되돌리기</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_REDELIVERING')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="교환완료 주문을 재배송중으로 되돌립니다.(Npay 불가)">재배송중으로
-																되돌리기</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_DONE')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="재배송중인 교환을 교환 완료 처리합니다. 송장추적이 불가할 때, 직접배송 등의 경우 사용해 주세요.(Npay 불가)">교환완료
-																처리</a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
+										<script type="text/javascript" charset="utf8"
+												src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+										<script>
+											$(document).ready(function () {
+												$('#table_id').DataTable();
+											});
+										</script>
+										<table class="table display no-margin" id="table_id">
+											<thead>
+											<tr>
+												<th>No.</th>
+												<th>이미지</th>
+												<th>상품명</th>
+												<th>판매가</th>
+												<th>브랜드</th>
+												<th>카테고리</th>
+												<th>재고</th>
+												<th>상태</th>
+												<th>등록 날짜</th>
 
-										<div class="btn-group-right">
-											<div class="holder inline-blocked blocked-xs">
-												<form role="search" class="prod-search" id="order_search_form"
-													onsubmit="return false;">
-													<div class="inline-blocked holder">
-														<!-- 고급검색 적용 중일 땐 input 에 disabled 추가 -->
-														<input type="text"
-															class="form-control typeahead tt-input _keyword_search"
-															style="padding-right: 30px;" placeholder="주문번호, 주문자명, 연락처"
-															autocomplete="off" spellcheck="false" dir="auto"
-															onkeydown="if (event.keyCode==13) SHOP_ORDER_MANAGE.startKeywordSearch()"
-															value="">
-														<div class="serach_wrap">
-															<div class="dd-filter-serach">
-																<label class="icon_set shop">
-																	<i class="icon icon-magnifier"
-																		onclick="SHOP_ORDER_MANAGE.startKeywordSearch()"></i>
-																</label>
-															</div>
-														</div>
-													</div>
-													<a class="btn btn-primary btn-flat xs-padding-x btn-high"
-														href="javascript:;"
-														onclick="SHOP_ORDER_MANAGE.openModalOrderAdvancedSearch('exchange', 'YjowOw==')">고급</a>
-												</form>
-											</div>
-											<div class="holder btn-group inline-blocked excel_down_btn">
-												<form id="formOrderPrintMulti"
-													action="/admin/ajax/shop/get_order_print_popup.cm" method="post"
-													target="order_print_popup"></form>
-												<a href="javascript:;" onclick="SHOP_ORDER_MANAGE.openOrderPrintPopup()"
-													type="button"
-													class="btn btn-sm btn-sm-padding btn-default-bright">주문서 출력</a>
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.openModalOrderExcelDownload('exchange', 'YjowOw==')"
-													type="button"
-													class="btn btn-sm btn-sm-padding btn-default-bright btn-out">
-													<i class="btl bt-download"></i> 내보내기</a>
-											</div>
-										</div>
-										<a href="javascript:;" onclick="SHOP_ORDER_MANAGE.showOrderHelp('exchange')"
-											class="btn btn-sm btn-flat btn-help"
-											style="padding:2px 5px; color:#313534"><i
-												class="btl bt-question-circle"></i> 교환 도움말</a>
-									</div>
-
-
-
-									<div class="card style-transparent card-top no-tab" style="display: none"
-										id="order_list_empty">
-										<div class="card-head">
-											<header class="style-price-header force-padding text-gray-bright"
-												style="padding-top: 64px; padding-bottom: 90px;">
-												<h4>조회할 데이터가 없습니다.</h4>
-											</header>
-										</div>
-									</div>
-									<div class="card style-transparent card-top no-tab" style="display: none;"
-										id="order_list_empty_new">
-										<div class="card-head">
-											<header class="style-price-header force-padding text-gray-bright"
-												style="padding-top: 64px; padding-bottom: 90px;">
-												<h4 style="margin-bottom: 8px;">처리하실 교환 주문이 없습니다.</h4>
-												<p class="text-14">처리하신 주문은 <a
-														href="/admin/shopping/exchange/?q=YjowOw%3D%3D&amp;status=EXCHANGE&amp;reset_status=N'"
-														class="text-primary">교환완료</a>에서 확인하실 수 있습니다.</p>
-											</header>
-										</div>
-									</div>
-									<div id="order_list_loader_sub" class="se-pre-con"
-										style="position: relative; height: 100px; display: none;">
-										<div class="page-loader-spinner">
-											<div class="double-bounce1"></div>
-											<div class="double-bounce2"></div>
-										</div>
-										<div class="progress">
-											<div class="progress-bar" role="progressbar" style="width:70%">
-												<label>70%</label>
-											</div>
-										</div>
-									</div>
-									<div class="table-responsive table-responsive-order-list" id="order_list_wrap"
-										style="">
-										<table class="table table-order-list full-width full-height no-margin">
-											<colgroup>
-												<col style="width: 30px;">
-												<col style="width: 140px; max-width: 140px; min-width: 140px;">
-												<col class="td-order-img-col">
-												<col style="min-width: 120px;">
-												<col style="width: 90px;">
-												<col style="width: 50px;">
-												<col style="width: 120px;">
-												<col style="width: 120px; max-width:120px; min-width:120px;">
-												<col style="width: 120px;">
-												<col style="width: 90px; max-width: 90px; min-width: 90px;">
-												<col style="width: 150px; max-width: 150px; min-width: 150px;">
-												<col style="width: 90px;">
-												<col style="width: 180px;">
-											</colgroup>
-											<thead class="subject">
-												<tr>
-													<th class="no-padding-right no-border-right">
-														<div class="checkbox checkbox-styled no-margin">
-															<label>
-																<input type="checkbox" id="order_list_allcheck"
-																	onclick="SHOP_ORDER_MANAGE.toggleAllSelected()">
-																<span></span>
-															</label>
-														</div>
-													</th>
-													<th>주문번호/시각</th>
-													<th class="text-center" colspan="2">주문상품</th>
-													<th class="text-right">상품금액</th>
-													<th class="text-center">수량</th>
-													<th class="text-center">주문상태</th>
-													<th class="text-center">수거/재배송</th>
-													<th class="text-center">교환사유</th>
-													<th class="text-center">기타비용</th>
-													<th class="text-center">수거지/재배송지 정보</th>
-													<th class="text-center">교환 배송비</th>
-													<th class="text-center no-border-right">결제금액</th>
-												</tr>
+											</tr>
 											</thead>
-											<tbody id="order_list_body">
+
+											<tbody>
+											<tr th:each="m : ${goodsList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getGdIdx()}|}'|">
+												<td th:text="${m.gdIdx}"></td>
+												<td th:text="${m.gdImg}"></td>
+												<td th:text="${m.gdName}"></td>
+												<td th:text="${m.gdPrice}"></td>
+												<td th:text="${m.gdBrand}"></td>
+												<td th:text="${m.gdCategory}"></td>
+												<td th:text="${m.gdCount}"></td>
+												<td th:text="${m.gdStatus}"></td>
+												<td th:text="${m.gdRegdate}"></td>
+											</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<nav class="text-center order_paging" id="order_list_paging">
-								<!--
-			<ul class="pagination">
-				<li class="prev"><a href="javascript:;"><i class="zmdi zmdi-chevron-left"></i></a></li>
-				<li class="active"><a href="javascript:;">1</a></li>
-				<li><a href="javascript:;">2</a></li>
-				<li class="next disabled"><a href="javascript:;"><i class="zmdi zmdi-chevron-right"></i></a>
-				</li>
-			</ul>
-			-->
-							</nav>
+
 						</div>
 					</div>
-					<!--
-<div class="col-md-12">
-	<div class="card style-transparent">
-		<div class="tag-box">
-			<a href="javascript:;" style="padding: 5px 10px;">
-				<span>카테고리 여자 &gt; 티셔츠</span>
-				<i class="btl bt-times" style="padding-left: 10px;"></i>
-			</a>
-		</div>
-		<div class="tag-box">
-			<a href="javascript:;" style="padding: 5px 10px;">
-				<span>판매중지 상태</span>
-				<i class="btl bt-times" style="padding-left: 10px;"></i>
-			</a>
-		</div>
-	</div>
-</div>
--->
-
 				</div>
 			</section>
 			<!--섹션 끝 -->

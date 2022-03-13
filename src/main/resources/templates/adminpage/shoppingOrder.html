@@ -81,6 +81,10 @@
 
 	<!--KR.js 시작-->
 	<script src="../js/KR.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 	<script src="../js/KR_KRW_currency.js"></script>
 	<!--KR.js 끝-->
 	<!--cdn 시작-->
@@ -331,537 +335,113 @@
 			</div>
 		</header>
 		<div id="content">
-			<section>
+			<section class="no-padding-bottom">
 				<div class="section-body">
-					<div class="holder">
-						<ul class="nav nav-tabs" data-toggle="tabs" style="margin-bottom: 12px;" id="order_status_tab">
-							<li class="owl_dashboard _owl_dashboard owl-carousel owl-theme owl-loaded">
-
-
-
-
-
-								<div class="owl-stage-outer">
-									<div class="owl-stage"
-										style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 504px;">
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class="active _NEW"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=NEW&amp;reset_status=N'">신규취소
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCEL_REQUEST"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCEL_REQUEST&amp;reset_status=N'">취소요청
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCELING"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCELING&amp;reset_status=N'">취소처리중
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCEL_FAILED"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCEL_FAILED&amp;reset_status=N'">취소처리실패
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCEL"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCEL&amp;reset_status=N'">취소완료
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="owl-controls">
-									<div class="owl-nav">
-										<div class="owl-prev" style="display: none;">prev</div>
-										<div class="owl-next" style="display: none;">next</div>
-									</div>
-									<div class="owl-dots" style="">
-										<div class="owl-dot active"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="table-responsive shop-table orders check " id="order_list">
-									<!-- check class 추가시 테이블 헤더 변경됨 --->
-									<div class="table-btn-group">
-										<div class="btn-group-left">
-											<div class="btn-group">
-												<a href="javascript:" onclick="SHOP_ORDER_MANAGE.runOrderAction('SEND')"
-													class="btn btn-primary btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="배송을 시작합니다.">발송처리</a>
-												<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('STANDBY')"
-													class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="배송준비처리시 구매자 취소시 판매자 승인이 필요합니다.">배송준비<span
-														class="hidden-xs hidden-sm"> 처리</span></a>
-												<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('PAY_COMPLETE')"
-													class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="입금대기 주문의 입금확인을 처리합니다.">입금확인<span
-														class="hidden-xs hidden-sm"> 처리</span></a>
-												<div
-													class="holder inline-blocked  btn btn-white btn-sm btn-sm-padding no-padding dropdown-right-xs order_action_dropdown">
-													<a href="javascript:" style="padding:2px 15px; display: block"
-														data-toggle="dropdown" aria-haspopup="true"
-														aria-expanded="false">기타<span class="hidden-xs hidden-sm">주문
-															처리</span> <span class="caret"></span></a>
 
-													<ul class="dropdown-menu">
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_PAY_WAIT')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="결제완료인 무통장입금 주문을 입금대기로 되돌립니다.(Npay 불가)">입금대기로
-																되돌리기</a></li>
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_PAY_AFTER')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="">착불결제(으)로 되돌리기</a></li>
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_STANDBY')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="배송중, 배송완료를 배송준비로 되돌립니다.(Npay 불가)">배송준비로
-																되돌리기</a></li>
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_PAY_COMPLETE')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="배송준비중, 배송중 을 결제완료로 되돌립니다.(Npay 불가)">결제완료로
-																되돌리기</a></li>
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_SEND')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="배송완료를 배송중으로 되돌립니다.(Npay 불가)">배송중으로
-																되돌리기</a></li>
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('SEND_COMPLETE')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="기타택배, 직접배송, 퀵배달 등 배송추적이 불가한 주문 또는 일반택배를 강제로 배송완료 처리합니다.(Npay 불가)">강제
-																배송완료 처리</a></li>
-
-														<li><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('DELAY')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="3영업일 내로 발송할 수 없을 때 발송처리 합니다. (Npay 전용/주문당 1회만 가능)">발송지연
-																처리(Npay용)</a></li>
+						<!--end.col-->
+						<div class="col-md-9 col-lg-10 col-xl-10">
+							<div class="row">
 
 
-														<li class="divider visible-xs"></li>
-														<li class="visible-xs"><a href="javascript:"></a>
-															<a href="javascript:" onclick="SHOP_ORDER_MANAGE.runOrderAction('ADMIN_CANCEL')" class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip" data-placement="top" title="" data-original-title="주문을 취소요청으로 변경합니다. 처리 후 취소요청관리 확인 필요합니다.">판매취소</a>
-														</li>
-														<li class="visible-xs"><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RETURN_REQUEST')"
-																data-toggle="tooltip" data-placement="top" title=""
-																data-original-title="배송중, 배송완료건만 처리할 수 있으며 반품처리시 반품관리에서 추가 처리가 필요합니다.">반품처리</a>
-														</li>
-														<li class="visible-xs"><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_REQUEST')"
-																data-toggle="tooltip" data-placement="top" title=""
-																data-original-title="배송중, 배송완료건만 처리할 수 있으며 교환처리시 교환관리에서 추가 처리가 필요합니다.">교환처리</a>
-														</li>
-														<li class="divider visible-xs"></li>
-														<li class="visible-xs"><a href="javascript:"
-																onclick="SHOP_ORDER_MANAGE.openModalOrderExcelDownload('order', 'YjowOw==')"
-																type="button"><i class="btl bt-download"></i> 내보내기</a>
-														</li>
-														<li class="visible-xs"><a
-																onclick="SHOP_ORDER_MANAGE.openParcelBatch()"> <i
-																	class="btl bt-upload"></i> 송장 일괄등록</a></li>
-													</ul>
-												</div>
-											</div>
-											<div class="btn-group hidden-xs">
-												<a href="javascript:"
-													onclick=""
-													class="btn btn-white btn-sm btn-sm-padding btn-sell-cancel" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="주문을 취소요청으로 변경합니다. 처리 후 취소요청관리 확인 필요합니다.">판매취소</a>
-													<!--	<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('ADMIN_CANCEL')"
-													class="btn btn-white btn-sm btn-sm-padding" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="주문을 취소요청으로 변경합니다. 처리 후 취소요청관리 확인 필요합니다.">판매취소</a>-->
-
-												<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('RETURN_REQUEST')"
-													class="btn btn-white btn-sm btn-sm-padding btn-odreturn" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="배송중, 배송완료건만 처리할 수 있으며 반품처리시 반품관리에서 추가 처리가 필요합니다.">반품처리</a>
-												<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('EXCHANGE_REQUEST')"
-													class="btn btn-white btn-sm btn-sm-padding btn-odexchange" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="배송중, 배송완료건만 처리할 수 있으며 교환처리시 교환관리에서 추가 처리가 필요합니다.">교환처리</a>
-
-											</div>
-
-											<a href="javascript:" onclick="SHOP_ORDER_MANAGE.showOrderHelp('order')"
-												class="btn btn-sm btn-flat hidden-xs btn-help"
-												style="padding:2px 5px; color:#313534"><i
-													class="btl bt-question-circle"></i> 도움말</a>
-										</div>
-										<div class="btn-group-right">
-											<div class="holder inline-blocked blocked-xs">
-												<form role="search" class="prod-search" id="order_search_form"
-													onsubmit="return false;">
-													<div class="inline-blocked holder blocked-xs">
-														<!-- 고급검색 적용 중일 땐 input 에 disabled 추가 -->
-														<input type="text"
-															class="form-control keyword_search _keyword_search"
-															placeholder="주문 검색" autocomplete="off" spellcheck="false"
-															dir="auto"
-															onkeydown="if (event.keyCode==13) SHOP_ORDER_MANAGE.startKeywordSearch()"
-															value="">
-														<div class="serach_wrap">
-															<div class="dd-filter-serach">
-																<label class="icon_set shop">
-																	<i class="icon icon-magnifier"
-																		onclick="SHOP_ORDER_MANAGE.startKeywordSearch()"></i>
-																</label>
-															</div>
-														</div>
-													</div>
-													<a class="btn btn-primary btn-flat xs-padding-x btn-high"
-														href="javascript:"
-														onclick="SHOP_ORDER_MANAGE.openModalOrderAdvancedSearch('order', 'YjowOw==')">고급</a>
-												</form>
-											</div>
-											<div class="btn-group hidden-xs">
-												<form id="formOrderPrintMulti"
-													action="/admin/ajax/shop/get_order_print_popup.cm" method="post"
-													target="order_print_popup"></form>
-												<a href="javascript:" onclick="SHOP_ORDER_MANAGE.openOrderPrintPopup()"
-													type="button" class="btn btn-sm btn-sm-padding btn-default-bright">
-													주문서 출력 </a>
-
-												<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.openGoodsflowDlvmgrConfirm('order')"
-													type="button" class="btn btn-sm btn-sm-padding btn-default-bright">
-													자동 송장출력 </a>
-
-												<a href="javascript:"
-													onclick="SHOP_ORDER_MANAGE.openModalOrderExcelDownload('order', 'YjowOw==')"
-													type="button"
-													class="btn btn-sm btn-sm-padding btn-default-bright btn-out">
-													<i class="btl bt-download"></i> 내보내기 </a>
-
-												<a class="btn btn-sm btn-sm-padding btn-default-bright btn-register"
-													onclick="SHOP_ORDER_MANAGE.openParcelBatch()"> <i
-														class="btl bt-upload"></i> 송장 일괄등록</a>
-											</div>
-										</div>
-										<!--
-											<div class="before">
-												<a href="javascript:;" onclick="SHOP_ORDER_MANAGE.updateOrderStatus('DELIVERING')" class="btn btn-primary btn-sm btn-sm-padding">발송처리</a>
-												<a href="javascript:;" onclick="SHOP_ORDER_MANAGE.updateOrderStatus('STANDBY')" class="btn btn-white btn-sm btn-sm-padding">배송준비 처리</a>
-												<a href="javascript:;" onclick="SHOP_ORDER_MANAGE.updateOrderStatus('PAY_COMPLETE')" class="btn btn-white btn-sm btn-sm-padding">입금확인 처리</a>
-											</div>
-											<div class="after">
-												<a href="javascript:;" class="btn btn-white btn-sm btn-sm-padding">개별 발송처리</a>
-												<a href="javascript:;" class="btn btn-white btn-sm btn-sm-padding">개별 배송으로 분리</a>
-												<a href="javascript:;" class="btn btn-white btn-sm btn-sm-padding">묶음 배송으로 병합</a>
-												<a href="javascript:;" class="btn btn-white btn-sm btn-sm-padding">부분 취소처리</a>
-												<a href="javascript:;" class="btn btn-white btn-sm btn-sm-padding">부분 반품처리</a>
-												<a href="javascript:;" class="btn btn-white btn-sm btn-sm-padding">부분 교환처</a>
-											</div>
-											-->
+								<div class="card style-transparent card-top no-tab" style="display: none"
+									 id="prod_list_no_prod">
+									<div class="card-head">
+										<header class="style-price-header force-padding">
+											<h2>판매 시작을 위해 상품을 추가해 주세요</h2>
+											<div class="sub-title text-gray-bright text-center"
+												 style="font-size: 18px;">의류, 전자제품, 식품 등 무엇이든 판매할 수 있습니다.</div>
+										</header>
 									</div>
-									<div class="card style-transparent card-top no-tab" style="display: none"
-										id="order_list_empty">
-										<div class="card-head">
-											<header class="style-price-header force-padding text-gray-bright"
-												style="padding-top: 64px; padding-bottom: 90px;">
-												<h4>조회할 데이터가 없습니다.</h4>
-											</header>
+									<div class="card-body no-padding-y">
+										<div class="text-center text-gray force-padding">
+											<button type="button"
+													class="btn ink-reaction btn-lg btn-primary margin-bottom-xl"
+													onclick="alert('Free 버전에서 사용할 수 있는 상품 등록은 최대 5개 입니다.')">상품추가</button>
+
+											<p><a href="javascript:;" class="text-primary"
+												  onclick="alert('상품 일괄 추가 기능은 Pro, Global 버전에서만 사용 가능합니다.')">대량
+												상품 등록</a></p>
 										</div>
 									</div>
-
-									<div id="order_list_loader_sub" class="se-pre-con"
-										style="position: relative; height: 100px; display: none;">
-										<div class="page-loader-spinner">
-											<div class="double-bounce1"></div>
-											<div class="double-bounce2"></div>
-										</div>
-										<div class="progress">
-											<div class="progress-bar" role="progressbar" style="width:70%">
-												<label>70%</label>
-											</div>
+								</div>
+								<div class="card style-transparent card-top no-tab" style="display: none"
+									 id="showcase_list_no_prod">
+									<div class="card-head">
+										<header class="style-price-header force-padding">
+											<h2>이 기획전에 포함된 상품이 없습니다.</h2>
+											<div class="sub-title text-gray-bright text-center"
+												 style="font-size: 18px;">카테고리에서 기획전에 추가할 상품을 추가할 수 있습니다.</div>
+										</header>
+									</div>
+									<div class="card-body">
+										<div class="text-center">
+											<img src="/admin/img/imweb-category.gif" style="max-width: 100%">
 										</div>
 									</div>
-									<div class="table-responsive table-responsive-order-list" id="order_list_wrap"
-										>
-										<table class="table table-order-list full-width full-height" style="vertical-align: middle; text-align: center;">
-											<colgroup>
-												<col style="width: 30px;" >
-												<col style="width: 140px;">
-												<col class="td-order-img-col">
-												<col style="min-width: 120px;">
-												<col style="width: 90px;">
-												<col style="width: 50px;">
-												<col style="width: 80px; max-width:80px; min-width: 70px;">
-												<col style="width: 150px; max-width:140px; min-width:100px;">
-												<col style="width: 70px;">
-												<col style="width: 210px;">
-												<col style="width: 200px;">
-											</colgroup>
-											<thead class="subject">
-												<tr>
-													<th class="no-padding-right no-border-right">
-														<div class="checkbox checkbox-styled no-margin">
-															<label>
-																<input type="checkbox" id="order_list_allcheck"
-																	onclick="SHOP_ORDER_MANAGE.toggleAllSelected()">
-																<span></span>
-															</label>
-														</div>
-													</th>
-													<th>주문번호/시각</th>
-													<th class="text-center" colspan="2">주문상품</th>
-													<th class="text-center">상품금액</th>
-													<th class="text-center">수량</th>
-													<th class="text-center">상태</th>
-													<th class="text-center">운송장번호</th>
-													<th class="text-center">배송</th>
-													<th class="text-center">배송정보</th>
-													<!--
-													<th class="text-gray text-center">주문자</th>
-													<th class="text-gray text-center">결제방법</th>
-													-->
-													<th class="text-center no-border-right">결제내역</th>
-												</tr>
+								</div>
+								<div class="card style-transparent card-top no-tab" style="display: none"
+									 id="prod_list_no_search">
+									<div class="card-head">
+										<header class="style-price-header force-padding">
+											<h2>검색된 상품이 없습니다</h2>
+										</header>
+									</div>
+								</div>
+								<div class="card">
+									<div class="table-responsive shop-table check" id="prod_list" style="">
+
+										<link rel="stylesheet" type="text/css"
+											  href="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.css" />
+										<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.js"></script>
+										<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+
+										<script type="text/javascript" charset="utf8"
+												src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+										<script>
+											$(document).ready(function () {
+												$('#table_id').DataTable();
+											});
+										</script>
+										<table class="table display no-margin" id="table_id">
+											<thead>
+											<tr>
+												<th>No.</th>
+												<th>이미지</th>
+												<th>상품명</th>
+												<th>판매가</th>
+												<th>브랜드</th>
+												<th>카테고리</th>
+												<th>재고</th>
+												<th>상태</th>
+												<th>등록 날짜</th>
+
+											</tr>
 											</thead>
-											<tbody id="order_list_body">
-												<tr class="alert" role="alert"  style="vertical-align: middle;">
-													<th scope="row"><label>
-															<input type="checkbox" value="" class="_prodListAllCheck"
-																onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-														</label></th>
-													<td>
-														<p>2021041633227</p>
-														<p>홍길동</p>
-													</td>
-													
-													<td  colspan="2">
-														<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg"
-															alt="듀오백사진">
-													</td>
-													
-													<td>
-														<p>100,000원</p>
-													</td>
-													<td>
-														<p>1개</p>
-													</td>
-													<td>
-														<p>출고 대기</p>
-													</td>
-													<td>
-														<p>1234567654</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													<td>
-														<p>미배송</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													
-												</tr>
-												<tr class="alert" role="alert">
-													<th scope="row"><label>
-															<input type="checkbox" value="" class="_prodListAllCheck"
-																onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-														</label></th>
-													<td>
-														<p>2021041633227</p>
-														<p>홍길동</p>
-													</td>
-													
-													<td  colspan="2">
-														<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg"
-															alt="듀오백사진">
-													</td>
-													
-													<td>
-														<p>100,000원</p>
-													</td>
-													<td>
-														<p>1개</p>
-													</td>
-													<td>
-														<p>출고 대기</p>
-													</td>
-													<td>
-														<p>1234567654</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													<td>
-														<p>미배송</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													
-												</tr>
-												<tr class="alert" role="alert">
-													<th scope="row"><label>
-															<input type="checkbox" value="" class="_prodListAllCheck"
-																onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-														</label></th>
-													<td>
-														<p>2021041633227</p>
-														<p>홍길동</p>
-													</td>
-													
-													<td  colspan="2">
-														<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg"
-															alt="듀오백사진">
-													</td>
-													
-													<td>
-														<p>100,000원</p>
-													</td>
-													<td>
-														<p>1개</p>
-													</td>
-													<td>
-														<p>출고 대기</p>
-													</td>
-													<td>
-														<p>1234567654</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													<td>
-														<p>미배송</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													
-												</tr>
-												<tr class="alert" role="alert">
-													<th scope="row"><label>
-															<input type="checkbox" value="" class="_prodListAllCheck"
-																onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-														</label></th>
-													<td>
-														<p>2021041633227</p>
-														<p>홍길동</p>
-													</td>
-													
-													<td  colspan="2">
-														<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg"
-															alt="듀오백사진">
-													</td>
-													
-													<td>
-														<p>100,000원</p>
-													</td>
-													<td>
-														<p>1개</p>
-													</td>
-													<td>
-														<p>출고 대기</p>
-													</td>
-													<td>
-														<p>1234567654</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													<td>
-														<p>미배송</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													
-												</tr>
-												<tr class="alert" role="alert">
-													<th scope="row"><label>
-															<input type="checkbox" value="" class="_prodListAllCheck"
-																onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-														</label></th>
-													<td>
-														<p>2021041633227</p>
-														<p>홍길동</p>
-													</td>
-													
-													<td  colspan="2">
-														<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg"
-															alt="듀오백사진">
-													</td>
-													
-													<td>
-														<p>100,000원</p>
-													</td>
-													<td>
-														<p>1개</p>
-													</td>
-													<td>
-														<p>출고 대기</p>
-													</td>
-													<td>
-														<p>1234567654</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													<td>
-														<p>미배송</p>
-													</td>
-													<td>
-														<p>2022/02/23</p>
-													</td>
-													
-												</tr>
+
+											<tbody>
+											<tr th:each="m : ${goodsList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getGdIdx()}|}'|">
+												<td th:text="${m.gdIdx}"></td>
+												<td th:text="${m.gdImg}"></td>
+												<td th:text="${m.gdName}"></td>
+												<td th:text="${m.gdPrice}"></td>
+												<td th:text="${m.gdBrand}"></td>
+												<td th:text="${m.gdCategory}"></td>
+												<td th:text="${m.gdCount}"></td>
+												<td th:text="${m.gdStatus}"></td>
+												<td th:text="${m.gdRegdate}"></td>
+											</tr>
 											</tbody>
 										</table>
 									</div>
-
 								</div>
-
 							</div>
-						</div>
-						<div class="col-md-12">
-							<nav class="text-center order_paging" id="order_list_paging">
-							</nav>
+
 						</div>
 					</div>
-
 				</div>
-
-
-
-
-	</section>
+			</section>
 	</div>
 	<script>
 		/*$(function(){

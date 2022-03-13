@@ -83,6 +83,10 @@
 	<script src="../js/KR.js"></script>
 	<script src="../js/KR_KRW_currency.js"></script>
 	<!--KR.js 끝-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 	<!--cdn 시작-->
 	<link rel="stylesheet" type="text/css" href="https://vendor-cdn.imweb.me/css/bootstrap.css?1630317764">
 	<link rel="stylesheet" type="text/css" href="https://vendor-cdn.imweb.me/css/jquery-ui.css?1577682282">
@@ -331,370 +335,113 @@
 			</div>
 		</header>
 		<div id="content">
-			<section>
+			<section class="no-padding-bottom">
 				<div class="section-body">
-					<div class="holder">
-						<ul class="nav nav-tabs" data-toggle="tabs" style="margin-bottom: 12px;" id="order_status_tab">
-							<li class="owl_dashboard _owl_dashboard owl-carousel owl-theme owl-loaded">
-
-
-
-
-
-								<div class="owl-stage-outer">
-									<div class="owl-stage"
-										style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 504px;">
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class="active _NEW"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=NEW&amp;reset_status=N'">신규취소
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCEL_REQUEST"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCEL_REQUEST&amp;reset_status=N'">취소요청
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCELING"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCELING&amp;reset_status=N'">취소처리중
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCEL_FAILED"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCEL_FAILED&amp;reset_status=N'">취소처리실패
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-										<div class="owl-item active" style="width: auto; margin-right: 0px;">
-											<ul class="owl-nav-tabs">
-												<li class=" _CANCEL"><a href="#"
-														onclick="location.href='/admin/shopping/cancel?status=CANCEL&amp;reset_status=N'">취소완료
-														<span class="_count text-primary">0</span></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="owl-controls">
-									<div class="owl-nav">
-										<div class="owl-prev" style="display: none;">prev</div>
-										<div class="owl-next" style="display: none;">next</div>
-									</div>
-									<div class="owl-dots" style="">
-										<div class="owl-dot active"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-										<div class="owl-dot"><span></span></div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="table-responsive shop-table orders check " id="order_list">
-									<!-- check class 추가시 테이블 헤더 변경됨 --->
-									<div class="table-btn-group">
-										<div class="btn-group-left">
-											<div class="btn-group">
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('CANCEL_ACCEPT')"
-													class="btn btn-primary btn-sm btn-sm-padding btn-approve-cancel" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="취소요청건에 대해 환불처리를 진행합니다.">취소승인</a> 
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.runOrderAction('CANCEL_REJECT')"
-													class="btn btn-white btn-sm btn-sm-padding btn-refulse-cancel" data-toggle="tooltip"
-													data-placement="top" title=""
-													data-original-title="취소요청건을 거절하고 발송처리 합니다.">취소거절</a>
-												<div class="holder inline-blocked btn btn-white btn-sm btn-sm-padding">
-													<a href="javascript:;" data-toggle="dropdown" aria-haspopup="true"
-														aria-expanded="false">기타 취소처리 <span class="caret"></span></a>
-													<ul class="dropdown-menu">
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_CANCELING')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="취소완료건을 취소처리중으로 되돌립니다. 이미 환불이 완료된 경우 대금 회수는 되지 않습니다.(Npay 불가)">취소처리중으로
-																되돌리기</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('RESTORE_CANCEL_REQUEST')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="취소완료, 취소처리중을 취소요청으로 되돌립니다. 이미 환불이 완료된 경우 대금 회수는 되지 않습니다.(Npay 불가)">취소요청으로
-																되돌리기</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('CANCEL_RETRY')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="자동환불 가능(카드결제 전체취소) 취소승인을 하였으나 PG사 장애 등의 이유로 취소처리중이 되었을 때 자동 환불을 다시 시도하는 기능입니다.(Npay 불가)">자동환불
-																재시도</a></li>
-														<li><a href="javascript:;"
-																onclick="SHOP_ORDER_MANAGE.runOrderAction('CANCEL_FORCE_DONE')"
-																data-toggle="tooltip" data-placement="right" title=""
-																data-original-title="자동환불이 불가한 주문(부분취소, 무통장입금 등)의 실제 환불을 처리한 후 취소완료 상태로 변경하는 기능입니다.(Npay 불가)">강제
-																취소(환불)완료 처리</a></li>
-													</ul>
-												</div>
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.showOrderHelp('cancel')"
-													class="btn btn-sm btn-flat btn-help"
-													style="padding:2px 5px; color:#313534"><i
-														class="btl bt-question-circle"></i> 취소처리 도움말</a>
-											</div>
-										</div>
-										<div class="btn-group-right">
-											<div class="holder inline-blocked blocked-xs">
-												<form role="search" class="prod-search" id="order_search_form"
-													onsubmit="return false;">
-													<div class="inline-blocked holder">
-														<!-- 고급검색 적용 중일 땐 input 에 disabled 추가 -->
-														<input type="text"
-															class="form-control typeahead tt-input _keyword_search"
-															style="padding-right: 30px;" placeholder="주문번호, 주문자명, 연락처"
-															autocomplete="off" spellcheck="false" dir="auto"
-															onkeydown="if (event.keyCode==13) SHOP_ORDER_MANAGE.startKeywordSearch()"
-															value="">
-														<div class="serach_wrap">
-															<div class="dd-filter-serach">
-																<label class="icon_set shop">
-																	<i class="icon icon-magnifier"
-																		onclick="SHOP_ORDER_MANAGE.startKeywordSearch()"></i>
-																</label>
-															</div>
-														</div>
-													</div>
-													<a class="btn btn-primary btn-flat xs-padding-x btn-high" href="javascript:;"
-														onclick="SHOP_ORDER_MANAGE.openModalOrderAdvancedSearch('cancel', 'YjowOw==')">고급</a>
-												</form>
-											</div>
-											<div class="btn-group holder inline-blocked excel_down_btn">
-												<form id="formOrderPrintMulti"
-													action="/admin/ajax/shop/get_order_print_popup.cm" method="post"
-													target="order_print_popup"></form>
-												<a href="javascript:;" onclick="SHOP_ORDER_MANAGE.openOrderPrintPopup()"
-													type="button"
-													class="btn btn-sm btn-sm-padding btn-default-bright">주문서 출력</a>
-												<a href="javascript:;"
-													onclick="SHOP_ORDER_MANAGE.openModalOrderExcelDownload('cancel', 'YjowOw==')"
-													type="button" class="btn btn-sm btn-sm-padding btn-default-bright btn-out">
-													<i class="btl bt-download"></i> 내보내기 </a>
-											</div>
+
+						<!--end.col-->
+						<div class="col-md-9 col-lg-10 col-xl-10">
+							<div class="row">
+
+
+								<div class="card style-transparent card-top no-tab" style="display: none"
+									 id="prod_list_no_prod">
+									<div class="card-head">
+										<header class="style-price-header force-padding">
+											<h2>판매 시작을 위해 상품을 추가해 주세요</h2>
+											<div class="sub-title text-gray-bright text-center"
+												 style="font-size: 18px;">의류, 전자제품, 식품 등 무엇이든 판매할 수 있습니다.</div>
+										</header>
+									</div>
+									<div class="card-body no-padding-y">
+										<div class="text-center text-gray force-padding">
+											<button type="button"
+													class="btn ink-reaction btn-lg btn-primary margin-bottom-xl"
+													onclick="alert('Free 버전에서 사용할 수 있는 상품 등록은 최대 5개 입니다.')">상품추가</button>
+
+											<p><a href="javascript:;" class="text-primary"
+												  onclick="alert('상품 일괄 추가 기능은 Pro, Global 버전에서만 사용 가능합니다.')">대량
+												상품 등록</a></p>
 										</div>
 									</div>
-									<div class="card style-transparent card-top no-tab" style="display: none"
-										id="order_list_empty">
-										<div class="card-head">
-											<header class="style-price-header text-gray-bright force-padding"
-												style="padding-top: 64px; padding-bottom: 90px;">
-												<h4>조회할 데이터가 없습니다.</h4>
-											</header>
-										</div>
-									</div>
-
-									<!--
-										취소할 게 없을 때
-										
-<div class="card style-transparent card-top no-tab" style="" id="order_list_empty_new">
-								<div class="card-head">
-									<header class="style-price-header text-gray-bright force-padding" style="padding-top: 64px; padding-bottom: 90px;">
-
-
-
-									취소할 게 없는 경우 
-                                        
-
-                                            <h4 style="margin-bottom: 8px;">처리하실 취소주문이 없습니다.</h4>
-                                        										<p class="text-14">처리하신 주문은 <a href="/admin/shopping/cancel/?q=YjowOw%3D%3D&amp;status=EXCHANGE&amp;reset_status=N" class="text-primary">취소완료</a>에서 확인하실 수 있습니다.</p>
-									</header>
-                                        -->
-	
 								</div>
-							</div>
-
-									<!--	<div class="card style-transparent card-top no-tab" style="none"
-										id="order_list_empty_new">
-										<div class="card-head">
-										<header class="style-price-header text-gray-bright force-padding"
-												style="none">-->
-												<!--<header class="style-price-header text-gray-bright force-padding"
-												style="padding-top: 64px; padding-bottom: 90px;">
-											</header>-->
-											<!--</header>-->
-
+								<div class="card style-transparent card-top no-tab" style="display: none"
+									 id="showcase_list_no_prod">
+									<div class="card-head">
+										<header class="style-price-header force-padding">
+											<h2>이 기획전에 포함된 상품이 없습니다.</h2>
+											<div class="sub-title text-gray-bright text-center"
+												 style="font-size: 18px;">카테고리에서 기획전에 추가할 상품을 추가할 수 있습니다.</div>
+										</header>
+									</div>
+									<div class="card-body">
+										<div class="text-center">
+											<img src="/admin/img/imweb-category.gif" style="max-width: 100%">
 										</div>
 									</div>
+								</div>
+								<div class="card style-transparent card-top no-tab" style="display: none"
+									 id="prod_list_no_search">
+									<div class="card-head">
+										<header class="style-price-header force-padding">
+											<h2>검색된 상품이 없습니다</h2>
+										</header>
+									</div>
+								</div>
+								<div class="card">
+									<div class="table-responsive shop-table check" id="prod_list" style="">
 
-									<div class="table-responsive table-responsive-order-list" id="order_list_wrap">
-										<table class="table table-order-list full-width full-height no-margin"
-											style="min-width: 1306px; text-align: center;">
-											<colgroup>
-												<col style="width: 30px;">
-												<col style="width: 112px; min-width: 112px;">
-												<col class="td-order-img-col">
-												<col style="width: 220px; min-width: 150px;">
-												<col style="width: 90px;">
-												<col style="width: 55px;">
-												<col style="width: 110px; ">
-												<col style="width: 100px;">
-												<col style="width: 100px;">
-												<col style="width: 140px;">
-												<col style="width: 140px;">
-												<col style="width: 140px;">
-												<col style="width: 150px;">
+										<link rel="stylesheet" type="text/css"
+											  href="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.css" />
+										<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/sl-1.3.4/datatables.min.js"></script>
+										<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
-											</colgroup>
-											<thead class="subject">
-												<tr>
-													<th class="no-padding-right no-border-right">
-														<div class="checkbox checkbox-styled no-margin">
-															<label>
-																<input type="checkbox" id="order_list_allcheck"
-																	onclick="SHOP_ORDER_MANAGE.toggleAllSelected()">
-																<span></span>
-															</label>
-														</div>
-													</th>
-													<th>주문번호/시각</th>
-													<th class="text-center" colspan="2">주문상품</th>
-													<th class="text-center">상품금액</th>
-													<th class="text-center">수량</th>
-													<th class="text-center">상태</th>
-													<th class="text-center">배송방법</th>
-													<th class="text-center" style="width: 110px; ">배송비 결제방법</th>
-													<th class="text-center">취소요청일</th>
-													<th class="text-center">환불정보</th>
-													<th class="text-center">배송정보</th>
-													<th class="text-center no-border-right">결제금액</th>
-												</tr>
+
+										<script type="text/javascript" charset="utf8"
+												src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+										<script>
+											$(document).ready(function () {
+												$('#table_id').DataTable();
+											});
+										</script>
+										<table class="table display no-margin" id="table_id">
+											<thead>
+											<tr>
+												<th>No.</th>
+												<th>이미지</th>
+												<th>상품명</th>
+												<th>판매가</th>
+												<th>브랜드</th>
+												<th>카테고리</th>
+												<th>재고</th>
+												<th>상태</th>
+												<th>등록 날짜</th>
+
+											</tr>
 											</thead>
-											<tbody id="order_list_body">
-												<tr class="alert" role="alert" style="text-align: center;">
-													<th scope="row"><label>
-														<input type="checkbox" value=""
-															class="_prodListAllCheck"
-															onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-													</label></th>
-													<td>202104163322 
-														홍길동</td>
-														
-														<td colspan="2">
-															<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg" alt="듀오백사진">
-														</td>
-														<td>100,000원</td>
-														<td>1개</td>
-														<td>출고 대기</td>
-														<td>우체국택배</td>
-														<td>착불</td>
-														<td>2022/02/23 </td>
-														<td>주문취소</td>
-														<td>미배송</td>
-														<td>110,000원</td>
-												</tr>
-												<tr class="alert" role="alert" style="text-align: center;">
-													<th scope="row"><label>
-														<input type="checkbox" value=""
-															class="_prodListAllCheck"
-															onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-													</label></th>
-													<td>202104163322 
-														홍길동</td>
-														
-														<td colspan="2">
-															<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg" alt="듀오백사진">
-														</td>
-														<td>100,000원</td>
-														<td>1개</td>
-														<td>출고 대기</td>
-														<td>우체국택배</td>
-														<td>착불</td>
-														<td>2022/02/23 </td>
-														<td>주문취소</td>
-														<td>미배송</td>
-														<td>110,000원</td>
-												</tr>
-												<tr class="alert" role="alert" style="text-align: center;">
-													<th scope="row"><label>
-														<input type="checkbox" value=""
-															class="_prodListAllCheck"
-															onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-													</label></th>
-													<td>202104163322 
-														홍길동</td>
-														
-														<td colspan="2">
-															<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg" alt="듀오백사진">
-														</td>
-														<td>100,000원</td>
-														<td>1개</td>
-														<td>출고 대기</td>
-														<td>우체국택배</td>
-														<td>착불</td>
-														<td>2022/02/23 </td>
-														<td>주문취소</td>
-														<td>미배송</td>
-														<td>110,000원</td>
-												</tr>
-												<tr class="alert" role="alert" style="text-align: center;">
-													<th scope="row"><label>
-														<input type="checkbox" value=""
-															class="_prodListAllCheck"
-															onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-													</label></th>
-													<td>202104163322 
-														홍길동</td>
-														
-														<td colspan="2">
-															<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg" alt="듀오백사진">
-														</td>
-														<td>100,000원</td>
-														<td>1개</td>
-														<td>출고 대기</td>
-														<td>우체국택배</td>
-														<td>착불</td>
-														<td>2022/02/23 </td>
-														<td>주문취소</td>
-														<td>미배송</td>
-														<td>110,000원</td>
-												</tr>
-												<tr class="alert" role="alert" style="text-align: center;">
-													<th scope="row"><label>
-														<input type="checkbox" value=""
-															class="_prodListAllCheck"
-															onclick="SHOP_PROD_LIST.listSetAllSelect($(this).prop('checked'))"><span></span>
-													</label></th>
-													<td>202104163322 
-														홍길동</td>
-														
-														<td colspan="2">
-															<img src="../image/_tmp_92d6c00fb6db23586e2f34dfa9e522421762thumbView.jpg" alt="듀오백사진">
-														</td>
-														<td>100,000원</td>
-														<td>1개</td>
-														<td>출고 대기</td>
-														<td>우체국택배</td>
-														<td>착불</td>
-														<td>2022/02/23 </td>
-														<td>주문취소</td>
-														<td>미배송</td>
-														<td>110,000원</td>
-												</tr>
-												 
-												</tbody>
-												
-												 
-												<!---->
-								
+
+											<tbody>
+											<tr th:each="m : ${goodsList}" th:onclick="|location.href='@{|/여기는 갈곳 기입 페이지/${m.getGdIdx()}|}'|">
+												<td th:text="${m.gdIdx}"></td>
+												<td th:text="${m.gdImg}"></td>
+												<td th:text="${m.gdName}"></td>
+												<td th:text="${m.gdPrice}"></td>
+												<td th:text="${m.gdBrand}"></td>
+												<td th:text="${m.gdCategory}"></td>
+												<td th:text="${m.gdCount}"></td>
+												<td th:text="${m.gdStatus}"></td>
+												<td th:text="${m.gdRegdate}"></td>
+											</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
 						</div>
 						<div class="col-md-12">
 							<nav class="text-center order_paging" id="order_list_paging">
